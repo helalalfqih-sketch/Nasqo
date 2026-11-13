@@ -101,3 +101,10 @@ at `df95fe7` passed all 11 acceptance groups, including actual log-secret checks
 checks. Its Odoo, PostgreSQL base and Nginx references are digest-pinned to the
 actual images recorded by this successful run. The derived PostgreSQL image is
 built locally, never published, and its image ID is recorded in the next report.
+
+Run 43482120855 passed source and full-history secret scans, Odoo and Nginx;
+the symlink-based PostgreSQL helper replacement still reported all 26 Go findings.
+The next revision replaces the helper with a regular byte-identical su-exec
+binary and asserts that fact during build. No finding is ignored. Sanitized
+vulnerability target/type metadata is now included to diagnose any remaining
+finding; runtime and scanner results must again be checked.

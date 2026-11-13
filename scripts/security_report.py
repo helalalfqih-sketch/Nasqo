@@ -11,6 +11,8 @@ vulnerabilities = set()
 secret_count = 0
 for result in report.get('Results', []):
     secret_count += len(result.get('Secrets', []))
+    if result.get('Vulnerabilities'):
+        print('Vulnerability target:', result.get('Target'), 'type:', result.get('Type'))
     for item in result.get('Vulnerabilities', []):
         vulnerabilities.add((item['VulnerabilityID'], item['PkgName'], item['Severity']))
 print(f'High/critical vulnerabilities: {len(vulnerabilities)}; secret findings: {secret_count}')
