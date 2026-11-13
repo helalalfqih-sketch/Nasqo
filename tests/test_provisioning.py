@@ -4,14 +4,16 @@ import io
 import json
 import os
 from pathlib import Path
+import subprocess
 import tarfile
 import tempfile
 import unittest
+from unittest.mock import patch
 import zipfile
 
 from provisioning.backup import crypt, key_bytes, validate_bundle
 from provisioning.registry import Conflict, Registry, provision, validate_slug
-from provisioning.runtime import ROOT, compose_spec
+from provisioning.runtime import ROOT, Runtime, compose_spec
 
 
 class FakeRuntime:
@@ -100,6 +102,17 @@ class ProvisioningTests(unittest.TestCase):
         self.assertNotIn(f"{ROOT}:/workspace:ro", mounts)
         self.assertTrue(spec["networks"]["database"]["internal"])
         self.assertTrue(spec["networks"]["frontend"]["internal"])
+
+    def test_timeout_stops_named_operator_before_retry(self):
+        store = self.registry.reserve("alpha", "idempotency-alpha-01")
+        runtime = Runtime(self.registry)
+        with patch("provisioning.runtime.run", side_effect=[subprocess.TimeoutExpired("docker", 1),
+                   subprocess.CompletedProcess([], 0, b"", b"")]) as runner:
+            with self.assertRaisesRegex(RuntimeError, "timed out"):
+                runtime.dc(store, "run", "--rm", "-T", "odoo", "install", timeout=1)
+            self.assertIn("--name", runner.call_args_list[0].args[0])
+            self.assertEqual(runner.call_args_list[1].args[0],
+                             ["docker", "stop", "--time", "10", runtime.project(store) + "-operator"])
 
     def bundle(self, store, name="nasqo_alpha/aa/file", bad_hash=False, link=False):
         stream = io.BytesIO()

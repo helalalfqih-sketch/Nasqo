@@ -51,6 +51,9 @@ records `failed_needs_review`, stops Odoo, and leaves resources for inspection.
 After inspecting the cause, retry the original command/key; completed installation
 is detected from the database. A live `active` tenant is never reinitialized by
 provision. The operator lock serializes provisioning, backup, restore and routing.
+One named operator container per tenant prevents a second writer after a worker
+crash. Timeouts attempt to stop it; a surviving name blocks another job until the
+operator investigates. Readiness failures include only a credential-redacted tail.
 
 ## Offline backup and safe restore
 

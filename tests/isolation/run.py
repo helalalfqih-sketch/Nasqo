@@ -124,6 +124,7 @@ def execute():
         current = "AT-005"
         unknown = Browser("unregistered")
         check(unknown.request("/shop")[0] == 421, "Unknown Host was routed")
+        check(unknown.request("/shop", headers={"Host": "alpha.nasqo.test.attacker.invalid"})[0] == 421, "Host suffix was accepted")
         for store, fixture, other in ((alpha, a, b), (beta, b, a)):
             client = clients[store["slug"]]
             for path in ("/shop", "/web/login"):
@@ -133,7 +134,7 @@ def execute():
             wrong_db = "nasqo_beta" if store == alpha else "nasqo_alpha"
             status, body = client.request("/shop?db=" + wrong_db)
             check(other["marker"].encode() not in body and status in (200, 303, 403), "DB query selected another tenant")
-            for path in ("/web/database/manager", "/web/database/list", "/jsonrpc", "/xmlrpc/2/db"):
+            for path in ("/web/database/manager", "/web/database/list", "/jsonrpc", "/jsonrpc/", "/xmlrpc/2/db"):
                 check(client.request(path)[0] == 403, "Database management route exposed")
             credentials = json.loads((runtime.directory(store) / "credentials.json").read_text())
             check("error" in client.login(wrong_db, "operator", credentials["admin"]), "Cross database login succeeded")
@@ -175,6 +176,17 @@ for database in ('template1', {runtime.db_name(other)!r}):
 """
             runtime.dc(store, "exec", "-T", "odoo", "python3", "-", input=script.encode())
             check(runtime.sql(store, f"SELECT has_database_privilege('{db}', 'postgres', 'CONNECT') AND NOT has_database_privilege('{db}', 'postgres', 'TEMP');") == "t", "Maintenance database permission differs from CONNECT-only")
+            other_container = runtime.dc(other, "ps", "-q", "db").stdout.decode().strip()
+            other_ip = run(["docker", "inspect", other_container, "--format", "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}"]).stdout.decode().strip()
+            network_probe = f"""import socket
+try:
+    socket.create_connection(({other_ip!r}, 5432), timeout=3)
+except OSError:
+    pass
+else:
+    raise AssertionError('Other tenant PostgreSQL network is reachable')
+"""
+            runtime.dc(store, "exec", "-T", "odoo", "python3", "-", input=network_probe.encode())
             forbidden = f"/var/lib/odoo/filestore/{runtime.db_name(other)}/{fixture['store_fname']}"
             runtime.dc(store, "exec", "-T", "odoo", "test", "!", "-e", forbidden)
             # The other tenant database is not attached to this runtime's networks.

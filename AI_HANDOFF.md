@@ -80,6 +80,13 @@ no TEMP/CREATEDB privileges. Tests check this necessary exception explicitly.
 PostgreSQL health now uses TCP so its temporary init socket cannot report readiness.
 These corrections still require a fresh CI run; failed runs are not acceptance.
 
+At `4517b2c`, foundation integration run 43476238125 passed. M2 installation and
+upgrade advanced to HTTP readiness but run 43476238197 failed at that gate. A
+redacted diagnostic tail is now included on readiness failure so the next run
+can establish the precise cause. Additional probes cover direct cross-container
+DB network access and malformed Host/RPC paths. Named operator jobs prevent
+concurrent retry writers after timeouts; a unit regression verifies the stop call.
+
 ## Exact next actions
 
 1. Publish the corrections to Draft PR #3 against foundation.

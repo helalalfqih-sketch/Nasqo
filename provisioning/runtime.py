@@ -121,16 +121,31 @@ class Runtime:
     def db_name(self, store):
         return "nasqo_" + store["slug"]
 
+    def safe_output(self, store, output):
+        diagnostic = output.decode(errors="replace")
+        passwords = json.loads((self.directory(store) / "credentials.json").read_text())
+        for value in passwords.values():
+            diagnostic = diagnostic.replace(value, "[REDACTED]")
+        return diagnostic[-10000:]
+
     def dc(self, store, *args, input=None, timeout=180, check=True):
-        result = run(["docker", "compose", "-p", self.project(store), "-f",
-                      str(self.directory(store) / "compose.json"), *args],
-                     input=input, timeout=timeout, check=False)
+        # One named operator container per tenant prevents a retry from starting
+        # another writer after a worker/client crash. Volumes are never removed.
+        one_off = bool(args and args[0] == "run")
+        job = self.project(store) + "-operator"
+        if one_off:
+            args = ("run", "--name", job, *args[1:])
+        try:
+            result = run(["docker", "compose", "-p", self.project(store), "-f",
+                          str(self.directory(store) / "compose.json"), *args],
+                         input=input, timeout=timeout, check=False)
+        except subprocess.TimeoutExpired:
+            if one_off:
+                run(["docker", "stop", "--time", "10", job], check=False)
+            raise RuntimeError("Local runtime timed out; operator stop attempted. Inspect before retry; the job name prevents concurrent writers.") from None
         if check and result.returncode:
-            diagnostic = (result.stdout + result.stderr).decode(errors="replace")
-            passwords = json.loads((self.directory(store) / "credentials.json").read_text())
-            for value in passwords.values():
-                diagnostic = diagnostic.replace(value, "[REDACTED]")
-            raise RuntimeError(f"M2 command failed (exit {result.returncode}):\n{diagnostic[-6000:]}")
+            diagnostic = self.safe_output(store, result.stdout + result.stderr)
+            raise RuntimeError(f"M2 command failed (exit {result.returncode}):\n{diagnostic}")
         return result
 
     def sql(self, store, query):
@@ -169,10 +184,13 @@ for path in ('/web/login', '/shop'):
             if result.returncode == 0:
                 return
             time.sleep(2)
-        raise RuntimeError("Odoo login/shop readiness failed.")
+        logs = self.dc(store, "logs", "--no-color", "--tail", "100", "odoo", check=False)
+        diagnostic = self.safe_output(store, result.stdout + result.stderr + logs.stdout + logs.stderr)
+        raise RuntimeError("Odoo login/shop readiness failed:\n" + diagnostic)
 
     def quarantine(self, store):
         if (self.directory(store) / "compose.json").exists():
+            run(["docker", "stop", "--time", "10", self.project(store) + "-operator"], check=False)
             self.dc(store, "stop", "odoo", check=False)
 
     def gateway(self):
@@ -187,7 +205,7 @@ for path in ('/web/login', '/shop'):
 listen 8080; server_name {host};
 client_max_body_size 8m;
 location ^~ /web/database {{ return 403; }}
-location = /jsonrpc {{ return 403; }}
+location ^~ /jsonrpc {{ return 403; }}
 location ^~ /xmlrpc {{ return 403; }}
 location / {{
 proxy_pass http://{self.project(store)}:8069;
