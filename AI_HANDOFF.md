@@ -67,9 +67,22 @@ command output is captured and known credentials redacted on errors.
 Backup is offline, in-memory, capped at 512 MiB, with operator-held local key;
 off-host retention/key custody must be designed before commercial usage.
 
+## First CI findings and corrections
+
+PR [#3](https://github.com/helalalfqih-sketch/Nasqo/pull/3) is open Draft.
+At `8d0a5b5`, all 18 unit tests including GPG roundtrip/tamper passed on GitHub.
+The repeated unit run inside foundation bootstrap exposed an umask-dependent
+negative permission fixture; it now explicitly chmods that fixture to 0755.
+The M2 runtime run 43475596610 then reached Odoo startup and found that upstream
+19 probes the `postgres` maintenance catalog on every startup. The tenant role
+now has CONNECT-only access to that empty per-tenant maintenance database, with
+no TEMP/CREATEDB privileges. Tests check this necessary exception explicitly.
+PostgreSQL health now uses TCP so its temporary init socket cannot report readiness.
+These corrections still require a fresh CI run; failed runs are not acceptance.
+
 ## Exact next actions
 
-1. Push the development branch and open a Draft PR against foundation.
+1. Publish the corrections to Draft PR #3 against foundation.
 2. Inspect every new CI job; fix failures and rerun relevant checks.
 3. Record final commit/run URLs and PASS/FAIL/BLOCKED results here and in the PR.
 4. Keep both PRs unmerged; review pilot gaps before M3. Do not delete volumes.

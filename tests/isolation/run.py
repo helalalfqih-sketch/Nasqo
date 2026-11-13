@@ -1,11 +1,12 @@
 """Real PostgreSQL/Odoo/HTTP/filestore acceptance checks, synthetic data only."""
+import ast
 import http.client
 from http.cookies import SimpleCookie
 import json
 import uuid
 
 from provisioning.backup import backup, restore
-from provisioning.registry import Conflict, Registry, provision
+from provisioning.registry import Conflict, Registry, private_directory, provision
 from provisioning.runtime import ROOT, Runtime, preflight, run
 
 
@@ -61,6 +62,7 @@ def execute():
     preflight()
     result_path = ROOT / "artifacts/m2-results.json"
     result_path.parent.mkdir(exist_ok=True)
+    private_directory(ROOT / ".m2")
     registry = Registry(ROOT / ".m2" / ("run-" + uuid.uuid4().hex[:12]))
     runtime = Runtime(registry)
     results = []
@@ -73,6 +75,14 @@ def execute():
         print(f"PASS {test}: {detail}", flush=True)
 
     try:
+        current = "M0/dependencies"
+        report["community_modules"] = {}
+        for name in ("website_sale", "sale_management", "delivery", "payment", "account", "account_payment",
+                     "purchase", "purchase_stock", "stock", "stock_account", "mail", "portal"):
+            manifest = ast.literal_eval((ROOT / "vendor/odoo/addons" / name / "__manifest__.py").read_text())
+            check(manifest.get("license") == "LGPL-3", "Unexpected upstream module license")
+            report["community_modules"][name] = {"license": manifest["license"], "depends": manifest.get("depends", [])}
+        passed(current, "Pinned clean Community source and 12 standard module manifests/licenses verified; no third-party add-on added")
         current = "AT-030"
         try:
             provision(registry, runtime, "alpha", "m2-alpha-stable-key", fault_after="database")
@@ -156,7 +166,7 @@ def execute():
             check(runtime.sql(store, f"SELECT NOT r.rolsuper AND NOT r.rolcreatedb AND NOT r.rolcreaterole AND NOT r.rolreplication AND d.datdba <> r.oid FROM pg_roles r JOIN pg_database d ON d.datname='{db}' WHERE r.rolname='{db}';") == "t", "Runtime database role is overprivileged")
             creds = json.loads((runtime.directory(store) / "credentials.json").read_text())
             script = f"""import psycopg2
-for database in ('postgres', {runtime.db_name(other)!r}):
+for database in ('template1', {runtime.db_name(other)!r}):
     try:
         psycopg2.connect(host='db', dbname=database, user={db!r}, password={creds['database']!r}, connect_timeout=5)
     except psycopg2.OperationalError:
@@ -164,6 +174,7 @@ for database in ('postgres', {runtime.db_name(other)!r}):
     raise AssertionError('Forbidden database connection accepted')
 """
             runtime.dc(store, "exec", "-T", "odoo", "python3", "-", input=script.encode())
+            check(runtime.sql(store, f"SELECT has_database_privilege('{db}', 'postgres', 'CONNECT') AND NOT has_database_privilege('{db}', 'postgres', 'TEMP');") == "t", "Maintenance database permission differs from CONNECT-only")
             forbidden = f"/var/lib/odoo/filestore/{runtime.db_name(other)}/{fixture['store_fname']}"
             runtime.dc(store, "exec", "-T", "odoo", "test", "!", "-e", forbidden)
             # The other tenant database is not attached to this runtime's networks.

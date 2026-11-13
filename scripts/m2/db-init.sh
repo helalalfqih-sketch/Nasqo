@@ -7,7 +7,10 @@ CREATE ROLE :"role" WITH LOGIN PASSWORD :'password' NOSUPERUSER NOCREATEDB NOCRE
 CREATE DATABASE :"role" OWNER postgres;
 REVOKE ALL ON DATABASE :"role" FROM PUBLIC;
 GRANT CONNECT, TEMPORARY ON DATABASE :"role" TO :"role";
-REVOKE CONNECT ON DATABASE postgres FROM PUBLIC;
+-- Odoo 19 probes the maintenance catalog at every CLI/server startup.
+-- Allow CONNECT only, with neither database creation nor temporary-table rights.
+REVOKE ALL ON DATABASE postgres FROM PUBLIC;
+GRANT CONNECT ON DATABASE postgres TO :"role";
 REVOKE CONNECT ON DATABASE template1 FROM PUBLIC;
 SQL
 psql -v ON_ERROR_STOP=1 -U postgres -d "$NASQO_DB_NAME" -v "role=$NASQO_DB_NAME" <<'SQL'

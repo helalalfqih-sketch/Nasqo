@@ -49,7 +49,7 @@ def compose_spec(directory, project, db_name, password):
                 "volumes": ["postgres:/var/lib/postgresql/data",
                             f"{ROOT}/scripts/m2/db-init.sh:/docker-entrypoint-initdb.d/01-nasqo.sh:ro"],
                 "networks": ["database"],
-                "healthcheck": {"test": ["CMD-SHELL", "pg_isready -U postgres -d postgres"],
+                "healthcheck": {"test": ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U postgres -d postgres"],
                                 "interval": "2s", "timeout": "3s", "retries": 60},
             },
             "odoo": {

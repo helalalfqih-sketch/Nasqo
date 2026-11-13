@@ -85,6 +85,7 @@ class ProvisioningTests(unittest.TestCase):
     def test_state_must_be_private_and_cannot_be_symlink(self):
         unsafe = self.path / "unsafe"
         unsafe.mkdir(mode=0o755)
+        os.chmod(unsafe, 0o755)  # Explicit fixture, independent of bootstrap umask 077.
         with self.assertRaises(PermissionError):
             Registry(unsafe)
         (self.path / "link").symlink_to(self.path, target_is_directory=True)
