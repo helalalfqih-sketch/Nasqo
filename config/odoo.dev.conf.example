@@ -1,0 +1,15 @@
+[options]
+; COPY to ignored odoo.dev.conf and replace absolute paths before use.
+addons_path = /absolute/path/Nasqo/vendor/odoo/addons,/absolute/path/Nasqo/addons
+http_interface = 127.0.0.1
+http_port = 8069
+db_host = 127.0.0.1
+db_port = 5432
+db_user = nasqo_dev
+db_name = nasqo_dev
+dbfilter = ^nasqo_dev$
+list_db = False
+proxy_mode = False
+workers = 0
+; Set db_password/admin_passwd securely in the ignored local configuration.
+; Use a disposable local database with no live customer data.
