@@ -108,3 +108,12 @@ The next revision replaces the helper with a regular byte-identical su-exec
 binary and asserts that fact during build. No finding is ignored. Sanitized
 vulnerability target/type metadata is now included to diagnose any remaining
 finding; runtime and scanner results must again be checked.
+
+Run 43482421551 identified the retained target as `usr/local/bin/gosu`, despite
+the successful regular-file byte comparison. Trivy v0.69.3's
+[`ApplyLayers`](https://github.com/aquasecurity/trivy/blob/v0.69.3/pkg/fanal/applier/docker.go)
+removes prior application entries on OCI whiteouts; replacing the Go file with
+a non-Go file did not clear that lower-layer result. A separate image-build layer
+now unlinks only the old helper before installing its verified replacement.
+This records removal explicitly, affects no host/database volume, and keeps all
+scanner rules enabled. Acceptance still depends on the next actual scan.
