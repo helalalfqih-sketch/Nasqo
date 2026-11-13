@@ -7,10 +7,21 @@ The user requested actual screenshots because no NASQO Codespace is connected.
 Added `tests/isolation/screenshots.py` and screenshot/artifact steps to the M2
 workflow, with `docs/VISUAL_EVIDENCE.md` and a README pointer. The capture reads
 anonymous synthetic test pages only and leaves runtime/configuration/fixtures
-unchanged. Local Docker remains unavailable. Actual CI capture and visual
-inspection are pending; the next action is to run and inspect the four PNGs.
-No custom NASQO design or public preview is implied. Prior runtime evidence below
-continues to describe PR #4, not a successful screenshot run.
+unchanged. Local Docker remains unavailable and local Chromium cannot create
+sockets. Draft PR #5 is open, unmerged. Runtime/capture commit `d267dda` passed
+static (43491075954), M1 (43491076171), security (43491076102) and M2/capture
+(43491076054). Nine relevant local tests, syntax and diff checks also passed.
+The four PNGs were downloaded, hash-verified and visually inspected.
+
+Shop A/B and mobile-width render correctly as the standard Odoo foundation.
+**Manual login visual check FAIL:** the captured page has a header/footer but no
+visible login form, despite blank inputs being present in the DOM. Investigate
+UserSwitch initialization, JS assets/browser readiness and add a real visibility
+assertion; HTTP/DOM success did not prove this UI works. No screenshot was edited
+to conceal this finding. See docs/VISUAL_EVIDENCE.md for provenance and next steps.
+No custom NASQO design or public preview is implied. The user's subsequently
+uploaded product workbook is handled outside Git/CI; no real catalog data enters
+this repository or its test fixtures.
 
 ## Current branch and scope
 

@@ -30,8 +30,26 @@ of those capabilities or substitute for the M2 integration assertions.
 
 ## Verification status
 
-Capture code and workflow have been prepared. Actual capture execution and
-visual inspection are pending; update this section only after observing them.
+Run [43491076054](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43491076054)
+completed successfully on branch commit `d267dda` (tested merge checkout
+`7e1d0f66be1a29c2e152c553856c2070fb7db9c0`). All eleven M2 groups and four
+HTTP/DOM/PNG capture checks passed. M1, static and security workflows also passed.
+Artifact `14069214428` contains the four actual PNGs and their provenance; the
+downloaded ZIP and each PNG hash were verified. Browser: Chrome 157.0.8103.50.
+
+Manual visual review: Alpha/Beta shop and the mobile-width shop render their own
+synthetic product, USD default price and standard Odoo layout. **Login visual
+acceptance FAIL:** the login capture contains the site header/footer but no
+visible form. The DOM-presence check found blank inputs; that does not prove
+visibility or completed JavaScript initialization. The pinned Odoo login template
+initially hides the form until its UserSwitch component starts. Browser console,
+asset loading and readiness need a targeted investigation before accepting login
+UI behavior. No CSS/DOM was altered to manufacture a successful screenshot.
+
+These images must be described as foundation evidence, not a finished storefront.
+The login issue is an additional open visual gate. The next test change should
+assert computed visibility and browser readiness, with diagnostic capture on
+failure; it must not equate DOM presence with a usable login page.
 
 Reproduce on the disposable GitHub runner after `bash scripts/m2/run.sh`:
 
