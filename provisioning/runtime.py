@@ -2,6 +2,7 @@
 import json
 import os
 from pathlib import Path
+import re
 import secrets
 import subprocess
 import time
@@ -205,6 +206,7 @@ for path in ('/web/login', '/shop'):
             host = store["slug"] + ".nasqo.test"
             servers.append(f"""server {{
 listen 8080; server_name {host};
+if ($http_host !~ "^{re.escape(host)}(:18069)?$") {{ return 421; }}
 client_max_body_size 8m;
 location ^~ /web/database {{ return 403; }}
 location ^~ /jsonrpc {{ return 403; }}
@@ -212,6 +214,7 @@ location ^~ /xmlrpc {{ return 403; }}
 location / {{
 proxy_pass http://{self.project(store)}:8069;
 proxy_set_header Host {host};
+proxy_set_header X-Odoo-Database "";
 proxy_set_header X-Forwarded-Host "";
 proxy_set_header X-Forwarded-For "";
 proxy_set_header X-Forwarded-Proto "";

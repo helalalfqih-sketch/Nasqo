@@ -1,5 +1,22 @@
 # NASQO Odoo 19 — M0–M2 handoff (2026-11-13)
 
+## Runtime verification follow-up
+
+Branch `fix/m2-runtime-verification`, based on PR #3 commit `d33af5d`, verifies the
+upstream fix for the observed anonymous HTTP 404 and hardens ingress headers. Odoo's nonempty dbfilter
+enumerates only role-owned databases, while the pilot correctly uses a non-owner
+role. An exact `db_name` allowlist with empty dbfilter uses upstream's supported
+selection/filter path without granting ownership. The live suite exercises both
+actual upstream functions and rejects foreign DB authentication; Host ports and
+X-Odoo-Database headers are also checked. See `docs/RUNTIME_SELECTOR_FIX.md`.
+
+The full original 11-page functional reference was located and read during this
+follow-up, correcting the earlier availability limitation below. No source data
+or assets were imported. Separate source/secret and image-CVE CI gates are added,
+with no vulnerability exceptions. Local Docker and GPG-agent execution remain
+blocked; final live results must come from CI. PR #3/#1 and production remain
+unchanged by this follow-up branch.
+
 ## Scope and branch
 
 `feature/m0-m2-tenant-isolation`, based on foundation

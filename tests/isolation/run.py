@@ -102,6 +102,14 @@ def execute():
         beta = provision(registry, runtime, "beta", "m2-beta-stable-key")
         for store in (alpha, beta):
             check(runtime.sql(store, "SELECT count(*) FROM ir_module_module WHERE name IN ('website_sale','nasqo_store') AND state='installed';") == "2", "Missing module")
+            selector_probe = f"""from odoo import http
+from odoo.service.db import list_dbs
+assert list_dbs(force=True) == [{runtime.db_name(store)!r}]
+assert http.db_filter(['nasqo_alpha', 'nasqo_beta'], host='untrusted.invalid') == [{runtime.db_name(store)!r}]
+print('DATABASE_ALLOWLIST_VERIFIED')
+"""
+            check('DATABASE_ALLOWLIST_VERIFIED' in runtime.shell(store, selector_probe),
+                  'Pinned Odoo database selector does not enforce the exact runtime database')
         passed(current, "Two isolated databases; pinned Odoo install, upgrade, /web/login and /shop passed")
 
         current = "AT-003"
@@ -125,11 +133,12 @@ def execute():
         unknown = Browser("unregistered")
         check(unknown.request("/shop")[0] == 421, "Unknown Host was routed")
         check(unknown.request("/shop", headers={"Host": "alpha.nasqo.test.attacker.invalid"})[0] == 421, "Host suffix was accepted")
+        check(unknown.request("/shop", headers={"Host": "alpha.nasqo.test:9999"})[0] == 421, "Unexpected Host port was accepted")
         for store, fixture, other in ((alpha, a, b), (beta, b, a)):
             client = clients[store["slug"]]
             for path in ("/shop", "/web/login"):
                 check(client.request(path)[0] == 200, "Gateway HTTP smoke failed")
-            status, body = client.request("/shop", headers={"X-Forwarded-Host": "unregistered.nasqo.test", "Forwarded": "host=beta.nasqo.test"})
+            status, body = client.request("/shop", headers={"X-Forwarded-Host": "unregistered.nasqo.test", "Forwarded": "host=beta.nasqo.test", "X-Odoo-Database": "nasqo_beta" if store == alpha else "nasqo_alpha"})
             check(status == 200 and fixture["marker"].encode() in body and other["marker"].encode() not in body, "Forwarded host changed tenant")
             wrong_db = "nasqo_beta" if store == alpha else "nasqo_alpha"
             status, body = client.request("/shop?db=" + wrong_db)
