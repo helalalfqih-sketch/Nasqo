@@ -20,6 +20,7 @@ docker compose --env-file .devcontainer/.env -f .devcontainer/compose.yaml run -
 
 ## Scope and controls
 - Only **disposable development credentials and databases** are used. PostgreSQL is not published outside Docker. Odoo's database role is non-superuser.
+- Bootstrap grants read/traverse permissions to the disposable **public Odoo source checkout only** so the non-root Docker user can read it. Development passwords remain private (0600).
 - The official dated `odoo:19.0-20261112` image supplies system dependencies; **execution uses the exact pinned Odoo source** mounted under `vendor/odoo`.
 - `vendor/odoo`, `.devcontainer/.env`, `.devcontainer/.state`, and database/filestore volumes are not committed.
 - Codespaces may sleep, stop or be rebuilt. Restarts attempt to resume services; do **not** rely on it as a persistent server or a backup.

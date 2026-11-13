@@ -44,6 +44,11 @@ else
   bash scripts/fetch_upstream.sh
 fi
 
+# Public, pinned Odoo source is mounted read-only in a container running as user "odoo".
+# The bootstrap umask protects local secrets, but Git must be readable across UIDs.
+# Only relax permissions inside the disposable public vendor checkout, never .env.
+chmod -R a+rX vendor/odoo
+
 command -v docker >/dev/null || { echo "Docker is unavailable in this development container" >&2; exit 1; }
 for _ in $(seq 1 40); do
   docker info >/dev/null 2>&1 && break
@@ -64,7 +69,8 @@ done
 [[ "$ready" == 1 ]] || { echo "Development database role initialization failed" >&2; exit 1; }
 
 echo "NASQO: verifying the pinned source is visible inside Docker"
-dc run --rm -T --no-deps --entrypoint sh odoo -c 'test -f /workspace/vendor/odoo/odoo-bin' || {
+dc run --rm -T --no-deps --entrypoint sh odoo -c 'test -r /workspace/vendor/odoo/odoo-bin' || {
+  dc run --rm -T --no-deps --entrypoint sh odoo -c 'for f in /workspace /workspace/vendor /workspace/vendor/odoo /workspace/vendor/odoo/odoo-bin; do ls -ld "$f" 2>&1; done' || true
   echo "NASQO: bind mount error; pinned upstream source is not visible" >&2
   exit 1
 }
