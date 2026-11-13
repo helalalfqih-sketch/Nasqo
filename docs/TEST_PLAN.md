@@ -4,9 +4,11 @@ Status is recorded in `AI_HANDOFF.md` and the actual CI job. This table describe
 coverage, not a claim that a job has passed. The source contract is
 [IMPLEMENTATION_PLAN_v1.0.md](IMPLEMENTATION_PLAN_v1.0.md).
 
-Observed on runtime commit `175888a`: **19 unit tests and all 11 reported pilot
-acceptance groups PASS** in [run 43479599787](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43479599787).
-The [recorded JSON](validation/m2-results-175888a.json) includes digests and provenance.
+Observed on runtime commit `f1ae638`: **21 unit tests and all 11 reported pilot
+acceptance groups PASS** in [run 43483024980](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43483024980).
+The [recorded JSON](validation/m2-results-f1ae638.json) includes image IDs and provenance.
+[Security run 43483024786](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43483024786)
+passed all source/history/image jobs without CVE waivers.
 This does not mark the deferred or partially covered AT cases below complete.
 
 | Test | Coverage / next gate |
@@ -33,7 +35,7 @@ actual tenant/restore/gateway container logs, without printing those logs.
 Foundation runtime checks ensure operator state and repository credentials are
 not mounted. Trivy separately scans source secrets and all runtime image
 dependencies; high/critical findings fail the gate, with no waivers. Git-history
-secret scanning and penetration testing remain launch requirements.
+secret scanning now runs in CI; penetration testing remains a launch requirement.
 No type-checker is configured for the stdlib-only Python code; syntax,
 unittest, Bash parsing and CI ShellCheck cover the current implementation.
 

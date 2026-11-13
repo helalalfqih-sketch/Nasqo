@@ -37,13 +37,14 @@ source/secret/image security gates and container-log secret checks. Foundation
 Odoo mounts only public source and scripts, so it cannot read the M2 registry.
 Fresh M1/M2 environments build the reviewed PostgreSQL derivative and use the
 updated Nginx image. M1 v2 has new volume names and refuses to bootstrap an old
-v1 workspace; existing database volumes are preserved. CI must verify these
-changes before acceptance. See [runtime evidence](docs/RUNTIME_SELECTOR_FIX.md).
+v1 workspace; existing database volumes are preserved. All four workflows passed on runtime commit `f1ae638`: 21 unit tests, actual M1,
+two-store M2/restore and security scans. See [runtime evidence](docs/RUNTIME_SELECTOR_FIX.md).
 
-**Verified pilot:** runtime commit `175888a` passed 19 unit tests and all 11
-reported M0/M1/M2 acceptance groups, including two actual stores and encrypted
-restore. [CI evidence](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43479599787)
-and the [recorded report](docs/validation/m2-results-175888a.json) contain the details.
+**Verified follow-up:** [M2 CI evidence](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43483024980)
+and the [recorded report](docs/validation/m2-results-f1ae638.json) contain all 11
+passing pilot groups, runtime image IDs and exact code provenance. See the
+[security evidence](docs/validation/security-f1ae638.json) and
+[detailed M3–M8 plan](docs/PHASE_PLAN_M3_M8.md). No public merchant service was created.
 
 ## Limitations
 This setup is not proof of production readiness. The M2 operator pilot has isolation

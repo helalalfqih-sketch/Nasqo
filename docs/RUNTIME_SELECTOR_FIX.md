@@ -117,3 +117,18 @@ a non-Go file did not clear that lower-layer result. A separate image-build laye
 now unlinks only the old helper before installing its verified replacement.
 This records removal explicitly, affects no host/database volume, and keeps all
 scanner rules enabled. Acceptance still depends on the next actual scan.
+
+## Final result
+
+Runtime `f1ae63823a0b9368ac83193e500367c6e20c08ec` passed all four workflows:
+static/unit 43483025304 (21 tests), M1 v2 43483024796, M2 43483024980 (all 11
+reported groups) and security 43483024786 (source/history/three runtime recipes).
+The helper removal layer resolved the retained Go findings; no rule was disabled
+and no CVE was waived. Actual installation, user permissions, dump/restore and
+HTTP still passed after the change. See `validation/m2-results-f1ae638.json` and
+`validation/security-f1ae638.json`. The final evidence commit is documentation only.
+
+The pilot does not close merchant identity, support authorization/audit, distributed
+transport-failure recovery, financial capability or production operation gates.
+No persistent Codespace, public shop, registry image, production deployment or
+merge was created. M3–M8 remain the detailed backlog.
