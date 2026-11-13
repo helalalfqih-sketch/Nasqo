@@ -90,7 +90,9 @@ db_port = 5432
 db_user = {db_name}
 db_password = {passwords['database']}
 db_name = {db_name}
-dbfilter = ^{db_name}$
+; Odoo 19 list_dbs with dbfilter queries database ownership. This non-owner
+; runtime uses the exact db_name allowlist instead (http.db_filter fallback).
+dbfilter =
 admin_passwd = {passwords['master']}
 list_db = False
 proxy_mode = False

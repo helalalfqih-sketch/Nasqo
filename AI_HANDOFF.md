@@ -25,7 +25,7 @@ was not re-read because only the derivative technical plan was attached here.
 - `provisioning/registry.py`: private local SQLite operator registry, unique
   key/slug, OS lock, phase/status events, fail-closed provisioning/retry.
 - `provisioning/runtime.py`, `scripts/m2/`: independent Odoo/PostgreSQL networks
-  and volumes per test store, least-privilege DB roles, exact dbfilter, no public
+  and volumes per test store, least-privilege DB roles, exact db_name allowlist, no public
   tenant ports, narrow mounts, verified activation and allowlisted loopback proxy.
 - `provisioning/backup.py`: offline consistent DB+filestore, encrypted GPG archive,
   identity/version/hash/path checks, fresh same-tenant restore, outbound/cron/mail
@@ -86,6 +86,14 @@ redacted diagnostic tail is now included on readiness failure so the next run
 can establish the precise cause. Additional probes cover direct cross-container
 DB network access and malformed Host/RPC paths. Named operator jobs prevent
 concurrent retry writers after timeouts; a unit regression verifies the stop call.
+
+Run 43477216705 at `3b39d77` diagnosed HTTP 404. Source inspection proved that
+`odoo/service/db.py:list_dbs` enumerates only databases owned by the Odoo role when
+dbfilter is set. With a non-owner role, monodb discovery therefore returned none.
+The runtime now uses an explicit single-name `db_name` and empty `dbfilter`:
+upstream `list_dbs` returns that configured allowlist and `http.db_filter` rejects
+all other database names. No role elevation or core patch is used. A fresh CI
+run must verify both anonymous routing and the negative database-selection tests.
 
 ## Exact next actions
 
