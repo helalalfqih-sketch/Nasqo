@@ -4,6 +4,10 @@ set -euo pipefail
 cd "$(dirname "$0")/../.."
 dc() { docker compose --env-file .devcontainer/.env -f .devcontainer/compose.yaml "$@"; }
 
+# The development runtime must not see operator state, recovery keys or .env.
+dc exec -T odoo sh -c 'test ! -e /workspace/.m2 && test ! -e /workspace/.devcontainer/.env && test ! -e /workspace/.git'
+echo "PASS runtime cannot read repository credentials or tenant control state"
+
 for module in base website_sale nasqo_store; do
   state="$(dc exec -T db psql -U nasqo_dev -d nasqo_dev -Atqc "SELECT state FROM ir_module_module WHERE name='$module' LIMIT 1" | tr -d '\r')"
   if [[ "$state" != installed ]]; then

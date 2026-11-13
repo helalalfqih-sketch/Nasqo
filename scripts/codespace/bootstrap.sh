@@ -4,6 +4,10 @@ set -euo pipefail
 cd "$(dirname "$0")/../.."
 umask 077
 mkdir -p .devcontainer/.state
+if [[ -f .devcontainer/.state/bootstrapped && ! -f .devcontainer/.state/bootstrapped-v2 ]]; then
+  echo "BLOCKED: preserve the existing v1 development workspace; use a fresh Codespace for v2. No existing database volume will be upgraded." >&2
+  exit 2
+fi
 if [[ ! -f .devcontainer/.env ]]; then
   python3 -B - <<'PY' > .devcontainer/.env
 import secrets
@@ -29,7 +33,7 @@ dc() {
 
 echo "NASQO: validating source and safety checks"
 python3 -B -m unittest discover -s tests -v
-if [[ -f .devcontainer/.state/bootstrapped ]]; then
+if [[ -f .devcontainer/.state/bootstrapped-v2 ]]; then
   echo "NASQO: existing isolated development environment; resuming"
   bash scripts/codespace/resume.sh
   bash scripts/codespace/verify.sh
@@ -58,6 +62,7 @@ done
 docker info >/dev/null
 
 echo "NASQO: starting isolated PostgreSQL"
+dc build --pull db
 dc up -d db
 ready=0
 for _ in $(seq 1 60); do
@@ -92,5 +97,5 @@ PY
 echo "NASQO: starting the development storefront"
 dc up -d odoo
 bash scripts/codespace/verify.sh
-touch .devcontainer/.state/bootstrapped
+touch .devcontainer/.state/bootstrapped-v2
 echo "NASQO: Odoo 19 development tests passed; port 8069 remains private by default."

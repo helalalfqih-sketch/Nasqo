@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - '.devcontainer/**'
+      - 'docker/**'
       - 'addons/**'
       - 'scripts/**'
       - 'tests/**'

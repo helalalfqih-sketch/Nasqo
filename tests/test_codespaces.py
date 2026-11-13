@@ -1,11 +1,30 @@
 import json
 from pathlib import Path
+import subprocess
+import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 class CodespacesFoundationTests(unittest.TestCase):
+    def test_v1_workspace_is_blocked_before_credentials_or_docker_changes(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            state = root / '.devcontainer/.state'
+            state.mkdir(parents=True)
+            marker = state / 'bootstrapped'
+            marker.write_text('existing-test-workspace')
+            script = root / 'scripts/codespace/bootstrap.sh'
+            script.parent.mkdir(parents=True)
+            script.write_bytes((ROOT / 'scripts/codespace/bootstrap.sh').read_bytes())
+            result = subprocess.run(['bash', str(script)], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 2)
+            self.assertIn('fresh Codespace for v2', result.stderr)
+            self.assertEqual(marker.read_text(), 'existing-test-workspace')
+            self.assertFalse((root / '.devcontainer/.env').exists())
+            self.assertFalse((state / 'bootstrapped-v2').exists())
+
     def test_codespace_targets_disposable_own_environment(self):
         config = json.loads((ROOT / ".devcontainer/devcontainer.json").read_text())
         self.assertIn(8069, config["forwardPorts"])

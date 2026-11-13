@@ -7,7 +7,7 @@ import uuid
 
 from provisioning.backup import backup, restore
 from provisioning.registry import Conflict, Registry, private_directory, provision
-from provisioning.runtime import ROOT, Runtime, preflight, run
+from provisioning.runtime import GATEWAY_IMAGE, ODOO_IMAGE, POSTGRES_IMAGE, ROOT, Runtime, preflight, run
 
 
 class Browser:
@@ -102,6 +102,14 @@ def execute():
         beta = provision(registry, runtime, "beta", "m2-beta-stable-key")
         for store in (alpha, beta):
             check(runtime.sql(store, "SELECT count(*) FROM ir_module_module WHERE name IN ('website_sale','nasqo_store') AND state='installed';") == "2", "Missing module")
+            selector_probe = f"""from odoo import http
+from odoo.service.db import list_dbs
+assert list_dbs(force=True) == [{runtime.db_name(store)!r}]
+assert http.db_filter(['nasqo_alpha', 'nasqo_beta'], host='untrusted.invalid') == [{runtime.db_name(store)!r}]
+print('DATABASE_ALLOWLIST_VERIFIED')
+"""
+            check('DATABASE_ALLOWLIST_VERIFIED' in runtime.shell(store, selector_probe),
+                  'Pinned Odoo database selector does not enforce the exact runtime database')
         passed(current, "Two isolated databases; pinned Odoo install, upgrade, /web/login and /shop passed")
 
         current = "AT-003"
@@ -125,11 +133,12 @@ def execute():
         unknown = Browser("unregistered")
         check(unknown.request("/shop")[0] == 421, "Unknown Host was routed")
         check(unknown.request("/shop", headers={"Host": "alpha.nasqo.test.attacker.invalid"})[0] == 421, "Host suffix was accepted")
+        check(unknown.request("/shop", headers={"Host": "alpha.nasqo.test:9999"})[0] == 421, "Unexpected Host port was accepted")
         for store, fixture, other in ((alpha, a, b), (beta, b, a)):
             client = clients[store["slug"]]
             for path in ("/shop", "/web/login"):
                 check(client.request(path)[0] == 200, "Gateway HTTP smoke failed")
-            status, body = client.request("/shop", headers={"X-Forwarded-Host": "unregistered.nasqo.test", "Forwarded": "host=beta.nasqo.test"})
+            status, body = client.request("/shop", headers={"X-Forwarded-Host": "unregistered.nasqo.test", "Forwarded": "host=beta.nasqo.test", "X-Odoo-Database": "nasqo_beta" if store == alpha else "nasqo_alpha"})
             check(status == 200 and fixture["marker"].encode() in body and other["marker"].encode() not in body, "Forwarded host changed tenant")
             wrong_db = "nasqo_beta" if store == alpha else "nasqo_alpha"
             status, body = client.request("/shop?db=" + wrong_db)
@@ -234,13 +243,24 @@ print('RESTORE_VERIFIED')
         current = "secret-boundary"
         tracked = run(["git", "-C", str(ROOT), "ls-files", "-z"]).stdout.decode().split("\0")
         code = b"\n".join((ROOT / p).read_bytes() for p in tracked if p and (ROOT / p).is_file())
+        # Capture actual container logs in memory; never print matched secret data.
+        logs = b""
+        for adapter, store in ((runtime, alpha), (runtime, beta), (restored, restored_store)):
+            captured = adapter.dc(store, "logs", "--no-color")
+            logs += captured.stdout + captured.stderr
+        gateway_logs = run(["docker", "compose", "-p", f"nasqo-m2-{registry.instance}-gateway",
+                            "-f", str(registry.directory / "gateway/compose.json"), "logs", "--no-color"])
+        logs += gateway_logs.stdout + gateway_logs.stderr
         for credentials in registry.directory.rglob("credentials.json"):
             for value in json.loads(credentials.read_text()).values():
                 check(value.encode() not in code, "Generated development secret entered tracked files")
+                check(value.encode() not in logs, "Generated development secret entered container logs")
         check(key.read_bytes().strip() not in code, "Recovery key entered tracked files")
-        passed(current, "Generated credentials/recovery key absent from tracked files; command output is captured and credentials redacted on error")
-        image_lines = run(["docker", "image", "inspect", "odoo:19.0-20261112", "postgres:16", "nginx:1.28-alpine", "--format", "{{json .RepoDigests}}"]).stdout.decode().splitlines()
-        report["images"] = [digest for line in image_lines for digest in json.loads(line)]
+        check(key.read_bytes().strip() not in logs, "Recovery key entered container logs")
+        passed(current, "Generated credentials/recovery key absent from tracked files and actual tenant/restore/gateway logs")
+        images = json.loads(run(["docker", "image", "inspect", ODOO_IMAGE, POSTGRES_IMAGE, GATEWAY_IMAGE]).stdout)
+        report["images"] = [{"id": item["Id"], "tags": item.get("RepoTags", []),
+                             "digests": item.get("RepoDigests", [])} for item in images]
         report["result"] = "PASS"
     except Exception as error:
         results.append({"test": current, "status": "FAIL", "detail": type(error).__name__})

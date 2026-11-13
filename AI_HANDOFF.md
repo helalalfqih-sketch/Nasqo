@@ -1,104 +1,133 @@
 # NASQO Odoo 19 — M0–M2 handoff (2026-11-13)
 
-## Current result
+## Current branch and scope
 
-**The local-operator M2 pilot passed real integration on GitHub Actions.**
-Runtime code commit: `175888af91e719c1ba794c431b6cfcadf79664cf`.
-Branch: `feature/m0-m2-tenant-isolation`.
-[Draft PR #3](https://github.com/helalalfqih-sketch/Nasqo/pull/3) targets
-`chore/odoo19-ecommerce-foundation`. The following documentation commit changes
-no runtime or test code. PR #1 remains open Draft at `ca09ad2`; no merge or deployment.
+Draft PR #4: `fix/m2-runtime-verification`, stacked on Draft PR #3
+`feature/m0-m2-tenant-isolation`. PR #3's runtime fix `175888a` and documentation
+`ba76677` are integrated without modifying its branch. PR #1 remains Draft at
+`ca09ad2`; main, production, Shopify and customer databases are untouched.
+No PR was merged, no image/service was published, and no data was migrated.
 
-| Validation | Observed result | Evidence |
+This round is M0–M2 only. The full attached technical plan and original expanded
+11-page functional reference were read. Requirements inform an original NASQO
+design; no reference code, visual assets or sample personal/financial data were
+imported. The older upstream note saying the Word reference was unavailable is
+superseded by this review.
+
+## Final observed evidence
+
+All four workflows passed on runtime commit
+`f1ae63823a0b9368ac83193e500367c6e20c08ec`. The subsequent evidence/documentation
+commit changes no runtime, workflow or test code. Do not confuse the old failed
+image scans with this final run, or generalize this pilot to production readiness.
+
+| Check | Result | Evidence / limit |
 |---|---|---|
-| Python unit tests | PASS, 19 cases, including concurrent reservations and encrypted tamper rejection | M2 job below |
-| Bash parsing and ShellCheck | PASS | M2 job below |
-| Original single-store install/upgrade, DB and HTTP | PASS | [43479599857](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43479599857) |
-| Two stores, routing, idempotency, failure/retry, isolation, ACL and restore | PASS, all 11 reported groups | [43479599787](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43479599787) |
-| Static workflow | PASS | [43479599803](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43479599803) |
-| Local Docker run | BLOCKED: executor has no Docker/psql/sudo | Actual runtime evidence comes from CI, not this executor |
-| Local GPG execution | BLOCKED: gpg-agent Unix sockets denied; corresponding CI tests PASS | Initial local suite had 1 environment error; no skip was used to make CI green |
-| Full image CVE/history secret scan, production review | NOT RUN / release gates | No production readiness claim |
+| M0 source/module/license review | PASS | 12 Community manifests; exact clean Odoo pin, no core edits |
+| Python unit tests and Bash checks | PASS, 21 tests | [43483025304](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43483025304), includes GPG roundtrip/tamper and the v1 workspace guard |
+| M1 v2 installation, upgrade, module DB state, /web/login and /shop | PASS | [43483024796](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43483024796); runtime cannot read .m2/.env/.git |
+| M2 two stores, exact selector/Host/session/ORM/DB/filestore isolation, idempotency, ACL, failure/retry and encrypted restore | PASS, all 11 reported groups | [43483024980](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43483024980); includes actual container-log secret checks |
+| Source secrets, full fetched Git history, Odoo/Nginx/PostgreSQL image recipes | PASS; zero selected HIGH/CRITICAL findings | [43483024786](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43483024786); no waivers, not a penetration test |
+| Local Docker / actual Codespace | BLOCKED / not accessed | No Docker/psql locally; no persistent Codespace created. Live evidence comes from disposable GitHub runners |
+| Local GPG | BLOCKED by agent startup | Corresponding CI encryption/tamper/restore tests PASS; no skip used |
+| Full AT-001/006/030/032 and M3–M8 | NOT COMPLETE | Pilot ACL and worker fault recovery are partial; public identity/support/transport-failure and financial gap tests remain |
 
-The [machine-readable report](docs/validation/m2-results-175888a.json) preserves
-actual acceptance results, upstream SHA, OCI image digests, code commit and run URL.
-These are ephemeral CI runtimes; no persistent Codespace or public store was created.
+Machine-readable records: `docs/validation/m2-results-f1ae638.json` and
+`docs/validation/security-f1ae638.json`. They preserve code/run IDs, individual
+acceptance outcomes and actual runtime image IDs. The older PR #3 report remains
+as baseline evidence. Failed iterations and source diagnosis are preserved in
+`docs/RUNTIME_SELECTOR_FIX.md`.
 
-## Inspected baseline and source
+The security job and integration jobs build PostgreSQL independently from the
+same digest-pinned base and exact helper package. Their generated image IDs may
+differ; no registry image is published. Build-once/promote-by-digest and signed
+provenance remain production supply-chain work. Odoo and Nginx use exact digests.
 
-All foundation files, Git history, PR #1/comments and the attached technical plan
-were inspected before editing. Baseline had 8 passing static tests and a passing
-single-store integration run 43445738433 at `ca09ad2`; its old handoff was stale.
-The separate GrowERP checkout with uncommitted work was not changed.
+## What is implemented
 
-Odoo remains pinned to `9cd6f090a8a21d9531c70ceec7f5c51271e24168`, with a clean
-upstream checkout and no core edits. Twelve relevant Community module manifests
-were verified as LGPL-3. `base.YER` exists; `l10n_ye` does not exist in this pin.
-Only the derivative implementation plan was attached in this round; the original
-11-page Word file was not re-read. See [M0 review](docs/M0_REVIEW.md).
+- Base PR #3: private local operator registry, durable idempotency and phase/event
+  state, per-store PostgreSQL/Odoo/filestore/networks, allowlisted gateway, failure
+  quarantine and same-key recovery, encrypted offline backup and fresh restore.
+- `provisioning/runtime.py`: native Odoo exact database allowlist regression,
+  strict Host/port routing, stripped client X-Odoo-Database, edge network only for
+  the loopback proxy, and building the reviewed PostgreSQL image for new projects.
+- `tests/isolation/run.py`: actual upstream selector checks, A/B positive and
+  negative HTTP/ORM/DB/file tests, foreign-session/write attempts, restricted DB
+  role, restored records and bytes, and generated secrets absent from actual logs.
+- `.devcontainer/compose.yaml`, `scripts/codespace/`: narrow public-code mounts;
+  v2 project and fresh volume names; bootstrap refuses a v1 completion marker
+  before credentials or Docker operations. Existing volumes are not converted.
+- `docker/postgres/Dockerfile`: pinned PostgreSQL 16.16 Alpine base, same official
+  entrypoint/PostgreSQL, replacing only the vulnerable Go-based gosu helper with
+  Alpine su-exec 0.3-r0 (MIT). Build checks user/group switching. No image push.
+- `.github/workflows/security.yml`: pinned Trivy, exact current image scans,
+  source secrets, checksum-verified Gitleaks 8.30.1 over full fetched Git history.
+  High/critical or secret findings fail. Matched secret values are not printed.
+- Odoo/Nginx and PostgreSQL base digests come from actual successful M2 runtime
+  evidence. The derived local image ID is recorded in the final report.
+- README, M0/M2 runbook, acceptance traceability and detailed
+  `docs/PHASE_PLAN_M3_M8.md` describe scope, tests and next phase decisions.
 
-## What changed and why
+## Architecture and dependencies
 
-- `provisioning/registry.py`: private SQLite **operator registry only**, unique
-  idempotency key/slug, serialized worker, status/event records and safe retry.
-  Store transactions remain exclusively in Odoo/PostgreSQL.
-- `provisioning/runtime.py`, `scripts/m2/`: per-store Odoo/PostgreSQL containers,
-  distinct networks and volumes, non-owner/non-superuser DB roles and narrow
-  mounts. A named operator container prevents concurrent writers after a crash.
-- `provisioning/backup.py`: stop the application writer, snapshot DB+filestore,
-  encrypt the pair, validate identity/version/hashes/archive paths, and restore
-  into a new isolated project with no route. No overwrite or automatic deletion.
-- `provisioning/cli.py`: trusted local-operator commands; no public signup/billing API.
-- `tests/test_provisioning.py`, `tests/isolation/`: unit tests plus real synthetic
-  products/orders/users/attachments and positive/negative access checks.
-- `.github/workflows/tenant-isolation.yml`: real M2 execution; foundation/static
-  workflows now parse each Bash file separately.
-- README and `docs/`: preserved plan, M0 dependency review, operating runbook,
-  acceptance mapping and ordered M3–M8 backlog.
+Odoo source remains exactly `9cd6f090a8a21d9531c70ceec7f5c51271e24168`, clean and
+unmodified. Twelve relevant Community module manifests are LGPL-3. YER exists;
+`l10n_ye` does not exist in this pin. `account` is Invoicing; Enterprise capability
+is not assumed. Existing opening, reversal, balance validation and credit-limit
+fields require behavioral gap tests before creating custom financial modules.
 
-## Important implementation decisions verified in CI
+Odoo 19 with a nonempty dbfilter enumerates role-owned databases. The non-owner
+runtime therefore fixes one db_name and leaves dbfilter empty; actual upstream
+list_dbs/http.db_filter plus foreign-DB HTTP rejection were tested. The tenant
+role has CONNECT-only access to its own empty postgres maintenance catalog for
+startup, without TEMP/CREATEDB; no access to another tenant's PostgreSQL network.
 
-1. Odoo 19's `list_dbs` with a regex dbfilter enumerates DB ownership. A non-owner
-   runtime must use the configured **single-name db_name allowlist** with empty
-   dbfilter. Upstream `http.db_filter` then rejects all other names. This avoids
-   both ownership escalation and core modification. HTTP/database-selection
-   negative tests passed.
-2. Odoo startup needs CONNECT-only access to the empty `postgres` maintenance DB
-   inside that tenant's private PostgreSQL container. It has no TEMP/CREATEDB rights.
-3. Only Nginx joins a normal edge network, publishing `127.0.0.1:18069`. All tenant
-   networks are internal. Unknown Host, forged forwarded headers, foreign DB
-   query/login, copied sessions and direct cross-container DB TCP attempts failed
-   as expected. A/B still successfully read their own fixtures.
-4. GPG encryption/integrity, paired checksums and restored ORM/attachment bytes
-   passed. Alpha's backup was rejected for Beta before any Docker mutation.
-5. Generated credentials/recovery keys were absent from tracked files. Commands
-   capture output and redact known credentials on errors; raw secrets are not logged.
+Only the trusted proxy has an edge network; Odoo/DB networks remain internal.
+The gateway publishes loopback 18069 and M1 loopback 8069. Public DNS/TLS and
+Codespaces browser-host routing are not implemented. Docker operators are trusted.
 
-## Scope limits / remaining work
+## Remaining limits and decisions
 
-This is a synthetic-data, single trusted-operator proof. Merchant registration and
-verification, platform RBAC/MFA/support audit, a distributed queue, public DNS/TLS,
-checkout, Arabic visual validation, finance, inventory workflows and billing remain
-in [BACKLOG.md](docs/BACKLOG.md). AT-006 and AT-030 cover only their documented pilot
-portions; AT-032 has source/license review, not a complete financial capability test.
-
-Image digests are recorded but configuration still uses tags. Pin/review images,
-run full vulnerability/history-secret scans and penetration tests before launch.
-Backup is offline and in-memory, capped at 512 MiB, with a local operator-held key;
-off-host retention, key custody, RPO/RTO and SLA need design and validation.
-Accounting/tax/FX/sign/credit policies still require product and accounting approval.
+- This is a synthetic, single trusted-operator pilot, not public merchant signup.
+  AT-001, complete support RBAC/audit in AT-006, and real HTTP/DB interruption in
+  AT-030 remain pending. The latter currently injects worker failure after DB creation.
+- AT-032 currently proves source/license availability, not complete accounting
+  reports or financial policy. M3–M8 are planned, not implemented.
+- Backup is offline, in-memory and limited to 512 MiB, with a local operator-held
+  key. No off-host retention, key manager, measured RPO/RTO or SLA is promised.
+- No registration/verification, distributed queue, subscription billing, payment
+  completion, Arabic visual review or production deployment in this round.
+- Adopted image pins still require ongoing maintenance, penetration testing and
+  review. A passing scanner is not a security certification.
+- Financial sign convention, opening counterpart, tax/localization, FX source/
+  precision, credit overrides, payment settlement, pricing/grace and retention
+  decisions require approval before their dependent phase.
 
 ## Reproduce and next actions
 
+Use a fresh Docker-enabled Codespace on this branch or the disposable CI runner:
+
 ```bash
 python3 -B -m unittest discover -s tests -v
+bash scripts/codespace/bootstrap.sh
 bash scripts/m2/run.sh
 ```
 
-Run these on a disposable Docker-enabled Codespace/runner. Every suite creates
-fresh isolated test state; it does not delete prior volumes. See
-[M2_RUNBOOK.md](docs/M2_RUNBOOK.md) for manual provisioning and backup commands.
+M1 v2 rejects an existing v1 workspace. M2 always creates unique synthetic projects
+and preserves old volumes. No reset/down -v/prune or automatic cleanup is provided.
 
-Next: review Draft PR #3 and its evidence, close the merchant identity/support/
-security gaps, then authorize the next small M3 increment. Keep both PRs unmerged
-until reviewed. No production or Shopify/GrowERP changes were made.
+1. Review Draft PR #4 and its exact runtime/security evidence; it remains Draft/unmerged.
+2. Review the stacked foundation PR #1 and pilot PR #3, preserving their changes.
+3. Close public merchant identity, support audit and real HTTP/DB fault gaps, then
+   approve M3 decisions. M3–M8 have not been started.
+4. Follow `docs/PHASE_PLAN_M3_M8.md`; never merge or deploy automatically.
+
+## Git delivery
+
+Published follow-up commits include `2d1117f` (selector/security checks), `df95fe7`
+(gateway integration/narrow mounts), `346b8e9` (pinned fresh images, v2 protection,
+full-history scan and detailed plan), `ffea016` (concurrent documentation integration),
+`9bc1ca3` and `f1ae638` (verified helper replacement and OCI removal metadata).
+The final evidence commit contains documentation/JSON only. Local unpublished
+branch `local/m0-m2-proof-snapshot` preserves an earlier alternative; it is not
+proposed as a competing implementation. No unrelated work was overwritten.

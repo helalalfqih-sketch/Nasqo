@@ -1,4 +1,5 @@
 import concurrent.futures
+import configparser
 import hashlib
 import io
 import json
@@ -13,7 +14,7 @@ import zipfile
 
 from provisioning.backup import crypt, key_bytes, validate_bundle
 from provisioning.registry import Conflict, Registry, provision, validate_slug
-from provisioning.runtime import ROOT, Runtime, compose_spec
+from provisioning.runtime import ROOT, Runtime, compose_spec, create_config
 
 
 class FakeRuntime:
@@ -113,6 +114,16 @@ class ProvisioningTests(unittest.TestCase):
             self.assertIn("--name", runner.call_args_list[0].args[0])
             self.assertEqual(runner.call_args_list[1].args[0],
                              ["docker", "stop", "--time", "10", runtime.project(store) + "-operator"])
+
+    def test_non_owner_runtime_uses_exact_configured_database_allowlist(self):
+        directory = create_config(self.path / 'alpha', 'nasqo-m2-test-alpha', 'nasqo_alpha')
+        config = configparser.ConfigParser()
+        config.read(directory / 'odoo.conf')
+        self.assertEqual(config['options']['db_name'], 'nasqo_alpha')
+        self.assertEqual(config['options']['dbfilter'], '')
+        self.assertEqual(config['options']['db_user'], 'nasqo_alpha')
+        self.assertFalse(config['options'].getboolean('list_db'))
+        self.assertFalse(config['options'].getboolean('proxy_mode'))
 
     def bundle(self, store, name="nasqo_alpha/aa/file", bad_hash=False, link=False):
         stream = io.BytesIO()
