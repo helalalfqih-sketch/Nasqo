@@ -24,4 +24,9 @@ Back up database AND filestore as one consistent recovery point and verify resto
 No live data, credentials, session files, private keys, customer exports or server-specific configuration in this public repository. Use ignored local config and an approved secret manager. Gitignore is not a secret scanner: review every staged diff and run an approved secret scan before publishing. If a secret is exposed, revoke/rotate it; deleting the file alone is insufficient.
 
 ## Remaining validation
-Source is pinned but not vendored; Python/PostgreSQL dependencies, Odoo installation, module installation/upgrade, website checkout and deployment have not been tested by the foundation checks. No production release is authorized by passing CI.
+Source is pinned but not vendored. The original static foundation checks do not
+establish runtime readiness. Separate live integration on foundation commit
+`ca09ad2` passed install/upgrade and login/shop checks; M2 adds its own independent
+tenant/restore suite. See `AI_HANDOFF.md` for observed results. Checkout, financial
+policies, production security and deployment still require their own gates.
+No production release is authorized by passing CI.

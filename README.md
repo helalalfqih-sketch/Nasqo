@@ -16,5 +16,19 @@ Port **8069 must remain Private** in the Codespaces Ports tab. See [docs/CODESPA
 - `tests/`: static safety tests; `.github/workflows/odoo-integration.yml` adds live Odoo/Postgres integration tests.
 - `docs/UPDATES.md`: review, update, backup and rollback policy.
 
+## M0–M2 tenant isolation pilot
+
+The next development branch adds a **local operator CLI**, a persistent idempotent
+registry, separate Odoo/PostgreSQL/filestore resources per synthetic tenant, and an
+allowlisted loopback gateway. Encrypted offline backups restore only into a fresh
+isolated project for the same tenant. There is no public signup or billing API.
+
+Read [the M0 review](docs/M0_REVIEW.md), [M2 runbook](docs/M2_RUNBOOK.md),
+[acceptance coverage](docs/TEST_PLAN.md), and [M3–M8 backlog](docs/BACKLOG.md).
+Run `bash scripts/m2/run.sh` on a disposable Docker host to execute actual
+installation, HTTP, data isolation, failure recovery and backup/restore checks.
+The `M2 tenant isolation and restore` workflow runs the same checks on a fresh
+GitHub runner. See `AI_HANDOFF.md` for the last **observed**, not assumed, result.
+
 ## Limitations
 This setup is not proof of production readiness. Product/cart/checkout, COD/payment, taxes, Arabic/RTL, customer isolation and data migration still need real test cases. Never import NASQO production data or Shopify credentials into Codespaces. Keep Draft PR #1 open until the real integration job passes and the changes are reviewed. NASQO is not an official Odoo product.

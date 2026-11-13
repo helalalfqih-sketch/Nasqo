@@ -17,3 +17,5 @@ __pycache__/
 /filestore/
 /backups/
 /data/
+/.m2/
+/artifacts/
