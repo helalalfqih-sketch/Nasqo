@@ -9,6 +9,7 @@ Isolated proof of concept on GitHub branch `chore/odoo19-ecommerce-foundation` a
 - Postgres 16 with private storage and a **non-superuser** role `nasqo_dev`.
 - Odoo dependencies supplied by official date-tagged `odoo:19.0-20261112` image.
 - Application starts with the exact Odoo source SHA recorded in `upstream.json`, fetched to ignored `vendor/odoo`.
+- First live CI found a relative Docker bind mount path problem; it has been switched to an absolute current repo path and is checked inside Docker before module install. Rerun pending verification.
 - The local `nasqo_store` module depends on Odoo Community `website_sale`.
 - Port 8069 binds to loopback. Codespaces port visibility must remain Private.
 - Passwords are fresh random dev-only secrets stored in ignored `.devcontainer/.env` (mode 0600).

@@ -23,6 +23,7 @@ class CodespacesFoundationTests(unittest.TestCase):
         self.assertIn("NASQO_DEV_DB_PASSWORD", c)
         self.assertNotIn("5432:5432", c)
         self.assertIn("nasqo-odoo19-postgres", c)
+        self.assertIn("NASQO_REPO_ROOT", c)
 
     def test_uses_pinned_odoo_source_and_no_default_password(self):
         entrypoint = (ROOT / "scripts/codespace/odoo_entrypoint.sh").read_text()
@@ -32,6 +33,7 @@ class CodespacesFoundationTests(unittest.TestCase):
         bootstrap = (ROOT / "scripts/codespace/bootstrap.sh").read_text()
         self.assertIn("secrets.token_urlsafe", bootstrap)
         self.assertIn("base.user_admin", bootstrap)
+        self.assertIn("os.getcwd()", bootstrap)
         self.assertIn("scripts/codespace/verify.sh", bootstrap)
 
     def test_secret_files_are_ignored(self):

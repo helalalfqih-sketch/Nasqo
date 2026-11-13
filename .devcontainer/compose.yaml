@@ -35,7 +35,7 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - ../:/workspace:ro
+      - ${NASQO_REPO_ROOT:?missing absolute repository root}:/workspace:ro
       - nasqo-odoo19-filestore:/var/lib/odoo
     ports:
       - "127.0.0.1:8069:8069"

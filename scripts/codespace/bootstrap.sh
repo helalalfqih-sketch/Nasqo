@@ -11,6 +11,16 @@ for name in ("NASQO_DEV_POSTGRES_PASSWORD", "NASQO_DEV_DB_PASSWORD", "NASQO_DEV_
     print(f"{name}={secrets.token_urlsafe(32)}")
 PY
 fi
+# Resolve a canonical absolute path for the current Codespace/runner before Docker mounts it.
+# Refresh only this local setting if the workspace was moved; preserve dev credentials.
+python3 -B - <<'PY'
+from pathlib import Path
+import os
+p = Path('.devcontainer/.env')
+lines = [s for s in p.read_text().splitlines() if not s.startswith('NASQO_REPO_ROOT=')]
+lines.append('NASQO_REPO_ROOT=' + os.getcwd())
+p.write_text('\n'.join(lines) + '\n')
+PY
 chmod 600 .devcontainer/.env
 
 dc() {
@@ -52,6 +62,12 @@ for _ in $(seq 1 60); do
   sleep 2
 done
 [[ "$ready" == 1 ]] || { echo "Development database role initialization failed" >&2; exit 1; }
+
+echo "NASQO: verifying the pinned source is visible inside Docker"
+dc run --rm -T --no-deps --entrypoint sh odoo -c 'test -f /workspace/vendor/odoo/odoo-bin' || {
+  echo "NASQO: bind mount error; pinned upstream source is not visible" >&2
+  exit 1
+}
 
 echo "NASQO: real Odoo 19 module installation (website_sale + nasqo_store)"
 dc run --rm -T odoo install

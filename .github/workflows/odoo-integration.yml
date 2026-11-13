@@ -8,16 +8,6 @@ on:
       - 'tests/**'
       - 'upstream.json'
       - '.github/workflows/odoo-integration.yml'
-  push:
-    branches:
-      - 'chore/odoo19-ecommerce-foundation'
-    paths:
-      - '.devcontainer/**'
-      - 'addons/**'
-      - 'scripts/**'
-      - 'tests/**'
-      - 'upstream.json'
-      - '.github/workflows/odoo-integration.yml'
 permissions:
   contents: read
 concurrency:
