@@ -1,4 +1,5 @@
 """Docker Compose adapter; a separate PostgreSQL and Odoo runtime per store."""
+import http.client
 import json
 import os
 from pathlib import Path
@@ -223,10 +224,27 @@ proxy_redirect off;
         spec = {"services": {"gateway": {"image": GATEWAY_IMAGE,
                 "ports": ["127.0.0.1:18069:8080"],
                 "volumes": [f"{directory}/nginx.conf:/etc/nginx/nginx.conf:ro"],
-                "networks": [s["slug"] for s in stores]}},
-                "networks": {s["slug"]: {"external": True, "name": self.project(s) + "-frontend"} for s in stores}}
+                "networks": ["edge", *[s["slug"] for s in stores]]}},
+                "networks": {"edge": {}, **{s["slug"]: {"external": True, "name": self.project(s) + "-frontend"} for s in stores}}}
         (directory / "compose.json").write_text(json.dumps(spec))
         command = ["docker", "compose", "-p", f"nasqo-m2-{self.registry.instance}-gateway", "-f", str(directory / "compose.json")]
         run([*command, "up", "-d"], timeout=300)
         run([*command, "exec", "-T", "gateway", "nginx", "-t"])
         run([*command, "exec", "-T", "gateway", "nginx", "-s", "reload"])
+        # A gateway attached only to internal networks cannot publish a host port.
+        # Only this trusted proxy joins edge; all tenant networks stay internal.
+        for _ in range(30):
+            connection = http.client.HTTPConnection("127.0.0.1", 18069, timeout=3)
+            try:
+                connection.request("GET", "/shop", headers={"Host": "unregistered.nasqo.test"})
+                response = connection.getresponse()
+                response.read()
+                if response.status == 421:
+                    return
+            except (OSError, http.client.HTTPException):
+                pass
+            finally:
+                connection.close()
+            time.sleep(1)
+        run([*command, "stop", "gateway"], check=False)
+        raise RuntimeError("Gateway did not pass the loopback/unknown-Host readiness check.")

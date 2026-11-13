@@ -95,6 +95,13 @@ upstream `list_dbs` returns that configured allowlist and `http.db_filter` rejec
 all other database names. No role elevation or core patch is used. A fresh CI
 run must verify both anonymous routing and the negative database-selection tests.
 
+At `d33af5d`, run 43478443256 passed two actual tenant installs/upgrades and
+login/shop HTTP, duplicate-request protection, and injected-failure recovery.
+It then exposed a refused host connection to the gateway, which was attached
+only to internal networks. The gateway now has its own edge network and a
+loopback/unknown-Host readiness check. Tenant networks remain internal. The full
+cross-tenant and restore checks must still run to completion before acceptance.
+
 ## Exact next actions
 
 1. Publish the corrections to Draft PR #3 against foundation.
