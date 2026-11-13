@@ -25,7 +25,9 @@ jobs:
       - name: Validate Docker Compose specification
         run: |
           python3 -B -m unittest discover -s tests -v
-          bash -n scripts/codespace/*.sh .devcontainer/db-init/*.sh scripts/fetch_upstream.sh
+          for script in scripts/codespace/*.sh .devcontainer/db-init/*.sh scripts/fetch_upstream.sh; do
+            bash -n "$script"
+          done
       - name: Install pinned Odoo and run real database and HTTP tests
         run: bash scripts/codespace/bootstrap.sh
       - name: Report container state on failure (no logs or secrets)

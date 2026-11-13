@@ -1,0 +1,177 @@
+{
+  "source_commit": "9cd6f090a8a21d9531c70ceec7f5c51271e24168",
+  "scope": "M0-M2 synthetic operator pilot; no production or public control plane",
+  "tests": [
+    {
+      "test": "M0/dependencies",
+      "status": "PASS",
+      "detail": "Pinned clean Community source and 12 standard module manifests/licenses verified; no third-party add-on added"
+    },
+    {
+      "test": "AT-030",
+      "status": "PASS",
+      "detail": "Injected worker failure after DB creation; no active Odoo; retry kept one identity and recovered"
+    },
+    {
+      "test": "M1/AT-002",
+      "status": "PASS",
+      "detail": "Two isolated databases; pinned Odoo install, upgrade, /web/login and /shop passed"
+    },
+    {
+      "test": "AT-003",
+      "status": "PASS",
+      "detail": "Repeated key kept the same registry row and containers; changed payload rejected"
+    },
+    {
+      "test": "AT-005",
+      "status": "PASS",
+      "detail": "Unknown Host denied; forwarded headers ignored; DB query/login isolation and management route blocks passed"
+    },
+    {
+      "test": "AT-004/HTTP",
+      "status": "PASS",
+      "detail": "Products, orders, private attachments, copied session and attempted cross-tenant write tested in both stores"
+    },
+    {
+      "test": "AT-004/DB/filestore",
+      "status": "PASS",
+      "detail": "Independent databases and filestores; non-owner/non-superuser roles; forbidden DB connections denied"
+    },
+    {
+      "test": "AT-006/pilot-ACL",
+      "status": "PASS",
+      "detail": "Anonymous and authenticated portal administrative access denied; platform support workflow remains backlog"
+    },
+    {
+      "test": "AT-028",
+      "status": "PASS",
+      "detail": "Encrypted consistent DB+filestore pair restored into a new isolated project; records, attachment bytes and HTTP verified"
+    },
+    {
+      "test": "AT-029",
+      "status": "PASS",
+      "detail": "Alpha backup rejected for Beta before creating or changing resources"
+    },
+    {
+      "test": "secret-boundary",
+      "status": "PASS",
+      "detail": "Generated credentials/recovery key absent from tracked files; command output is captured and credentials redacted on error"
+    }
+  ],
+  "community_modules": {
+    "website_sale": {
+      "license": "LGPL-3",
+      "depends": [
+        "website",
+        "sale",
+        "website_payment",
+        "website_mail",
+        "portal_rating",
+        "digest",
+        "delivery",
+        "html_builder"
+      ]
+    },
+    "sale_management": {
+      "license": "LGPL-3",
+      "depends": [
+        "sale",
+        "digest"
+      ]
+    },
+    "delivery": {
+      "license": "LGPL-3",
+      "depends": [
+        "sale",
+        "payment_custom"
+      ]
+    },
+    "payment": {
+      "license": "LGPL-3",
+      "depends": [
+        "onboarding",
+        "portal"
+      ]
+    },
+    "account": {
+      "license": "LGPL-3",
+      "depends": [
+        "base_setup",
+        "onboarding",
+        "product",
+        "analytic",
+        "portal",
+        "digest"
+      ]
+    },
+    "account_payment": {
+      "license": "LGPL-3",
+      "depends": [
+        "account",
+        "payment"
+      ]
+    },
+    "purchase": {
+      "license": "LGPL-3",
+      "depends": [
+        "account"
+      ]
+    },
+    "purchase_stock": {
+      "license": "LGPL-3",
+      "depends": [
+        "stock_account",
+        "purchase"
+      ]
+    },
+    "stock": {
+      "license": "LGPL-3",
+      "depends": [
+        "product",
+        "barcodes_gs1_nomenclature",
+        "digest"
+      ]
+    },
+    "stock_account": {
+      "license": "LGPL-3",
+      "depends": [
+        "stock",
+        "account"
+      ]
+    },
+    "mail": {
+      "license": "LGPL-3",
+      "depends": [
+        "base",
+        "base_setup",
+        "bus",
+        "web_tour",
+        "html_editor"
+      ]
+    },
+    "portal": {
+      "license": "LGPL-3",
+      "depends": [
+        "web",
+        "html_editor",
+        "http_routing",
+        "mail",
+        "auth_signup"
+      ]
+    }
+  },
+  "images": [
+    "odoo@sha256:49c9d2a9935f07f15e2404ce8649a84c4f0d4e70a880f7209ad27a19ab415f77",
+    "postgres@sha256:63e83b5a3dc36a917dccb76fe1bd2ac51f1ec9c1deb47ff20d4f04233bf6eae9",
+    "nginx@sha256:a8b39bd9cf0f83869a2162827a0caf6137ddf759d50a171451b335cecc87d236"
+  ],
+  "result": "PASS",
+  "provenance": {
+    "nasqo_commit": "175888af91e719c1ba794c431b6cfcadf79664cf",
+    "base_commit": "ca09ad2b467610c62f2311a2d935f82b8d94cd3b",
+    "workflow_run_id": 43479599787,
+    "workflow_run_url": "https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43479599787",
+    "pull_request": "https://github.com/helalalfqih-sketch/Nasqo/pull/3",
+    "unit_tests_passed": 19
+  }
+}
