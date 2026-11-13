@@ -1,0 +1,17 @@
+{
+  "name": "NASQO | Odoo Community 19 (isolated)",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "remoteUser": "vscode",
+  "forwardPorts": [8069],
+  "portsAttributes": {
+    "8069": {
+      "label": "NASQO Odoo 19 - private development only",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "bash scripts/codespace/bootstrap.sh",
+  "postStartCommand": "bash scripts/codespace/resume.sh"
+}
