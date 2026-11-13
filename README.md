@@ -30,5 +30,14 @@ installation, HTTP, data isolation, failure recovery and backup/restore checks.
 The `M2 tenant isolation and restore` workflow runs the same checks on a fresh
 GitHub runner. See `AI_HANDOFF.md` for the last **observed**, not assumed, result.
 
+**Verified pilot:** runtime commit `175888a` passed 19 unit tests and all 11
+reported M0/M1/M2 acceptance groups, including two actual stores and encrypted
+restore. [CI evidence](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43479599787)
+and the [recorded report](docs/validation/m2-results-175888a.json) contain the details.
+
 ## Limitations
-This setup is not proof of production readiness. Product/cart/checkout, COD/payment, taxes, Arabic/RTL, customer isolation and data migration still need real test cases. Never import NASQO production data or Shopify credentials into Codespaces. Keep Draft PR #1 open until the real integration job passes and the changes are reviewed. NASQO is not an official Odoo product.
+This setup is not proof of production readiness. The M2 operator pilot has isolation
+and restore evidence; merchant lifecycle, product/cart/checkout, COD/payment, taxes,
+Arabic/RTL, production security and data migration still need their own tests.
+Never import NASQO production data or Shopify credentials into Codespaces.
+Keep Draft PRs #1 and #3 open for review. NASQO is not an official Odoo product.
