@@ -29,6 +29,17 @@ jobs:
           shellcheck -S warning scripts/m2/*.sh
       - name: Actual tenant creation, isolation, failure recovery and encrypted restore
         run: bash scripts/m2/run.sh
+      - name: Capture actual anonymous test storefronts and login
+        run: python3 -B -m tests.isolation.screenshots
+      - name: Publish synthetic UI screenshots only
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: nasqo-m2-visual-evidence
+          path: |
+            artifacts/visual-evidence/*.png
+            artifacts/visual-evidence/provenance.json
+          if-no-files-found: error
+          retention-days: 7
       - name: Publish sanitized acceptance result
         if: always()
         run: |

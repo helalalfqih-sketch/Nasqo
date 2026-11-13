@@ -46,6 +46,16 @@ passing pilot groups, runtime image IDs and exact code provenance. See the
 [security evidence](docs/validation/security-f1ae638.json) and
 [detailed M3–M8 plan](docs/PHASE_PLAN_M3_M8.md). No public merchant service was created.
 
+## Actual UI captures
+
+The visual-evidence follow-up captures the anonymous Alpha/Beta storefronts,
+blank login form and Alpha at a mobile-width viewport after M2 passes on a fresh
+runner. Download `nasqo-m2-visual-evidence` from its successful M2 workflow run.
+These are the existing Odoo foundation and synthetic test products, not a custom
+NASQO theme or a persistent live store. Only PNGs and provenance are uploaded;
+browser profiles, DOM, credentials, databases and backups are excluded.
+See [the capture procedure](docs/VISUAL_EVIDENCE.md) for validation and limits.
+
 ## Limitations
 This setup is not proof of production readiness. The M2 operator pilot has isolation
 and restore evidence; merchant lifecycle, product/cart/checkout, COD/payment, taxes,
