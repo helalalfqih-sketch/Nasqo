@@ -77,3 +77,27 @@ These apply only to newly generated pilot projects. The existing foundation
 `postgres:16` remains in the security matrix rather than hiding its findings or
 silently changing existing-volume UID/collation behavior. Image digest pinning,
 history secret scanning and foundation dependency remediation remain gates.
+
+## PostgreSQL helper remediation
+
+The updated official PostgreSQL image still produced 26 high/critical Go stdlib
+findings in security run 43480422883; updated Nginx and Odoo passed. The official
+PostgreSQL entrypoint uses `gosu postgres <entrypoint> <args>` only to switch user.
+The new Dockerfile replaces that helper with Alpine's `su-exec=0.3-r0`, verifies
+UID/GID switching, and retains PostgreSQL and its entrypoint unchanged.
+[Alpine's package definition](https://github.com/alpinelinux/aports/blob/3.24-stable/main/su-exec/APKBUILD)
+specifies MIT licensing; [upstream semantics](https://github.com/ncopa/su-exec)
+provide direct exec after user/group switching. This is remediation in the final
+runtime filesystem, not a CVE exclusion. The resulting image must pass a new scan.
+
+M1 v2 uses new named volumes/project; old workspace bootstrap is explicitly
+blocked. No existing PostgreSQL volume is converted across Debian/Alpine. The
+security matrix now scans the actual current M1/M2 derivative; historical v1
+findings remain recorded and v1 must not be used for a new deployment.
+
+M2 [run 43480422857](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43480422857)
+at `df95fe7` passed all 11 acceptance groups, including actual log-secret checks;
+20 unit tests passed. The next image-remediation commit must repeat the runtime
+checks. Its Odoo, PostgreSQL base and Nginx references are digest-pinned to the
+actual images recorded by this successful run. The derived PostgreSQL image is
+built locally, never published, and its image ID is recorded in the next report.

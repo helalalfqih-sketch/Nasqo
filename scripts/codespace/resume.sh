@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/../.."
-if [[ ! -f .devcontainer/.state/bootstrapped || ! -f .devcontainer/.env || ! -d vendor/odoo/.git ]]; then
+if [[ ! -f .devcontainer/.state/bootstrapped-v2 || ! -f .devcontainer/.env || ! -d vendor/odoo/.git ]]; then
   echo "NASQO: bootstrap has not completed; no service started."
   exit 0
 fi

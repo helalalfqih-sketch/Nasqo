@@ -5,6 +5,9 @@ Codespace or CI runner with synthetic data only. The CLI rejects remote Docker
 contexts and checks both the source SHA and an unmodified upstream checkout.
 The full automated suite uses a unique state directory on every run and does not
 delete old volumes. Allow at least 4 cores / 7 GiB for the sequential pilot.
+New projects build the small reviewed PostgreSQL image from `docker/postgres/`;
+the build context contains no repository state or credentials. Existing generated
+Compose files are not rewritten. Do not convert prior Debian volumes to Alpine.
 
 ## Full acceptance suite
 
@@ -85,7 +88,8 @@ pilot using in-memory buffers, not a streaming production backup service.
 No `down -v`, reset, prune, DROP DATABASE or destructive cleanup is provided.
 Use `docker compose -p PROJECT -f COMPOSE_FILE ps` to inspect only the recorded
 project, or `stop` to pause it without deleting volumes. Existing foundation
-Codespaces commands keep their separate `nasqo-odoo19-development` project.
+Codespaces v2 commands use their separate `nasqo-odoo19-development-v2` project
+and new volumes; bootstrap refuses an old v1 workspace rather than migrating it.
 
 The local ChatGPT executor used for initial implementation lacks Docker, psql
 and sudo. Its sandbox also blocks Unix sockets required by `gpg-agent`.

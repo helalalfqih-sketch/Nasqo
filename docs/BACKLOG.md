@@ -2,6 +2,8 @@
 
 Every item needs a small reviewed PR, synthetic fixtures, updated Handoff and
 recorded runtime evidence. No production launch or merge is authorized by CI.
+See [the detailed Arabic phase plan](PHASE_PLAN_M3_M8.md) for proposed PR scope,
+standard models, financial invariants, test fixtures and open decisions.
 
 | Order | Work | Standard base / custom only if needed | Gate / acceptance |
 |---|---|---|---|

@@ -11,9 +11,9 @@ import time
 from .registry import private_directory, write_private
 
 ROOT = Path(__file__).resolve().parents[1]
-ODOO_IMAGE = "odoo:19.0-20261112"
-POSTGRES_IMAGE = "postgres:16.16-alpine3.24"
-GATEWAY_IMAGE = "nginx:1.30.6-alpine3.24-slim"
+ODOO_IMAGE = "odoo:19.0-20261112@sha256:49c9d2a9935f07f15e2404ce8649a84c4f0d4e70a880f7209ad27a19ab415f77"
+POSTGRES_IMAGE = "nasqo-postgres:16.16-alpine3.24-r1"
+GATEWAY_IMAGE = "nginx:1.30.6-alpine3.24-slim@sha256:e2355aa95529a7999dad94ddcb45a8768abf6fb0b204c93b1a3ffce477d7b893"
 
 
 def run(args, *, input=None, timeout=180, check=True):
@@ -46,6 +46,8 @@ def compose_spec(directory, project, db_name, password):
         "services": {
             "db": {
                 "image": POSTGRES_IMAGE,
+                "build": {"context": str(ROOT / "docker/postgres")},
+                "pull_policy": "never",
                 "environment": {"POSTGRES_PASSWORD": password["postgres"],
                                 "NASQO_DB_NAME": db_name, "NASQO_DB_PASSWORD": password["database"]},
                 "volumes": ["postgres:/var/lib/postgresql/data",
@@ -162,6 +164,7 @@ class Runtime:
 
     def prepare(self, store):
         create_config(self.directory(store), self.project(store), self.db_name(store))
+        self.dc(store, "build", "--pull", "db", timeout=600)
         self.dc(store, "up", "-d", "--wait", "db", timeout=300)
 
     def initialize(self, store):

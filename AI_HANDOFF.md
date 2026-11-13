@@ -2,6 +2,21 @@
 
 ## Runtime verification follow-up
 
+Next image remediation (results pending): `docker/postgres/Dockerfile` replaces
+only the Go-based gosu helper with Alpine's MIT-licensed `su-exec=0.3-r0` and
+tests privilege switching at build time. Both fresh M1/M2 projects use the same
+local image and CI scans it. M1 v2 uses a separate project/volume namespace and
+refuses old v1 workspaces before credential/Docker changes; old data is preserved.
+This supersedes the earlier image selection described in the historical runs below.
+The successful `df95fe7` M2 run 43480422857 provides all 11 live acceptance
+groups, including actual container-log secret checks. Its observed Odoo/Nginx
+and PostgreSQL-base digests are now pinned. A checksum-verified Gitleaks 8.30.1
+job scans full fetched Git history with completely redacted, non-uploaded output.
+All new security/runtime outcomes remain pending until the next CI result.
+
+Detailed M3–M8 work packages, standard models, financial invariants and decision
+gates are in `docs/PHASE_PLAN_M3_M8.md`; none of those features were implemented.
+
 Draft PR #4 integrates PR #3's gateway edge-network/readiness correction
 `175888a` without changing PR #3's branch. At PR #4 head `2d1117f`, M1 run
 43479043717 passed and all 20 unit tests passed in CI. M2 run 43479044015

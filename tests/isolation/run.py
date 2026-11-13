@@ -258,8 +258,9 @@ print('RESTORE_VERIFIED')
         check(key.read_bytes().strip() not in code, "Recovery key entered tracked files")
         check(key.read_bytes().strip() not in logs, "Recovery key entered container logs")
         passed(current, "Generated credentials/recovery key absent from tracked files and actual tenant/restore/gateway logs")
-        image_lines = run(["docker", "image", "inspect", ODOO_IMAGE, POSTGRES_IMAGE, GATEWAY_IMAGE, "--format", "{{json .RepoDigests}}"]).stdout.decode().splitlines()
-        report["images"] = [digest for line in image_lines for digest in json.loads(line)]
+        images = json.loads(run(["docker", "image", "inspect", ODOO_IMAGE, POSTGRES_IMAGE, GATEWAY_IMAGE]).stdout)
+        report["images"] = [{"id": item["Id"], "tags": item.get("RepoTags", []),
+                             "digests": item.get("RepoDigests", [])} for item in images]
         report["result"] = "PASS"
     except Exception as error:
         results.append({"test": current, "status": "FAIL", "detail": type(error).__name__})
