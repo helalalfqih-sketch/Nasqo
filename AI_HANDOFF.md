@@ -2,6 +2,28 @@
 
 ## Runtime verification follow-up
 
+Draft PR #4 integrates PR #3's gateway edge-network/readiness correction
+`175888a` without changing PR #3's branch. At PR #4 head `2d1117f`, M1 run
+43479043717 passed and all 20 unit tests passed in CI. M2 run 43479044015
+passed two installs/upgrades, HTTP and idempotency, then failed at gateway
+connection (before the edge-network correction). Do not call that M2 run a pass.
+
+Security run 43479043894 passed source/secrets and the Odoo image, but found
+151 high/critical package findings in foundation `postgres:16` and 76 in
+`nginx:1.28-alpine`. No findings were waived. New M2 projects now use official
+`postgres:16.16-alpine3.24` and `nginx:1.30.6-alpine3.24-slim`; their security
+and runtime outcomes remain pending until the next run. Existing generated
+configs/volumes are not rewritten. Foundation PostgreSQL is retained and still
+scanned: switching existing Debian volumes to Alpine requires collation/UID
+review and a separate tested recovery plan. Its known findings block acceptance.
+
+The foundation Odoo mount now contains only source/add-ons/entrypoint scripts,
+not the entire repository (which could expose M2 credentials if used alongside
+the pilot). Its live smoke test verifies absence of .m2/.env/.git. M2 also checks
+actual tenant, restore and gateway logs for all generated credentials/recovery
+keys without printing raw logs. Local syntax/unit results and final CI evidence
+will be recorded in docs/RUNTIME_SELECTOR_FIX.md.
+
 Branch `fix/m2-runtime-verification`, based on PR #3 commit `d33af5d`, verifies the
 upstream fix for the observed anonymous HTTP 404 and hardens ingress headers. Odoo's nonempty dbfilter
 enumerates only role-owned databases, while the pilot correctly uses a non-owner
@@ -111,6 +133,13 @@ The runtime now uses an explicit single-name `db_name` and empty `dbfilter`:
 upstream `list_dbs` returns that configured allowlist and `http.db_filter` rejects
 all other database names. No role elevation or core patch is used. A fresh CI
 run must verify both anonymous routing and the negative database-selection tests.
+
+At `d33af5d`, run 43478443256 passed two actual tenant installs/upgrades and
+login/shop HTTP, duplicate-request protection, and injected-failure recovery.
+It then exposed a refused host connection to the gateway, which was attached
+only to internal networks. The gateway now has its own edge network and a
+loopback/unknown-Host readiness check. Tenant networks remain internal. The full
+cross-tenant and restore checks must still run to completion before acceptance.
 
 ## Exact next actions
 

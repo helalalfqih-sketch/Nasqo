@@ -54,3 +54,26 @@ reversal and credit-limit fields; validate their behavior before custom add-ons.
   secrets and actual runtime image dependencies, fail on high/critical findings,
   and print identifiers/counts without matched secret values. No findings waived.
 - No merge/deployment/production change. Final CI results to be recorded below.
+
+## First observed follow-up run and next correction
+
+At `2d1117f`, static/unit CI passed (20 tests) and
+[M1 43479043717](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43479043717)
+passed real installation, upgrade and HTTP. M2 43479044015 reached two verified
+stores but failed connecting to the gateway. The concurrent PR #3 fix `175888a`
+adds an edge network to only the gateway and an actual unknown-Host readiness
+probe. It is integrated here; tenant/DB networks remain internal.
+
+Security run 43479043894 found high/critical image dependencies (151 PostgreSQL
+package findings, 76 Nginx), while source/secrets and Odoo passed. The replacement
+M2 tags were verified against official-images definitions and source Dockerfiles:
+
+- PostgreSQL 16.16 Alpine 3.24: docker-library/postgres
+  `168a848e5905af32aaa5fd6fad4f30906c80af95`, `16/alpine3.24/Dockerfile`.
+- Nginx 1.30.6 Alpine 3.24 slim: nginx/docker-nginx
+  `4b9f658be76820b24e4ef4605413a5c08707a512`, `stable/alpine-slim/Dockerfile`.
+
+These apply only to newly generated pilot projects. The existing foundation
+`postgres:16` remains in the security matrix rather than hiding its findings or
+silently changing existing-volume UID/collation behavior. Image digest pinning,
+history secret scanning and foundation dependency remediation remain gates.

@@ -51,6 +51,8 @@ digests قبل الإنتاج؛ تسجيل digest في تقرير التشغيل
   الطلبات غير المعروفة تُرفض بـ421، وتُحجب إدارة قواعد البيانات وlegacy RPC.
 - استعادة النسخ إلى مشروع جديد بنفس هوية التاجر؛ لا مسار للكتابة فوق متجر قائم.
 - لا منفذ للمستأجر أو PostgreSQL على المضيف. المنفذ الوحيد للبوابة `127.0.0.1:18069`.
+  البوابة وحدها ترتبط بشبكة `edge` عادية لنشر المنفذ؛ تبقى شبكات Odoo/PostgreSQL
+  داخلية. يتحقق التشغيل من وصول المضيف ورفض Host غير معروف قبل إعلان جاهزيتها.
 - القرار **تجريبي**. لا API تجاري، تسجيل، MFA، Queue موزع، TLS عام، أو ضمان SLA.
 
 ## بوابات لم تُعتمد بعد
@@ -64,3 +66,4 @@ digests قبل الإنتاج؛ تسجيل digest في تقرير التشغيل
 
 - [Odoo 19 deployment/security](https://www.odoo.com/documentation/19.0/administration/on_premise/deploy.html)
 - [Odoo source pin](https://github.com/odoo/odoo/commit/9cd6f090a8a21d9531c70ceec7f5c51271e24168)
+- [Docker network separation](https://docs.docker.com/engine/network/)

@@ -7,7 +7,7 @@ import uuid
 
 from provisioning.backup import backup, restore
 from provisioning.registry import Conflict, Registry, private_directory, provision
-from provisioning.runtime import ROOT, Runtime, preflight, run
+from provisioning.runtime import GATEWAY_IMAGE, ODOO_IMAGE, POSTGRES_IMAGE, ROOT, Runtime, preflight, run
 
 
 class Browser:
@@ -243,12 +243,22 @@ print('RESTORE_VERIFIED')
         current = "secret-boundary"
         tracked = run(["git", "-C", str(ROOT), "ls-files", "-z"]).stdout.decode().split("\0")
         code = b"\n".join((ROOT / p).read_bytes() for p in tracked if p and (ROOT / p).is_file())
+        # Capture actual container logs in memory; never print matched secret data.
+        logs = b""
+        for adapter, store in ((runtime, alpha), (runtime, beta), (restored, restored_store)):
+            captured = adapter.dc(store, "logs", "--no-color")
+            logs += captured.stdout + captured.stderr
+        gateway_logs = run(["docker", "compose", "-p", f"nasqo-m2-{registry.instance}-gateway",
+                            "-f", str(registry.directory / "gateway/compose.json"), "logs", "--no-color"])
+        logs += gateway_logs.stdout + gateway_logs.stderr
         for credentials in registry.directory.rglob("credentials.json"):
             for value in json.loads(credentials.read_text()).values():
                 check(value.encode() not in code, "Generated development secret entered tracked files")
+                check(value.encode() not in logs, "Generated development secret entered container logs")
         check(key.read_bytes().strip() not in code, "Recovery key entered tracked files")
-        passed(current, "Generated credentials/recovery key absent from tracked files; command output is captured and credentials redacted on error")
-        image_lines = run(["docker", "image", "inspect", "odoo:19.0-20261112", "postgres:16", "nginx:1.28-alpine", "--format", "{{json .RepoDigests}}"]).stdout.decode().splitlines()
+        check(key.read_bytes().strip() not in logs, "Recovery key entered container logs")
+        passed(current, "Generated credentials/recovery key absent from tracked files and actual tenant/restore/gateway logs")
+        image_lines = run(["docker", "image", "inspect", ODOO_IMAGE, POSTGRES_IMAGE, GATEWAY_IMAGE, "--format", "{{json .RepoDigests}}"]).stdout.decode().splitlines()
         report["images"] = [digest for line in image_lines for digest in json.loads(line)]
         report["result"] = "PASS"
     except Exception as error:

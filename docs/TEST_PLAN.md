@@ -23,10 +23,13 @@ coverage, not a claim that a job has passed. The source contract is
 | AT-031 | M4: posted-entry ACL/reversal/audit; not implemented here |
 | AT-032 | M0 manifest/license/source review complete; detailed Community accounting capability execution is an M4 gate |
 
-Extra checks: generated secret values never occur in tracked files; known tenant
-credentials are redacted from captured command errors. This is not a substitute
-for a complete repository/history secret scanner, image CVE scan or penetration
-test. No type-checker is configured for the stdlib-only Python code; syntax,
+Extra checks: generated secret values are compared against tracked files and
+actual tenant/restore/gateway container logs, without printing those logs.
+Foundation runtime checks ensure operator state and repository credentials are
+not mounted. Trivy separately scans source secrets and all runtime image
+dependencies; high/critical findings fail the gate, with no waivers. Git-history
+secret scanning and penetration testing remain launch requirements.
+No type-checker is configured for the stdlib-only Python code; syntax,
 unittest, Bash parsing and CI ShellCheck cover the current implementation.
 
 Acceptance requires positive controls as well as denial: each tenant must read

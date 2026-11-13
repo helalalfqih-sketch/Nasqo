@@ -30,7 +30,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: ['odoo:19.0-20261112', 'postgres:16', 'nginx:1.28-alpine']
+        # Keep the foundation's postgres:16 in the gate until its existing-volume
+        # upgrade is reviewed separately; do not hide its known findings.
+        image: ['odoo:19.0-20261112', 'postgres:16', 'postgres:16.16-alpine3.24', 'nginx:1.30.6-alpine3.24-slim']
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:

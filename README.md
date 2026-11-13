@@ -30,5 +30,14 @@ installation, HTTP, data isolation, failure recovery and backup/restore checks.
 The `M2 tenant isolation and restore` workflow runs the same checks on a fresh
 GitHub runner. See `AI_HANDOFF.md` for the last **observed**, not assumed, result.
 
+Follow-up review: [Draft PR #4](https://github.com/helalalfqih-sketch/Nasqo/pull/4)
+targets [Draft PR #3](https://github.com/helalalfqih-sketch/Nasqo/pull/3). It adds
+actual Odoo database-selector regression checks, strict Host/header handling,
+source/secret/image security gates and container-log secret checks. Foundation
+Odoo mounts only public source and scripts, so it cannot read the M2 registry.
+Security findings in the foundation PostgreSQL image remain a blocking issue;
+fresh M2 projects use separately reviewed updated image tags. No existing
+database volume is upgraded automatically. See [runtime evidence](docs/RUNTIME_SELECTOR_FIX.md).
+
 ## Limitations
 This setup is not proof of production readiness. Product/cart/checkout, COD/payment, taxes, Arabic/RTL, customer isolation and data migration still need real test cases. Never import NASQO production data or Shopify credentials into Codespaces. Keep Draft PR #1 open until the real integration job passes and the changes are reviewed. NASQO is not an official Odoo product.
