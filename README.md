@@ -1,24 +1,20 @@
 # NASQO — Odoo Community 19 ecommerce
 
-Development foundation, not production-ready software. No production connection or automatic deployment is configured.
+Development foundation, **not production-ready software**. This public repository is separate from the existing NASQO GrowERP/Moqui system and does not contain customer data, production credentials or automatic deployments.
 
-## Layout
-- `addons/nasqo_store`: small installable custom module depending on Community `website_sale`.
-- `vendor/odoo`: locally fetched, ignored upstream source. Never edit Odoo core for custom features.
-- `upstream.json`: reviewed exact upstream commit. No floating branch in builds.
-- `config/odoo.dev.conf.example`: local-only example; actual credentials stay outside Git.
-- `scripts/fetch_upstream.sh`: fetches the pinned source only, does not install packages or launch services.
-- `tests/test_foundation.py`: dependency-free static checks, not Odoo integration tests.
-- `docs/UPDATES.md`: review, update and rollback gates.
+## Isolated Codespaces integration
+Open the [development branch](https://github.com/helalalfqih-sketch/Nasqo/tree/chore/odoo19-ecommerce-foundation), then **Code → Codespaces → Create codespace on this branch**. The devcontainer uses Docker-in-Docker, a separate PostgreSQL database and the exact Odoo source commit from `upstream.json`, running inside the official dated Odoo 19 image. It installs `website_sale` and `nasqo_store`, performs an upgrade, sets a random development admin password and verifies the login and shop routes.
 
-## First development setup
-1. Run `python3 -m unittest discover -s tests -v`.
-2. Review `upstream.json`, then run `bash scripts/fetch_upstream.sh`.
-3. In an isolated development environment, install Odoo's requirements from its checked-out `requirements.txt` following the Odoo 19 source-install documentation. Use a separate PostgreSQL development role and database, never production credentials.
-4. Copy the example config to ignored `config/odoo.dev.conf`, set absolute addon paths and local connection settings. The database role should not be a superuser. Keep outbound email/payment integrations disabled.
-5. Only after reviewing that config, initialize the module with `python3 vendor/odoo/odoo-bin -c config/odoo.dev.conf -d nasqo_dev -i nasqo_store --without-demo=all --stop-after-init`.
-6. Test upgrades using `-u nasqo_store --stop-after-init` against a disposable development database. Do not use `-u all` against production.
+Port **8069 must remain Private** in the Codespaces Ports tab. See [docs/CODESPACES.md](docs/CODESPACES.md) for the setup, tests, credentials and recovery guidance.
 
-The module introduces no checkout/payment behavior yet. Functional checkout, Arabic/RTL, access rules, taxes, delivery, email and payment sandbox tests remain required. See `docs/UPDATES.md`.
+## Source layout
+- `addons/nasqo_store`: minimal installable custom module depending on Community `website_sale`; no checkout/payment customization yet.
+- `vendor/odoo`: ignored locally fetched Odoo 19 source; do not edit core.
+- `upstream.json` and `scripts/fetch_upstream.sh`: pinned source revision.
+- `.devcontainer/`: Codespaces configuration and isolated Postgres/Odoo Compose services.
+- `scripts/codespace/`: repeatable install, upgrade, smoke tests and resume scripts.
+- `tests/`: static safety tests; `.github/workflows/odoo-integration.yml` adds live Odoo/Postgres integration tests.
+- `docs/UPDATES.md`: review, update, backup and rollback policy.
 
-Odoo retains its own upstream license and notices. Review licenses of every third-party add-on before use. NASQO is not an official Odoo product.
+## Limitations
+This setup is not proof of production readiness. Product/cart/checkout, COD/payment, taxes, Arabic/RTL, customer isolation and data migration still need real test cases. Never import NASQO production data or Shopify credentials into Codespaces. Keep Draft PR #1 open until the real integration job passes and the changes are reviewed. NASQO is not an official Odoo product.

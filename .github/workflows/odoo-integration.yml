@@ -1,0 +1,46 @@
+name: Odoo 19 isolated integration
+on:
+  pull_request:
+    paths:
+      - '.devcontainer/**'
+      - 'addons/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'upstream.json'
+      - '.github/workflows/odoo-integration.yml'
+  push:
+    branches:
+      - 'chore/odoo19-ecommerce-foundation'
+    paths:
+      - '.devcontainer/**'
+      - 'addons/**'
+      - 'scripts/**'
+      - 'tests/**'
+      - 'upstream.json'
+      - '.github/workflows/odoo-integration.yml'
+permissions:
+  contents: read
+concurrency:
+  group: odoo-integration-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  install-and-smoke:
+    name: Install Odoo, website_sale and nasqo_store
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Validate Docker Compose specification
+        run: |
+          python3 -B -m unittest discover -s tests -v
+          bash -n scripts/codespace/*.sh .devcontainer/db-init/*.sh scripts/fetch_upstream.sh
+      - name: Install pinned Odoo and run real database and HTTP tests
+        run: bash scripts/codespace/bootstrap.sh
+      - name: Report container state on failure (no logs or secrets)
+        if: failure()
+        run: |
+          if [[ -f .devcontainer/.env ]]; then
+            docker compose --env-file .devcontainer/.env -f .devcontainer/compose.yaml ps
+          fi

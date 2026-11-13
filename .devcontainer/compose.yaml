@@ -1,0 +1,45 @@
+# Local/Codespaces test only. Never deploy this compose project on NASQO production.
+name: nasqo-odoo19-development
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: ${NASQO_DEV_POSTGRES_PASSWORD:?missing private local Postgres password}
+      NASQO_DEV_DB_PASSWORD: ${NASQO_DEV_DB_PASSWORD:?missing private local Odoo role password}
+    volumes:
+      - nasqo-odoo19-postgres:/var/lib/postgresql/data
+      - ./db-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  odoo:
+    image: odoo:19.0-20261112
+    restart: unless-stopped
+    init: true
+    entrypoint: ["bash", "/workspace/scripts/codespace/odoo_entrypoint.sh"]
+    command: ["serve"]
+    environment:
+      PGHOST: db
+      PGPORT: "5432"
+      PGUSER: nasqo_dev
+      PGPASSWORD: ${NASQO_DEV_DB_PASSWORD:?missing private local Odoo role password}
+      NASQO_DEV_ADMIN_PASSWORD: ${NASQO_DEV_ADMIN_PASSWORD:?missing private local Odoo admin password}
+      PYTHONDONTWRITEBYTECODE: "1"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ../:/workspace:ro
+      - nasqo-odoo19-filestore:/var/lib/odoo
+    ports:
+      - "127.0.0.1:8069:8069"
+
+volumes:
+  nasqo-odoo19-postgres:
+  nasqo-odoo19-filestore:

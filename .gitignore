@@ -2,6 +2,8 @@
 .env
 .env.*
 !.env.example
+/.devcontainer/.env
+/.devcontainer/.state/
 config/*.conf
 *.log
 *.dump
