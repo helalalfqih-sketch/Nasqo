@@ -47,6 +47,7 @@ fi
 # Public, pinned Odoo source is mounted read-only in a container running as user "odoo".
 # The bootstrap umask protects local secrets, but Git must be readable across UIDs.
 # Only relax permissions inside the disposable public vendor checkout, never .env.
+chmod a+rx vendor
 chmod -R a+rX vendor/odoo
 
 command -v docker >/dev/null || { echo "Docker is unavailable in this development container" >&2; exit 1; }

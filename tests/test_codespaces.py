@@ -34,6 +34,7 @@ class CodespacesFoundationTests(unittest.TestCase):
         self.assertIn("secrets.token_urlsafe", bootstrap)
         self.assertIn("base.user_admin", bootstrap)
         self.assertIn("os.getcwd()", bootstrap)
+        self.assertIn("chmod a+rx vendor", bootstrap)
         self.assertIn("chmod -R a+rX vendor/odoo", bootstrap)
         self.assertIn("scripts/codespace/verify.sh", bootstrap)
 

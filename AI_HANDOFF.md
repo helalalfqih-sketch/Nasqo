@@ -9,7 +9,7 @@ Isolated proof of concept on GitHub branch `chore/odoo19-ecommerce-foundation` a
 - Postgres 16 with private storage and a **non-superuser** role `nasqo_dev`.
 - Odoo dependencies supplied by official date-tagged `odoo:19.0-20261112` image.
 - Application starts with the exact Odoo source SHA recorded in `upstream.json`, fetched to ignored `vendor/odoo`.
-- First two CI integration runs could not read vendor/odoo/odoo-bin inside the non-root Odoo container. The repo was fetched under umask 077, which protects secrets but also restricted public Git checkout to the host UID. The isolated public checkout now gets read/execute permissions (chmod a+rX) after cloning; .env retains 0600. Await CI verification.
+- First two CI integration runs could not read vendor/odoo/odoo-bin inside the non-root Odoo container. The repo was fetched under umask 077, which protects secrets but also restricted public Git checkout to the host UID. The isolated public checkout and its parent vendor/ directory now get read/execute permissions (chmod a+rx vendor and chmod -R a+rX vendor/odoo) after cloning; .env retains 0600. GitHub Actions output identified vendor as 0700. Await CI verification.
 - The local `nasqo_store` module depends on Odoo Community `website_sale`.
 - Port 8069 binds to loopback. Codespaces port visibility must remain Private.
 - Passwords are fresh random dev-only secrets stored in ignored `.devcontainer/.env` (mode 0600).
