@@ -3,7 +3,7 @@
 Development foundation, **not production-ready software**. This public repository is separate from the existing NASQO GrowERP/Moqui system and does not contain customer data, production credentials or automatic deployments.
 
 ## Isolated Codespaces integration
-Open the [development branch](https://github.com/helalalfqih-sketch/Nasqo/tree/chore/odoo19-ecommerce-foundation), then **Code → Codespaces → Create codespace on this branch**. The devcontainer uses Docker-in-Docker, a separate PostgreSQL database and the exact Odoo source commit from `upstream.json`, running inside the official dated Odoo 19 image. It installs `website_sale` and `nasqo_store`, performs an upgrade, sets a random development admin password and verifies the login and shop routes.
+Open the [development branch](https://github.com/helalalfqih-sketch/Nasqo/tree/fix/m2-runtime-verification), then **Code → Codespaces → Create codespace on this branch**. The devcontainer uses Docker-in-Docker, a separate PostgreSQL database and the exact Odoo source commit from `upstream.json`, running inside the official dated Odoo 19 image. It installs `website_sale` and `nasqo_store`, performs an upgrade, sets a random development admin password and verifies the login and shop routes.
 
 Port **8069 must remain Private** in the Codespaces Ports tab. See [docs/CODESPACES.md](docs/CODESPACES.md) for the setup, tests, credentials and recovery guidance.
 
@@ -40,5 +40,14 @@ updated Nginx image. M1 v2 has new volume names and refuses to bootstrap an old
 v1 workspace; existing database volumes are preserved. CI must verify these
 changes before acceptance. See [runtime evidence](docs/RUNTIME_SELECTOR_FIX.md).
 
+**Verified pilot:** runtime commit `175888a` passed 19 unit tests and all 11
+reported M0/M1/M2 acceptance groups, including two actual stores and encrypted
+restore. [CI evidence](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43479599787)
+and the [recorded report](docs/validation/m2-results-175888a.json) contain the details.
+
 ## Limitations
-This setup is not proof of production readiness. Product/cart/checkout, COD/payment, taxes, Arabic/RTL, customer isolation and data migration still need real test cases. Never import NASQO production data or Shopify credentials into Codespaces. Keep Draft PR #1 open until the real integration job passes and the changes are reviewed. NASQO is not an official Odoo product.
+This setup is not proof of production readiness. The M2 operator pilot has isolation
+and restore evidence; merchant lifecycle, product/cart/checkout, COD/payment, taxes,
+Arabic/RTL, production security and data migration still need their own tests.
+Never import NASQO production data or Shopify credentials into Codespaces.
+Keep Draft PRs #1, #3 and #4 open for review. NASQO is not an official Odoo product.

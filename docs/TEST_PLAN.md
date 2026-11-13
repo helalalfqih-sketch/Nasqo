@@ -4,6 +4,11 @@ Status is recorded in `AI_HANDOFF.md` and the actual CI job. This table describe
 coverage, not a claim that a job has passed. The source contract is
 [IMPLEMENTATION_PLAN_v1.0.md](IMPLEMENTATION_PLAN_v1.0.md).
 
+Observed on runtime commit `175888a`: **19 unit tests and all 11 reported pilot
+acceptance groups PASS** in [run 43479599787](https://github.com/helalalfqih-sketch/Nasqo/actions/runs/43479599787).
+The [recorded JSON](validation/m2-results-175888a.json) includes digests and provenance.
+This does not mark the deferred or partially covered AT cases below complete.
+
 | Test | Coverage / next gate |
 |---|---|
 | AT-001 | Backlog: merchant signup, email verification and ownership binding |
