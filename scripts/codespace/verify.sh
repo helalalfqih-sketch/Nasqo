@@ -14,7 +14,7 @@ for module in base website_sale nasqo_store; do
 done
 
 for path in /web/login /shop; do
-  if ! curl --retry 35 --retry-delay 2 --retry-connrefused --connect-timeout 5 \
+  if ! curl --retry 35 --retry-delay 2 --retry-all-errors --retry-connrefused --connect-timeout 5 \
       --max-time 30 --fail --silent --show-error --location --output /dev/null \
       "http://127.0.0.1:8069$path"; then
     echo "NASQO: HTTP smoke test failed at $path" >&2

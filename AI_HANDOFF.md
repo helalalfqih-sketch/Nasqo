@@ -21,7 +21,7 @@ Isolated proof of concept on GitHub branch `chore/odoo19-ecommerce-foundation` a
 - `bash scripts/codespace/verify.sh` — read-only module state/HTTP checks.
 
 ## Status and remaining blockers
-- Code is staged for GitHub Action integration; do not claim runtime PASS until GitHub CI/Codespace confirms.
+- GitHub Actions on commit a99a9146 **PASS**: real Odoo 19 installation of website_sale/nasqo_store and module upgrade, plus DB module state checks. First HTTP request hit a transient connection reset immediately after service start; verify.sh now retries temporary socket failures. Await a full green integration run.
 - Module has no custom storefront logic yet.
 - E2E product/cart/checkout/COD, Arabic/RTL, roles, invoicing, migration and rollback still require separate tests.
 - No Codespace or deployment is persistent. Never bring live customer or production secrets into this repo.

@@ -37,6 +37,7 @@ class CodespacesFoundationTests(unittest.TestCase):
         self.assertIn("chmod a+rx vendor", bootstrap)
         self.assertIn("chmod -R a+rX vendor/odoo", bootstrap)
         self.assertIn("scripts/codespace/verify.sh", bootstrap)
+        self.assertIn("--retry-all-errors", (ROOT / "scripts/codespace/verify.sh").read_text())
 
     def test_secret_files_are_ignored(self):
         text = (ROOT / ".gitignore").read_text()
