@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="nasqo_backend_branding.AppsMenu" t-inherit="web.NavBar.AppsMenu" t-inherit-mode="extension">
+        <xpath expr="//button[@data-hotkey='h']" position="attributes">
+            <attribute name="title">تطبيقات نسقو</attribute>
+            <attribute name="aria-label">تطبيقات نسقو</attribute>
+            <attribute name="class">nasqo-apps-toggle</attribute>
+        </xpath>
+        <xpath expr="//button[@data-hotkey='h']/i" position="replace">
+            <img src="/nasqo_backend_branding/static/img/favicon.svg" width="27" height="27" alt=""/>
+            <span class="nasqo-navbar-name" dir="ltr">NASQO</span>
+            <i class="fa fa-angle-down ms-1" aria-hidden="true"/>
+        </xpath>
+    </t>
+    <t t-name="nasqo_backend_branding.About" t-inherit="res_config_edition" t-inherit-mode="extension">
+        <xpath expr="//h3" position="replace"><h3 class="px-0 nasqo-about-title">نسقو | NASQO</h3></xpath>
+        <xpath expr="//div[@id='settings']/small" position="replace">
+            <p class="mb-2">منصة نسقو لإدارة أعمالك</p>
+            <details class="nasqo-licenses">
+                <summary>تراخيص المكونات مفتوحة المصدر</summary>
+                <small>Odoo <t t-esc="serverVersion"/> · Copyright © 2004 Odoo S.A. ·
+                    <a id="license" href="https://www.gnu.org/licenses/lgpl-3.0.html" target="_blank" rel="noopener noreferrer">GNU LGPL</a>
+                </small>
+            </details>
+        </xpath>
+    </t>
+    <t t-name="nasqo_backend_branding.SessionExpired" t-inherit="web.SessionExpiredDialog" t-inherit-mode="extension">
+        <xpath expr="//Dialog" position="attributes"><attribute name="title.translate">انتهت جلسة نسقو</attribute></xpath>
+        <xpath expr="//p" position="replace"><p class="text-prewrap">انتهت جلستك. سيتم تحديث الصفحة لتسجيل الدخول مجددًا.</p></xpath>
+    </t>
+    <t t-name="nasqo_backend_branding.Upgrade" t-inherit="web.UpgradeDialog" t-inherit-mode="extension">
+        <xpath expr="//Dialog" position="replace">
+            <Dialog title.translate="ميزة غير متاحة">
+                <p dir="rtl">هذه الميزة غير متاحة في النسخة الحالية من نسقو.</p>
+                <t t-set-slot="footer">
+                    <button class="btn btn-primary" t-on-click="this.props.close">إغلاق</button>
+                </t>
+            </Dialog>
+        </xpath>
+    </t>
+    <t t-name="nasqo_backend_branding.Notifications" t-inherit="web.NotificationAlert" t-inherit-mode="extension">
+        <xpath expr="//div" position="replace">
+            <div t-if="isNotificationBlocked" class="alert alert-primary text-center">إشعارات نسقو محظورة. يمكنك السماح بها من إعدادات المتصفح.</div>
+        </xpath>
+    </t>
+</templates>

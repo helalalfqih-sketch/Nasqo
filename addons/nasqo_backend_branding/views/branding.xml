@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="layout_identity" inherit_id="web.layout" priority="90">
+        <xpath expr="//title" position="attributes">
+            <attribute name="t-esc">title or 'نسقو | NASQO'</attribute>
+        </xpath>
+        <xpath expr="//link[@rel='shortcut icon']" position="attributes">
+            <attribute name="t-att-href">'/nasqo_backend_branding/static/img/favicon.svg' if nasqo_login_identity else (x_icon or '/web/static/img/favicon.ico')</attribute>
+        </xpath>
+    </template>
+    <template id="login_touch_icon" inherit_id="website.layout" priority="99">
+        <xpath expr="//link[@rel='apple-touch-icon']" position="attributes">
+            <attribute name="t-att-href">'/nasqo_backend_branding/static/img/icon-180.png' if nasqo_login_identity else x_icon</attribute>
+        </xpath>
+    </template>
+    <template id="backend_identity" inherit_id="web.webclient_bootstrap" priority="90">
+        <xpath expr="//t[@t-call='web.layout']" position="inside">
+            <t t-set="title">لوحة الإدارة | نسقو</t>
+            <t t-set="x_icon" t-value="'/nasqo_backend_branding/static/img/favicon.svg'"/>
+        </xpath>
+        <xpath expr="//meta[@name='theme-color']" position="attributes">
+            <attribute name="content">#123b42</attribute>
+        </xpath>
+        <xpath expr="//link[@rel='apple-touch-icon']" position="attributes">
+            <attribute name="href">/nasqo_backend_branding/static/img/icon-180.png</attribute>
+        </xpath>
+    </template>
+    <template id="login_identity" inherit_id="web.login_layout" priority="99">
+        <xpath expr="//t[@t-call]" position="replace">
+            <t t-call="web.frontend_layout">
+                <t t-set="nasqo_login_identity" t-value="True"/>
+                <t t-set="title">تسجيل الدخول | نسقو</t>
+                <t t-set="x_icon" t-value="'/nasqo_backend_branding/static/img/favicon.svg'"/>
+                <t t-set="no_header" t-value="True"/>
+                <t t-set="no_footer" t-value="True"/>
+                <t t-set="body_classname" t-value="'nasqo-login-page'"/>
+                <main class="nasqo-login-shell" dir="rtl">
+                    <section class="nasqo-login-card" aria-labelledby="nasqo-login-heading">
+                        <a href="/" class="nasqo-login-brand" aria-label="نسقو">
+                            <img src="/nasqo_backend_branding/static/img/favicon.svg" width="48" height="48" alt=""/>
+                            <span>نسقو <small dir="ltr">NASQO</small></span>
+                        </a>
+                        <h1 id="nasqo-login-heading">أهلًا بك في نسقو</h1>
+                        <p class="nasqo-login-subtitle">سجّل الدخول إلى حسابك</p>
+                        <t t-out="0"/>
+                        <p class="nasqo-login-footer">نسقو · أعمالك في مكان واحد</p>
+                    </section>
+                    <a class="nasqo-back-home" href="/">العودة إلى الموقع</a>
+                </main>
+            </t>
+        </xpath>
+    </template>
+    <template id="offline_identity" inherit_id="web.webclient_offline">
+        <xpath expr="//img" position="attributes">
+            <attribute name="alt">NASQO</attribute>
+        </xpath>
+        <xpath expr="//h1" position="replace"><h1>أنت غير متصل بالإنترنت</h1></xpath>
+        <xpath expr="//p" position="replace"><p>تحقق من اتصالك. ستعمل نسقو مجددًا عند استعادة الاتصال.</p></xpath>
+        <xpath expr="//button" position="replace"><button onclick="location.reload()">حاول مجددًا</button></xpath>
+    </template>
+</odoo>

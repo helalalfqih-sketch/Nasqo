@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+  <record id="nasqo_demo_session" model="nasqo.waha.preview.session">
+    <field name="name">nasqo-waha-synthetic</field>
+    <field name="connection_state">stopped</field>
+    <field name="connection_note">لا توجد جلسة حقيقية — مختبر QR فقط</field>
+  </record>
+</odoo>

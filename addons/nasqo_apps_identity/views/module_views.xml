@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="nasqo_module_form" model="ir.ui.view">
+    <field name="name">nasqo.apps.form.identity</field>
+    <field name="model">ir.module.module</field>
+    <field name="inherit_id" ref="base.module_form"/>
+    <field name="priority">95</field>
+    <field name="arch" type="xml">
+      <xpath expr="//h4[.//field[@name='author']]" position="replace">
+        <div class="text-muted mb-3" dir="rtl">تطبيقات نسقو</div>
+      </xpath>
+      <xpath expr="//h1//field[@name='summary']" position="replace">
+        <field class="fs-2 text-muted" name="nasqo_summary" invisible="not nasqo_summary"/>
+      </xpath>
+      <xpath expr="//field[@name='description_html']" position="replace">
+        <field name="nasqo_description_html" class="oe_styling_v8"
+               invisible="not nasqo_description_html"/>
+      </xpath>
+      <xpath expr="//notebook" position="inside">
+        <page name="nasqo_source_info" string="معلومات المصدر والترخيص"
+              groups="base.group_system">
+          <group>
+            <field name="author" readonly="1"/>
+            <field name="website" widget="url" readonly="1"/>
+            <field name="license" readonly="1"/>
+          </group>
+        </page>
+      </xpath>
+    </field>
+  </record>
+  <record id="nasqo_module_kanban" model="ir.ui.view">
+    <field name="name">nasqo.apps.kanban.identity</field>
+    <field name="model">ir.module.module</field>
+    <field name="inherit_id" ref="base.module_view_kanban"/>
+    <field name="priority">95</field>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='summary']" position="replace">
+        <field name="nasqo_summary" groups="!base.group_no_one"/>
+      </xpath>
+      <xpath expr="//a[@t-att-href='record.website.raw_value']" position="replace">
+        <a type="open" class="btn btn-sm btn-secondary float-end" role="button">التفاصيل</a>
+      </xpath>
+    </field>
+  </record>
+  <record id="nasqo_module_list" model="ir.ui.view">
+    <field name="name">nasqo.apps.list.identity</field>
+    <field name="model">ir.module.module</field>
+    <field name="inherit_id" ref="base.module_tree"/>
+    <field name="priority">95</field>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='author']" position="attributes">
+        <attribute name="column_invisible">1</attribute>
+      </xpath>
+      <xpath expr="//field[@name='website']" position="attributes">
+        <attribute name="column_invisible">1</attribute>
+      </xpath>
+    </field>
+  </record>
+</odoo>

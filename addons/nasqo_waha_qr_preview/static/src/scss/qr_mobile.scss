@@ -1,0 +1,98 @@
+/* Only pilot QR view. Safe-area margins and readable RTL on phones. */
+.nasqo-waha-qr-page {
+  direction: rtl;
+  text-align: right;
+  margin-inline: auto;
+  max-width: 840px;
+  padding: 12px clamp(8px, 3vw, 28px) 28px;
+  color: var(--o-main-text-color, #21333a);
+  line-height: 1.65;
+
+  .nasqo-waha-qr-heading { margin-block-end: 16px; }
+  .nasqo-waha-eyebrow {
+    color: #387177;
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+  }
+  h2 { font-size: clamp(1.3rem, 4vw, 1.85rem); margin-block: 6px; }
+  h3 { font-size: 1rem; font-weight: 700; margin-block: 0 12px; }
+  p { margin-block: 5px 0; }
+  .nasqo-waha-demo-alert { margin: 12px 0; border-radius: 12px; }
+  .nasqo-waha-status-card {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 14px 16px;
+    margin-block: 12px 18px;
+    border: 1px solid #c9d5d7;
+    border-right: 5px solid #718a92;
+    background: #f3f7f7;
+    border-radius: 12px;
+    color: #193a40;
+  }
+  .nasqo-waha-status-warning { border-right-color: #a76c05; background: #fff8e9; }
+  .nasqo-waha-status-success { border-right-color: #237b5e; background: #e9f7ef; }
+  .nasqo-waha-status-danger { border-right-color: #b43e43; background: #fff1f0; }
+  .nasqo-waha-status-caption { font-size: .85rem; }
+  .nasqo-waha-status-title { font-size: clamp(1.1rem, 3vw, 1.35rem); }
+  .nasqo-waha-status-details { font-size: .9rem; }
+  .nasqo-waha-controls, .nasqo-waha-preview, .nasqo-waha-details {
+    padding: clamp(12px, 3vw, 20px);
+    border: 1px solid var(--border-color, #dce5e7);
+    border-radius: 14px;
+    margin-block: 14px;
+  }
+  .nasqo-waha-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    align-items: stretch;
+    > .btn, > button {
+      min-width: 0;
+      min-height: 44px;
+      width: 100%;
+      border-radius: 10px;
+      white-space: normal;
+      line-height: 1.4;
+      padding: 9px 10px;
+      text-align: center;
+    }
+  }
+  .nasqo-waha-qr-card, .nasqo-waha-qr-placeholder { text-align: center; }
+  .nasqo-waha-qr-card h3 { margin-block: 0 12px; }
+  .nasqo-waha-qr-image {
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    img {
+      display: block;
+      width: 100%;
+      max-width: 260px;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: contain;
+    }
+  }
+  .nasqo-waha-qr-label { font-size: .9rem; overflow-wrap: anywhere; }
+  .nasqo-waha-qr-placeholder {
+    border: 1px dashed #afbec2;
+    padding: 22px 12px;
+    border-radius: 10px;
+  }
+  .nasqo-waha-details .o_group {
+    min-width: 0;
+  }
+  .nasqo-waha-details .o_field_widget {
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+  @media (max-width: 575.98px) {
+    padding: 8px 4px 24px;
+    .nasqo-waha-actions { grid-template-columns: minmax(0, 1fr); }
+    .nasqo-waha-controls, .nasqo-waha-preview, .nasqo-waha-details {
+      padding: 12px;
+    }
+    .nasqo-waha-qr-image img { max-width: 230px; }
+  }
+}

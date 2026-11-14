@@ -1,0 +1,40 @@
+/* NASQO identity: scoped to backend chrome; preserve application layout/RTL. */
+.o_web_client {
+    --nasqo-ink: #123b42;
+    --nasqo-action: #165963;
+    --nasqo-gold: #e1be81;
+    --primary: #165963;
+    --primary-rgb: 22, 89, 99;
+    --o-action: #165963;
+}
+.o_web_client .o_main_navbar {
+    --NavBar-entry-color: #fff;
+    --NavBar-brand-color: #fff;
+    --NavBar-entry-color--active: #fff;
+    --NavBar-entry-backgroundColor: #123b42;
+    --NavBar-entry-backgroundColor--hover: #165963;
+    --NavBar-entry-backgroundColor--focus: #165963;
+    --NavBar-entry-backgroundColor--active: #165963;
+    background: #123b42;
+    border-bottom: 1px solid #1c535c;
+    color: #fff;
+}
+.o_web_client .o_main_navbar .o_menu_brand,
+.o_web_client .o_main_navbar .o_navbar_apps_menu > .dropdown > button,
+.o_web_client .o_main_navbar .o_menu_sections > button,
+.o_web_client .o_main_navbar .o_menu_sections > .dropdown > button,
+.o_web_client .o_main_navbar .o_menu_systray > div > button {
+    color: #fff;
+}
+.o_web_client .nasqo-apps-toggle { display: flex; align-items: center; gap: .55rem; padding-inline: .8rem; }
+.o_web_client .nasqo-navbar-name { color: #fff; letter-spacing: .08em; font-size: .9rem; font-weight: 800; }
+.o_web_client .btn-primary {
+    --btn-bg: #165963; --btn-border-color: #165963; --btn-color: #fff;
+    --btn-hover-bg: #123b42; --btn-hover-border-color: #123b42; --btn-hover-color: #fff;
+    --btn-active-bg: #123b42; --btn-active-border-color: #123b42; --btn-active-color: #fff;
+}
+.o_web_client .nasqo-about-title { color: #165963; font-weight: 800; }
+.o_web_client .nasqo-licenses { font-size: .85rem; }
+.o_web_client .nasqo-licenses summary { cursor: pointer; margin-block-end: .5rem; }
+.o_web_client .nasqo-apps-toggle:focus-visible { outline: 2px solid #e1be81; outline-offset: -3px; }
+@media (max-width: 767px) { .o_web_client .nasqo-navbar-name { display: none; } }
