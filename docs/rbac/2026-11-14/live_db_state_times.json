@@ -1,0 +1,15 @@
+{
+  "observed": {
+    "Status": "running",
+    "Running": true,
+    "OOMKilled": true,
+    "Restarting": false,
+    "StartedAt": "2026-11-13T17:45:50.046616918Z",
+    "FinishedAt": "0001-01-01T00:00:00Z",
+    "ExitCode": 0,
+    "Error": "",
+    "restart_count": 0
+  },
+  "docker_events_since_1810_utc": [],
+  "note": "State flag retained; container start predates this audit and no restart/OOM events were returned for the audit interval. No diagnosis or production restart was performed."
+}

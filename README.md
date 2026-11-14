@@ -22,6 +22,20 @@ different module. Registry metadata is not financial or inventory acceptance
 testing. No application installation, permission change or live deployment was
 part of this review. Reproducible read-only probes are in `scripts/audit/`.
 
+## Merchant/developer permission audit
+
+The [2026-11-14 RBAC review](docs/RBAC_AUDIT.md) used a fresh private Docker
+database with synthetic users, products and orders. The main HTTP/RPC batch
+recorded **117 PASS / 6 FAIL**; nine targeted follow-up checks passed, including
+reproduction of unsafe self-elevation when a candidate is deliberately granted
+general access-management rights. Those counts do not mean role acceptance.
+Technical mutations were denied to both limited merchant profiles, but the
+installed `base_install_request` addon still exposes the Apps catalogue and
+read-only module metadata. Constrained staff invitations and support grants
+remain missing. No live account or permission was changed.
+See `scripts/rbac/` and `docs/rbac/2026-11-14/` for guarded probes and sanitized
+evidence. These probes are not yet part of the existing foundation CI workflow.
+
 ## Isolated Codespaces integration
 Open the [development branch](https://github.com/helalalfqih-sketch/Nasqo/tree/chore/odoo19-ecommerce-foundation), then **Code → Codespaces → Create codespace on this branch**. The devcontainer uses Docker-in-Docker, a separate PostgreSQL database and the exact Odoo source commit from `upstream.json`, running inside the official dated Odoo 19 image. It installs `website_sale` and `nasqo_store`, performs an upgrade, sets a random development admin password and verifies the login and shop routes.
 

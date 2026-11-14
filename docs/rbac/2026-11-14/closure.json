@@ -1,0 +1,24 @@
+{
+  "captured_at_utc": "2026-11-14T18:35:49.449507+00:00",
+  "containers": {
+    "nasqo-rbac-20261114-1815-odoo-1": {
+      "status": "exited",
+      "oom_killed": false
+    },
+    "nasqo-rbac-20261114-1815-db-1": {
+      "status": "exited",
+      "oom_killed": false
+    },
+    "nasqo-odoo19-stage-odoo-1": {
+      "status": "running",
+      "oom_killed": false
+    },
+    "nasqo-odoo19-stage-db-1": {
+      "status": "running",
+      "oom_killed": true
+    }
+  },
+  "live_foundation_checkout_clean": true,
+  "live_foundation_head": "ca09ad2b467610c62f2311a2d935f82b8d94cd3b",
+  "audit_volumes_preserved": true
+}

@@ -1,5 +1,86 @@
 # NASQO Odoo Community 19 — handoff (2026-11-13)
 
+## Update: merchant/developer RBAC audit, 2026-11-14
+
+The user selected an actual permission-separation audit. This is evidence and
+test infrastructure, not authorization to change live users or deploy roles.
+
+- Branch `test/merchant-admin-rbac`, stacked on `docs/nasqo-app-catalogue-review`.
+  Reviewed GitHub base `449923e236259bfdc4fb651032c73663cc9220fa`; matching local
+  parent tree `7e5618d6f3db6474b5fe3c3db303f2b71a9e360a`. Other worktrees and the
+  server's foundation checkout were preserved. PR #1/#6/#7 remain unmerged.
+- Delivery: [Draft PR #8](https://github.com/helalalfqih-sketch/Nasqo/pull/8),
+  evidence commit `b90320ec0db1cfc6ac0299f31b2e458fe4aa64ef`, verified tree
+  `a663c4668ccb8b224e031409d8f632d2a6c9a7d1`. Local evidence commit `9a0c077`
+  has the same tree with different Git parentage; publication used the GitHub
+  API without forcing any existing branch. The follow-up only links this PR.
+- [Arabic report](docs/RBAC_AUDIT.md), guarded `scripts/rbac/` probes and
+  `docs/rbac/2026-11-14/` contain the scope, reproduction commands, metadata,
+  source hashes, JSON test results and all twelve RBAC coverage limits.
+- Read-only live role inventory before/after: **one active internal user** with
+  system/access-management rights; no NASQO-defined role XMLIDs. No names,
+  email addresses, business records, credentials or session tokens exported.
+- New Docker project `nasqo-rbac-20261114-1815`: internal network, no published
+  ports, no production secrets, fresh database/filestore, restricted PG role,
+  disabled cron and external SMTP. Installed 182 observed runtime modules plus
+  an empty probe: **183 installed**. Seven actors and all business records are
+  synthetic. Developer is ordinary authenticated user ID 2, not superuser 1.
+- Exact image IDs and all nine NASQO addon source hashes are recorded. Nine
+  selected permission/source files match upstream pin `9cd6f09`; this does not
+  establish full-image equivalence or certify all dependencies/licenses.
+- Main actual HTTP/RPC run: **117 PASS / 6 FAIL**, exit 1. The failures are Apps
+  menu visibility (two menu records per merchant profile) and allowed module
+  metadata reads (one per profile), caused by installed `base_install_request`.
+  They were retained, not changed to PASS. Settings and WhatsApp menus remained
+  hidden. A direct URL returning HTML 200 is not an authorization result.
+- Both limited merchant profiles created/edited products and quotations;
+  persistence was verified. Six install/upgrade/uninstall methods, debug,
+  call_button, batch records, technical writes and group injection were denied.
+  Private admin attachments were blocked by RPC and guessed download IDs.
+  The developer installed/upgraded/uninstalled only an empty synthetic addon,
+  with observed state transitions, and could edit the protected setting/user.
+- Follow-up **9 PASS / 0 FAIL** verifies the install-review wizard guard and
+  intentionally demonstrates unsafe delegation: `base.group_erp_manager`
+  allows its holder to add `base.group_system` and then read a technical setting.
+  Candidate groups were restored. This is a privileged-role design mistake,
+  not an asserted Odoo vulnerability. Never grant this group just for staff
+  invitations. Limited merchants cannot create an allowed-role employee yet:
+  **RBAC-03 FAIL**, constrained invitations remain absent.
+- Disabling a synthetic employee invalidated its old RPC session; its old file
+  link returned 404 with no contents. Removing the candidate's administrative
+  group denied the next protected read from its existing session.
+- A plain internal support candidate could read a synthetic contact and its
+  attachment. There is no actual dedicated support/grant/audit implementation:
+  RBAC-04/05/11 remain BLOCKED, not accepted through standard internal-user ACLs.
+- Main run has no authenticated visual-browser walkthrough. Cross-tenant
+  Host/DB/filestore, support expiry/outages, backup/restore and financial posting
+  were not retested here. A second company is not a second tenant. M2/M8 and
+  AT-032 remain unaccepted by this audit.
+- Zero exact matches for the ten generated lab credentials in inspected Docker
+  and harness/setup logs and JSON. This is bounded evidence, not a full history,
+  CI, dependency or unknown-secret scan. Raw logs/credentials remain off Git.
+- Initial PG startup failed because host umask made the mounted init directory
+  unreadable. Only public lab source/init permissions were normalized; private
+  workspace remained 0700 and credentials 0600. Same lab resumed without deleting
+  volumes; installation then exited 0. Preserve this failure in reports.
+- At completion only the new lab containers were stopped; their volumes remain.
+  Live Odoo/PG remained running and the foundation checkout stayed clean at
+  `ca09ad2`. Live PG reports OOMKilled=true but StartedAt is 2026-11-13,
+  RestartCount=0, and no OOM/die/start events were returned since 18:10 UTC.
+  Historical cause is uninvestigated; no live restart was performed. Closure
+  metadata preserves the observation instead of claiming a clean health audit.
+- Existing eight repository tests passed; script AST, Bash syntax, diff checks
+  and evidence consistency are delivery checks, separate from actual HTTP tests.
+  Existing Actions only cover the foundation, not this RBAC matrix. On the base
+  commit, runs 43619262022 (static) and 43619262033 (Odoo integration) were both
+  confirmed successful; no claim about a later review head is implied.
+
+Next: approve the merchant business-role scope and Apps-catalogue policy, then
+implement constrained invitations/technical-role separation in a small addon.
+Support needs a distinct audited, expiring authorization design. Add CI and
+cross-tenant/browser cases before claiming the whole RBAC gate. No live role
+change, production deploy, outbound message or PR merge is included here.
+
 ## Update: developer catalogue review, 2026-11-14
 
 The user selected a technical review of the current application catalogue.
