@@ -1,0 +1,2526 @@
+{
+  "captured_at_utc": "2026-11-14T16:50:39.506588+00:00",
+  "runtime_version": "19.0-20261112",
+  "catalogue_domain": [
+    [
+      "application",
+      "=",
+      true
+    ]
+  ],
+  "catalogue_action": {
+    "id": 39,
+    "domain": "['!', ('name', '=like', 'theme_%')]",
+    "context": "{'search_default_app':1}"
+  },
+  "counts": {
+    "applications": 55,
+    "application_states": {
+      "installed": 24,
+      "uninstallable": 20,
+      "uninstalled": 11
+    },
+    "all_module_states": {
+      "installed": 180,
+      "uninstalled": 525,
+      "uninstallable": 23
+    }
+  },
+  "applications": [
+    {
+      "id": 1,
+      "name": "account",
+      "title_ar": "الفوترة",
+      "category": "الفوترة",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.5",
+      "source": {
+        "present": true,
+        "manifest_sha256": "592bfd9c197bfb25f0faf0e5c2cc261bc85a13565802a4e77d2a190c6a270d4a",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.5",
+        "installable": true,
+        "depends": [
+          "base_setup",
+          "onboarding",
+          "product",
+          "analytic",
+          "portal",
+          "digest"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "base_setup",
+        "onboarding",
+        "product",
+        "analytic",
+        "portal",
+        "digest"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 702,
+      "name": "accountant",
+      "title_ar": "المحاسبة",
+      "category": "الفوترة",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 716,
+      "name": "appointment",
+      "title_ar": "المواعيد",
+      "category": "التسويق",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 49,
+      "name": "calendar",
+      "title_ar": "التقويم",
+      "category": "التقويم",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1",
+      "source": {
+        "present": true,
+        "manifest_sha256": "95e0c0f556661e6b982db3f645440c02063b56e1b2a3f621771224742cadf035",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.1",
+        "installable": true,
+        "depends": [
+          "base",
+          "mail"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "base",
+        "mail"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 56,
+      "name": "contacts",
+      "title_ar": "جهات الاتصال",
+      "category": "إدارة علاقات العملاء",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "c980712064b9fffbc410e9dfcea09453c5a813264f541add45840cb621724bf1",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": null,
+        "installable": true,
+        "depends": [
+          "base",
+          "mail"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "base",
+        "mail"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 57,
+      "name": "crm",
+      "title_ar": "إدارة علاقات العملاء",
+      "category": "إدارة علاقات العملاء",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.9",
+      "source": {
+        "present": true,
+        "manifest_sha256": "2a7b1a3c1390eccd334d34d596370fa71a55114e6432f7ad66e8caef06a3320e",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.9",
+        "installable": true,
+        "depends": [
+          "base_setup",
+          "sales_team",
+          "mail",
+          "calendar",
+          "resource",
+          "utm",
+          "web_tour",
+          "contacts",
+          "digest",
+          "phone_validation"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "base_setup",
+        "sales_team",
+        "mail",
+        "calendar",
+        "resource",
+        "utm",
+        "web_tour",
+        "contacts",
+        "digest",
+        "phone_validation"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 63,
+      "name": "data_recycle",
+      "title_ar": "إعادة تدوير البيانات",
+      "category": "تنظيف البيانات",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.3",
+      "source": {
+        "present": true,
+        "manifest_sha256": "31dc8bf080610524f7293706426e60295a92c027721f25431e076d5380ae9830",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.3",
+        "installable": true,
+        "depends": [
+          "mail"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "mail"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 76,
+      "name": "fleet",
+      "title_ar": "الأسطول",
+      "category": "الأسطول",
+      "state": "uninstalled",
+      "db_license": "LGPL-3",
+      "installed_version": false,
+      "source": {
+        "present": true,
+        "manifest_sha256": "18f19938a6f56d9db0247d6b0dd5918c780d6bbbdd3de92c94d4ef9ad6015d7c",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "0.1",
+        "installable": true,
+        "depends": [
+          "base",
+          "mail"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "base",
+        "mail"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 705,
+      "name": "helpdesk",
+      "title_ar": "مكتب المساعدة",
+      "category": "مكتب المساعدة",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 84,
+      "name": "hr",
+      "title_ar": "الموظفون",
+      "category": "الموظفون",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1",
+      "source": {
+        "present": true,
+        "manifest_sha256": "bf7754f632dd6a72d56ef9bda6cae3793d5c5c80f6aed599522863a653f0e312",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.1",
+        "installable": true,
+        "depends": [
+          "base_setup",
+          "digest",
+          "phone_validation",
+          "resource_mail",
+          "web"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "base_setup",
+        "digest",
+        "phone_validation",
+        "resource_mail",
+        "web"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 706,
+      "name": "hr_appraisal",
+      "title_ar": "التقييمات",
+      "category": "التقييمات",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 85,
+      "name": "hr_attendance",
+      "title_ar": "الحضور",
+      "category": "الحضور",
+      "state": "uninstalled",
+      "db_license": "LGPL-3",
+      "installed_version": false,
+      "source": {
+        "present": true,
+        "manifest_sha256": "67ba8372e3b71bbbdd57523baf74a5f07ff67ce2a9642a6dd18abd7a237e7199",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "2.0",
+        "installable": true,
+        "depends": [
+          "hr",
+          "barcodes",
+          "base_geolocalize"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "hr",
+        "barcodes",
+        "base_geolocalize"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 87,
+      "name": "hr_expense",
+      "title_ar": "النفقات",
+      "category": "النفقات",
+      "state": "uninstalled",
+      "db_license": "LGPL-3",
+      "installed_version": false,
+      "source": {
+        "present": true,
+        "manifest_sha256": "dce1efe9382aa356671970436719a26defeb583c7a24f006109826f81b85521f",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "2.1",
+        "installable": true,
+        "depends": [
+          "account",
+          "web_tour",
+          "hr"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "account",
+        "web_tour",
+        "hr"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 90,
+      "name": "hr_holidays",
+      "title_ar": "الإجازات",
+      "category": "الإجازات",
+      "state": "uninstalled",
+      "db_license": "LGPL-3",
+      "installed_version": false,
+      "source": {
+        "present": true,
+        "manifest_sha256": "e91f5a076d268b83364f8c6085de8504fdb915fe44e15437b6da657b8e940cbb",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.6",
+        "installable": true,
+        "depends": [
+          "hr",
+          "calendar",
+          "resource"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "hr",
+        "calendar",
+        "resource"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 100,
+      "name": "hr_recruitment",
+      "title_ar": "التوظيف",
+      "category": "التوظيف",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1",
+      "source": {
+        "present": true,
+        "manifest_sha256": "6a0a55775393c79355ae0e09ca04eca6b430c96b6f2ed5f1f3fb428f98121b9b",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.1",
+        "installable": true,
+        "depends": [
+          "hr",
+          "calendar",
+          "utm",
+          "attachment_indexation",
+          "web_tour",
+          "digest"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "hr",
+        "calendar",
+        "utm",
+        "attachment_indexation",
+        "web_tour",
+        "digest"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 104,
+      "name": "hr_skills",
+      "title_ar": "إدارة المهارات",
+      "category": "الموظفون",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "f6a8579e869c58322ad32beb1c2259a66566265faac69f4a9e83803cd922d591",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "hr"
+        ],
+        "external_dependencies": {},
+        "auto_install": true
+      },
+      "direct_dependencies": [
+        "hr"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 118,
+      "name": "im_livechat",
+      "title_ar": "الدردشة المباشرة",
+      "category": "الدردشة المباشرة",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "2451a511fe61b13a6dab0519aaa517a0f0470d25adecf8d1465c4eb6caea13e6",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "mail",
+          "rating",
+          "digest",
+          "utm"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "mail",
+        "rating",
+        "digest",
+        "utm"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 704,
+      "name": "industry_fsm",
+      "title_ar": "الخدمة الميدانية",
+      "category": "الخدمة الميدانية",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 703,
+      "name": "knowledge",
+      "title_ar": "المعرفة",
+      "category": "الإنتاجية",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 361,
+      "name": "lunch",
+      "title_ar": "الغداء",
+      "category": "الغداء",
+      "state": "uninstalled",
+      "db_license": "LGPL-3",
+      "installed_version": false,
+      "source": {
+        "present": true,
+        "manifest_sha256": "6fb8c3f136bffa92fd99c63d4ea42b21f0f6380958d52ad8bc4eb06a19ddccfe",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "mail"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "mail"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 362,
+      "name": "mail",
+      "title_ar": "المناقشة",
+      "category": "المناقشة",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.19",
+      "source": {
+        "present": true,
+        "manifest_sha256": "aa251bd517b4cf25929fcfdd1c8a05eb8bad46d03de3b246dda8aa33e1db409f",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.19",
+        "installable": true,
+        "depends": [
+          "base",
+          "base_setup",
+          "bus",
+          "web_tour",
+          "html_editor"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "base",
+        "base_setup",
+        "bus",
+        "web_tour",
+        "html_editor"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 367,
+      "name": "maintenance",
+      "title_ar": "الصيانة",
+      "category": "الصيانة",
+      "state": "uninstalled",
+      "db_license": "LGPL-3",
+      "installed_version": false,
+      "source": {
+        "present": true,
+        "manifest_sha256": "105af9b6ac7ff31c63f2bee1b1e51afe0d8afce6ceb0475b9ae978f4f957e8a6",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "mail"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "mail"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 707,
+      "name": "marketing_automation",
+      "title_ar": "أتمتة التسويق",
+      "category": "التسويق بالبريد الإلكتروني",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 368,
+      "name": "marketing_card",
+      "title_ar": "بطاقة التسويق",
+      "category": "بطاقة التسويق",
+      "state": "uninstalled",
+      "db_license": "LGPL-3",
+      "installed_version": false,
+      "source": {
+        "present": true,
+        "manifest_sha256": "a1f90ed8758bcd3c559c571e8ea858632286f5979e1f4bd4df5a8dafbc93a66f",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.1",
+        "installable": true,
+        "depends": [
+          "link_tracker",
+          "mass_mailing",
+          "website"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "link_tracker",
+        "mass_mailing",
+        "website"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 369,
+      "name": "mass_mailing",
+      "title_ar": "التسويق بالبريد الإلكتروني",
+      "category": "التسويق بالبريد الإلكتروني",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.2.7",
+      "source": {
+        "present": true,
+        "manifest_sha256": "6d50ee9c9a7a4a8c3a62da61185f841323f1f903a67018d2e5cee5a89c78b4d8",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "2.7",
+        "installable": true,
+        "depends": [
+          "contacts",
+          "mail",
+          "html_builder",
+          "utm",
+          "link_tracker",
+          "social_media",
+          "web_tour",
+          "digest"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "contacts",
+        "mail",
+        "html_builder",
+        "utm",
+        "link_tracker",
+        "social_media",
+        "web_tour",
+        "digest"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 379,
+      "name": "mass_mailing_sms",
+      "title_ar": "التسويق عبر الرسائل النصية القصيرة",
+      "category": "التسويق بالبريد الإلكتروني",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1",
+      "source": {
+        "present": true,
+        "manifest_sha256": "7e4bb730fd42467229d428243d92ff3798fe2cba86b721726657ce866f85df35",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.1",
+        "installable": true,
+        "depends": [
+          "portal",
+          "mass_mailing",
+          "sms"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "portal",
+        "mass_mailing",
+        "sms"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 384,
+      "name": "mrp",
+      "title_ar": "التصنيع",
+      "category": "التصنيع",
+      "state": "uninstalled",
+      "db_license": "LGPL-3",
+      "installed_version": false,
+      "source": {
+        "present": true,
+        "manifest_sha256": "fa9632ee3a09caca311529c84a994c1ff4239b966b68f9d8dd77d1bb64754054",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "2.0",
+        "installable": true,
+        "depends": [
+          "product",
+          "stock",
+          "resource"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "product",
+        "stock",
+        "resource"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 708,
+      "name": "mrp_plm",
+      "title_ar": "إدارة دورة حياة المنتج (PLM)",
+      "category": "سلسلة توريد",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 718,
+      "name": "mrp_workorder",
+      "title_ar": "نظام تخطيط متطلبات المواد 2",
+      "category": "سلسلة توريد",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 727,
+      "name": "nasqo_whatsapp_center",
+      "title_ar": "NASQO PRO WhatsApp Center",
+      "category": "الإنتاجية",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "ec5b49eb89e511868ce4be32a4429d7f14a4b050b7453b3173913df115e103c2",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "19.0.1.1.0",
+        "installable": true,
+        "depends": [
+          "nasqo_waha_qr_preview"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "nasqo_waha_qr_preview"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 711,
+      "name": "planning",
+      "title_ar": "التخطيط",
+      "category": "المشروع",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 424,
+      "name": "point_of_sale",
+      "title_ar": "نقطة البيع",
+      "category": "نقطة البيع",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0.2",
+      "source": {
+        "present": true,
+        "manifest_sha256": "b16c07605ec6e55534f06e69644c103d74c06e8d2cfe632791e2f9553d144412",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0.2",
+        "installable": true,
+        "depends": [
+          "resource",
+          "stock_account",
+          "barcodes",
+          "html_editor",
+          "digest",
+          "phone_validation",
+          "partner_autocomplete",
+          "iot_base",
+          "google_address_autocomplete"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "resource",
+        "stock_account",
+        "barcodes",
+        "html_editor",
+        "digest",
+        "phone_validation",
+        "partner_autocomplete",
+        "iot_base",
+        "google_address_autocomplete"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 450,
+      "name": "pos_restaurant",
+      "title_ar": "مطعم",
+      "category": "نقطة البيع",
+      "state": "uninstalled",
+      "db_license": "LGPL-3",
+      "installed_version": false,
+      "source": {
+        "present": true,
+        "manifest_sha256": "7cee2aee24c7da47b8d2014261dace8db7e363ab32ca123e54883e297080c977",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "point_of_sale"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "point_of_sale"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 475,
+      "name": "project",
+      "title_ar": "المشروع",
+      "category": "المشروع",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.4",
+      "source": {
+        "present": true,
+        "manifest_sha256": "7d722c5109276ff8ec93b06f846f4c4c7420c8eb0825e89ddd8f31edf0f90bee",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.4",
+        "installable": true,
+        "depends": [
+          "analytic",
+          "base_setup",
+          "mail",
+          "portal",
+          "rating",
+          "resource",
+          "web",
+          "web_tour",
+          "digest"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "analytic",
+        "base_setup",
+        "mail",
+        "portal",
+        "rating",
+        "resource",
+        "web",
+        "web_tour",
+        "digest"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 492,
+      "name": "project_todo",
+      "title_ar": "قائمة المهام",
+      "category": "قائمة المهام",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "185fb7af8b87a2efad5915ea7c7ec7c1a94f1923231ef00dae14a16e0dc783d8",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "project"
+        ],
+        "external_dependencies": {},
+        "auto_install": true
+      },
+      "direct_dependencies": [
+        "project"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 493,
+      "name": "purchase",
+      "title_ar": "الشراء",
+      "category": "الشراء",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.2",
+      "source": {
+        "present": true,
+        "manifest_sha256": "a34441e3d1ebff546b2b8c582e442e0f5b602cde0a83863e5a19dc0a3b23750b",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.2",
+        "installable": true,
+        "depends": [
+          "account"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "account"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 709,
+      "name": "quality_control",
+      "title_ar": "الجودة",
+      "category": "سلسلة توريد",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 503,
+      "name": "repair",
+      "title_ar": "الإصلاحات",
+      "category": "المخزون",
+      "state": "uninstalled",
+      "db_license": "LGPL-3",
+      "installed_version": false,
+      "source": {
+        "present": true,
+        "manifest_sha256": "d3dc6292965a1ea5a7d43a3f57e39b7d562c214c31f1f24e383ec54d28b500dc",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "sale_stock",
+          "sale_management"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "sale_stock",
+        "sale_management"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 710,
+      "name": "sale_amazon",
+      "title_ar": "موصل شحن Amazon",
+      "category": "المبيعات",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 516,
+      "name": "sale_management",
+      "title_ar": "المبيعات",
+      "category": "المبيعات",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "49b8dd9441dfa53a992d3e1bed884ec5a7cb39836985135386c221e90da892c9",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "sale",
+          "digest"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "sale",
+        "digest"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 712,
+      "name": "sale_subscription",
+      "title_ar": "الاشتراكات",
+      "category": "المبيعات",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 713,
+      "name": "sign",
+      "title_ar": "توقيع",
+      "category": "توقيع",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 717,
+      "name": "social",
+      "title_ar": "التسويق على وسائل التواصل الإجتماعي",
+      "category": "التسويق",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 556,
+      "name": "stock",
+      "title_ar": "المخزون",
+      "category": "المخزون",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1",
+      "source": {
+        "present": true,
+        "manifest_sha256": "d5ae42d03f531579bdb42b145aa84f5dfb9857654d719a556e3857a7f9a5c761",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.1",
+        "installable": true,
+        "depends": [
+          "product",
+          "barcodes_gs1_nomenclature",
+          "digest"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "product",
+        "barcodes_gs1_nomenclature",
+        "digest"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 714,
+      "name": "stock_barcode",
+      "title_ar": "باركود",
+      "category": "سلسلة توريد",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 565,
+      "name": "survey",
+      "title_ar": "الاستطلاعات",
+      "category": "الاستطلاعات",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.3.7",
+      "source": {
+        "present": true,
+        "manifest_sha256": "639e58b8349cc66ad9768f48583a48e5ea4c1e1ebb70501d5945e6431f0eb6bc",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "3.7",
+        "installable": true,
+        "depends": [
+          "auth_signup",
+          "http_routing",
+          "mail",
+          "web_tour",
+          "gamification"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "auth_signup",
+        "http_routing",
+        "mail",
+        "web_tour",
+        "gamification"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 701,
+      "name": "timesheet_grid",
+      "title_ar": "الجداول الزمنية",
+      "category": "الجداول الزمنية",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 715,
+      "name": "voip",
+      "title_ar": "رقم الهاتف",
+      "category": "المبيعات",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 719,
+      "name": "web_mobile",
+      "title_ar": "الهاتف المحمول",
+      "category": "الإدارة",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 645,
+      "name": "website",
+      "title_ar": "الموقع الإلكتروني",
+      "category": "الموقع الإلكتروني",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "4336c497a833c74ca8bb39796ee531cb4228134ba85616d2ed6919878e31d114",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "digest",
+          "web",
+          "html_editor",
+          "http_routing",
+          "portal",
+          "social_media",
+          "auth_signup",
+          "mail",
+          "google_recaptcha",
+          "utm",
+          "html_builder"
+        ],
+        "external_dependencies": {
+          "python": [
+            "geoip2"
+          ],
+          "apt": {
+            "geoip2": "python3-geoip2"
+          }
+        },
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "digest",
+        "web",
+        "html_editor",
+        "http_routing",
+        "portal",
+        "social_media",
+        "auth_signup",
+        "mail",
+        "google_recaptcha",
+        "utm",
+        "html_builder"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 654,
+      "name": "website_event",
+      "title_ar": "الفعاليات",
+      "category": "الفعاليات",
+      "state": "uninstalled",
+      "db_license": "LGPL-3",
+      "installed_version": false,
+      "source": {
+        "present": true,
+        "manifest_sha256": "6865b8e8b2baf4b437265dc2e61ed542c60e7ae30c6a8088a5274054d284540c",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.4",
+        "installable": true,
+        "depends": [
+          "event",
+          "website",
+          "website_partner",
+          "website_mail",
+          "html_builder"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "event",
+        "website",
+        "website_partner",
+        "website_mail",
+        "html_builder"
+      ],
+      "noninstalled_dependency_closure": [
+        "event"
+      ],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 668,
+      "name": "website_hr_recruitment",
+      "title_ar": "وظائف على الإنترنت",
+      "category": "الموقع الإلكتروني",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1",
+      "source": {
+        "present": true,
+        "manifest_sha256": "b072c20653280d9d451b1baeb9741b1e6aaa7a044be23e1bc3f35afb4b7d25d5",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.1",
+        "installable": true,
+        "depends": [
+          "hr_recruitment",
+          "website_mail"
+        ],
+        "external_dependencies": {},
+        "auto_install": [
+          "hr_recruitment",
+          "website_mail"
+        ]
+      },
+      "direct_dependencies": [
+        "hr_recruitment",
+        "website_mail"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 680,
+      "name": "website_sale",
+      "title_ar": "المتجر الإلكتروني",
+      "category": "الموقع الإلكتروني",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1",
+      "source": {
+        "present": true,
+        "manifest_sha256": "0e6b064bf68e265869b656e225c927572047765e276822ffb9d6039ab1ac2979",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.1",
+        "installable": true,
+        "depends": [
+          "website",
+          "sale",
+          "website_payment",
+          "website_mail",
+          "portal_rating",
+          "digest",
+          "delivery",
+          "html_builder"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "website",
+        "sale",
+        "website_payment",
+        "website_mail",
+        "portal_rating",
+        "digest",
+        "delivery",
+        "html_builder"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 695,
+      "name": "website_slides",
+      "title_ar": "التعلم الإلكتروني",
+      "category": "التعلم الإلكتروني",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.2.7",
+      "source": {
+        "present": true,
+        "manifest_sha256": "f9f6740eaeb2eeeebc6fb9bcdf42424fde15d7823598ec6a11fb967c24a63a34",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "2.7",
+        "installable": true,
+        "depends": [
+          "portal_rating",
+          "website",
+          "website_mail",
+          "website_profile"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "portal_rating",
+        "website",
+        "website_mail",
+        "website_profile"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 700,
+      "name": "web_studio",
+      "title_ar": "الاستوديو",
+      "category": "الإدارة",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    }
+  ],
+  "technical_modules": [
+    {
+      "id": 516,
+      "name": "sale_management",
+      "title_ar": "المبيعات",
+      "category": "المبيعات",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "49b8dd9441dfa53a992d3e1bed884ec5a7cb39836985135386c221e90da892c9",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "sale",
+          "digest"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "sale",
+        "digest"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 1,
+      "name": "account",
+      "title_ar": "الفوترة",
+      "category": "الفوترة",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.5",
+      "source": {
+        "present": true,
+        "manifest_sha256": "592bfd9c197bfb25f0faf0e5c2cc261bc85a13565802a4e77d2a190c6a270d4a",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.5",
+        "installable": true,
+        "depends": [
+          "base_setup",
+          "onboarding",
+          "product",
+          "analytic",
+          "portal",
+          "digest"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "base_setup",
+        "onboarding",
+        "product",
+        "analytic",
+        "portal",
+        "digest"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 645,
+      "name": "website",
+      "title_ar": "الموقع الإلكتروني",
+      "category": "الموقع الإلكتروني",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "4336c497a833c74ca8bb39796ee531cb4228134ba85616d2ed6919878e31d114",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "digest",
+          "web",
+          "html_editor",
+          "http_routing",
+          "portal",
+          "social_media",
+          "auth_signup",
+          "mail",
+          "google_recaptcha",
+          "utm",
+          "html_builder"
+        ],
+        "external_dependencies": {
+          "python": [
+            "geoip2"
+          ],
+          "apt": {
+            "geoip2": "python3-geoip2"
+          }
+        },
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "digest",
+        "web",
+        "html_editor",
+        "http_routing",
+        "portal",
+        "social_media",
+        "auth_signup",
+        "mail",
+        "google_recaptcha",
+        "utm",
+        "html_builder"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 556,
+      "name": "stock",
+      "title_ar": "المخزون",
+      "category": "المخزون",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1",
+      "source": {
+        "present": true,
+        "manifest_sha256": "d5ae42d03f531579bdb42b145aa84f5dfb9857654d719a556e3857a7f9a5c761",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.1",
+        "installable": true,
+        "depends": [
+          "product",
+          "barcodes_gs1_nomenclature",
+          "digest"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "product",
+        "barcodes_gs1_nomenclature",
+        "digest"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 702,
+      "name": "accountant",
+      "title_ar": "المحاسبة",
+      "category": "الفوترة",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 493,
+      "name": "purchase",
+      "title_ar": "الشراء",
+      "category": "الشراء",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.2",
+      "source": {
+        "present": true,
+        "manifest_sha256": "a34441e3d1ebff546b2b8c582e442e0f5b602cde0a83863e5a19dc0a3b23750b",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.2",
+        "installable": true,
+        "depends": [
+          "account"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "account"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 680,
+      "name": "website_sale",
+      "title_ar": "المتجر الإلكتروني",
+      "category": "الموقع الإلكتروني",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1",
+      "source": {
+        "present": true,
+        "manifest_sha256": "0e6b064bf68e265869b656e225c927572047765e276822ffb9d6039ab1ac2979",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.1",
+        "installable": true,
+        "depends": [
+          "website",
+          "sale",
+          "website_payment",
+          "website_mail",
+          "portal_rating",
+          "digest",
+          "delivery",
+          "html_builder"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "website",
+        "sale",
+        "website_payment",
+        "website_mail",
+        "portal_rating",
+        "digest",
+        "delivery",
+        "html_builder"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 700,
+      "name": "web_studio",
+      "title_ar": "الاستوديو",
+      "category": "الإدارة",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 84,
+      "name": "hr",
+      "title_ar": "الموظفون",
+      "category": "الموظفون",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1",
+      "source": {
+        "present": true,
+        "manifest_sha256": "bf7754f632dd6a72d56ef9bda6cae3793d5c5c80f6aed599522863a653f0e312",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.1",
+        "installable": true,
+        "depends": [
+          "base_setup",
+          "digest",
+          "phone_validation",
+          "resource_mail",
+          "web"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "base_setup",
+        "digest",
+        "phone_validation",
+        "resource_mail",
+        "web"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 713,
+      "name": "sign",
+      "title_ar": "توقيع",
+      "category": "توقيع",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 712,
+      "name": "sale_subscription",
+      "title_ar": "الاشتراكات",
+      "category": "المبيعات",
+      "state": "uninstallable",
+      "db_license": "OEEL-1",
+      "installed_version": false,
+      "source": {
+        "present": false
+      },
+      "direct_dependencies": [],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 362,
+      "name": "mail",
+      "title_ar": "المناقشة",
+      "category": "المناقشة",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.19",
+      "source": {
+        "present": true,
+        "manifest_sha256": "aa251bd517b4cf25929fcfdd1c8a05eb8bad46d03de3b246dda8aa33e1db409f",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.19",
+        "installable": true,
+        "depends": [
+          "base",
+          "base_setup",
+          "bus",
+          "web_tour",
+          "html_editor"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "base",
+        "base_setup",
+        "bus",
+        "web_tour",
+        "html_editor"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 118,
+      "name": "im_livechat",
+      "title_ar": "الدردشة المباشرة",
+      "category": "الدردشة المباشرة",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "2451a511fe61b13a6dab0519aaa517a0f0470d25adecf8d1465c4eb6caea13e6",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "mail",
+          "rating",
+          "digest",
+          "utm"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "mail",
+        "rating",
+        "digest",
+        "utm"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 557,
+      "name": "stock_account",
+      "title_ar": "المحاسبة لنظام إدارة المستودعات (WMS)",
+      "category": "المخزون",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1",
+      "source": {
+        "present": true,
+        "manifest_sha256": "469205dfa8db47be15f73d5f066b7239750c44bdafd7c84eee60ffdd9e75bcb0",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.1",
+        "installable": true,
+        "depends": [
+          "stock",
+          "account"
+        ],
+        "external_dependencies": {},
+        "auto_install": true
+      },
+      "direct_dependencies": [
+        "stock",
+        "account"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 501,
+      "name": "purchase_stock",
+      "title_ar": "مخزون المشتريات",
+      "category": "الشراء",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.2",
+      "source": {
+        "present": true,
+        "manifest_sha256": "de5da8776888738208e45bdba5a6508030bb423e5bd7ff6d4cecf9b068872a12",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.2",
+        "installable": true,
+        "depends": [
+          "stock_account",
+          "purchase"
+        ],
+        "external_dependencies": {},
+        "auto_install": true
+      },
+      "direct_dependencies": [
+        "stock_account",
+        "purchase"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 9,
+      "name": "account_payment",
+      "title_ar": "الدفعات - الحساب",
+      "category": "الفوترة",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.2.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "a390533acf333e624bfd92ee6792269a342a319f63133d3118894b32ea8d06bf",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "2.0",
+        "installable": true,
+        "depends": [
+          "account",
+          "payment"
+        ],
+        "external_dependencies": {},
+        "auto_install": [
+          "account"
+        ]
+      },
+      "direct_dependencies": [
+        "account",
+        "payment"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 19,
+      "name": "analytic",
+      "title_ar": "المحاسبة التحليلية",
+      "category": "الفوترة",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.2",
+      "source": {
+        "present": true,
+        "manifest_sha256": "74112ba1b9696a6745b1edf911b44b84fe5619741d04f63b725e1ea960c33327",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.2",
+        "installable": true,
+        "depends": [
+          "base",
+          "mail",
+          "uom"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "base",
+        "mail",
+        "uom"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 64,
+      "name": "delivery",
+      "title_ar": "تكاليف التوصيل",
+      "category": "التوصيل",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "60f39ec19a8a8ac36a03ae9021a71d9aecacb1b27a564513d3b8b09b0005ae7a",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "sale",
+          "payment_custom"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "sale",
+        "payment_custom"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 395,
+      "name": "nasqo_store",
+      "title_ar": "NASQO Store Foundation",
+      "category": "eCommerce",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "e9d187f91781bb12ae948911f67acdd1d0ce0ea961be76a4584427c9c7ff841b",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "19.0.1.0.0",
+        "installable": true,
+        "depends": [
+          "website_sale"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "website_sale"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 399,
+      "name": "payment",
+      "title_ar": "محرك الدفع",
+      "category": "تقني",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.2.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "de73163d7bb451cd49773ec2878b616512eefdc1f58581b0cd09da948f5e0e11",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "2.0",
+        "installable": true,
+        "depends": [
+          "onboarding",
+          "portal"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "onboarding",
+        "portal"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 507,
+      "name": "sale",
+      "title_ar": "المبيعات",
+      "category": "المبيعات",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.2",
+      "source": {
+        "present": true,
+        "manifest_sha256": "349c8a4ac364eac0926a1931426a9f22b9b49165a33f52e5d3c084b2cab8aa38",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.2",
+        "installable": true,
+        "depends": [
+          "sales_team",
+          "account_payment",
+          "utm"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "sales_team",
+        "account_payment",
+        "utm"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 530,
+      "name": "sale_stock",
+      "title_ar": "إدارة المبيعات والمستودعات",
+      "category": "المبيعات",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "c59149306a5efbf109fd1dd7f0825af58a803ff7093769091db7dee1a6317bfc",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "sale",
+          "stock_account"
+        ],
+        "external_dependencies": {},
+        "auto_install": true
+      },
+      "direct_dependencies": [
+        "sale",
+        "stock_account"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 536,
+      "name": "sms",
+      "title_ar": "بوابة الرسائل النصية القصيرة",
+      "category": "المبيعات",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.3.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "952df6b919b024c7f1569c8a915e03ba7657a21bf99faaf01b931556875b8fc1",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "3.0",
+        "installable": true,
+        "depends": [
+          "base",
+          "iap_mail",
+          "mail",
+          "phone_validation"
+        ],
+        "external_dependencies": {},
+        "auto_install": true
+      },
+      "direct_dependencies": [
+        "base",
+        "iap_mail",
+        "mail",
+        "phone_validation"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 541,
+      "name": "spreadsheet",
+      "title_ar": "جدول البيانات",
+      "category": "لوحة البيانات",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "a662d738b5294ac2eddb9ddf1f098ea899716eeab97e321bd0d18efe58d6580e",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "bus",
+          "web",
+          "portal"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "bus",
+        "web",
+        "portal"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 671,
+      "name": "website_livechat",
+      "title_ar": "الدردشة المباشرة في الموقع الإلكتروني",
+      "category": "الدردشة المباشرة",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "a87ed5c093ac39834cf40a98db50ca94ac6f287c31b36039971fa6fc38ae8f3d",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "1.0",
+        "installable": true,
+        "depends": [
+          "website",
+          "im_livechat"
+        ],
+        "external_dependencies": {},
+        "auto_install": true
+      },
+      "direct_dependencies": [
+        "website",
+        "im_livechat"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 405,
+      "name": "payment_custom",
+      "title_ar": "مزود الدفع: طرق الدفع المخصصة",
+      "category": "مزودي الدفع",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.2.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "5a7f0b3d2ce6f1aa71d335a9a1cb613830a4e045932fc1a5e143eb3c3e91cd7a",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "2.0",
+        "installable": true,
+        "depends": [
+          "payment"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "payment"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 406,
+      "name": "payment_demo",
+      "title_ar": "مزود الدفع: تجريبي",
+      "category": "الفوترة",
+      "state": "uninstalled",
+      "db_license": "LGPL-3",
+      "installed_version": false,
+      "source": {
+        "present": true,
+        "manifest_sha256": "b8450baee6c702275c3a40646043bbf5b00820c21d5a00987069c84b9366d27d",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "2.0",
+        "installable": true,
+        "depends": [
+          "payment"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "payment"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 727,
+      "name": "nasqo_whatsapp_center",
+      "title_ar": "NASQO PRO WhatsApp Center",
+      "category": "الإنتاجية",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "ec5b49eb89e511868ce4be32a4429d7f14a4b050b7453b3173913df115e103c2",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "19.0.1.1.0",
+        "installable": true,
+        "depends": [
+          "nasqo_waha_qr_preview"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "nasqo_waha_qr_preview"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 724,
+      "name": "nasqo_apps_identity",
+      "title_ar": "NASQO PRO Apps Interface Identity",
+      "category": "غير مصنف",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "befad6ec97fe869dd47a8af019a76515496673e85a765c4fecc0c2cb8baca903",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "19.0.1.1.0",
+        "installable": true,
+        "depends": [
+          "base"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "base"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 722,
+      "name": "nasqo_backend_branding",
+      "title_ar": "NASQO PRO Admin Identity",
+      "category": "غير مصنف",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "8f030bb5c80e5b2c777dfcd2884b719d57ea78fbc0140ab50e5fd2337eae891e",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "19.0.1.1.0",
+        "installable": true,
+        "depends": [
+          "web",
+          "base_setup",
+          "website",
+          "mail"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "web",
+        "base_setup",
+        "website",
+        "mail"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 726,
+      "name": "nasqo_indexesstore_link",
+      "title_ar": "NASQO Link to Indexes Store",
+      "category": "الموقع الإلكتروني",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.0.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "e95e46eda8e264dc84f98319261db8e6cc727dbbfd6cac1429fadc15637e8277",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "19.0.1.0.0",
+        "installable": true,
+        "depends": [
+          "website"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "website"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 721,
+      "name": "nasqo_storefront",
+      "title_ar": "NASQO PRO Arabic Storefront Pilot",
+      "category": "eCommerce",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "7ede01c86807ec4612d7efda5c1898b3343e9a23ab282d99f64e0212aa2ebc0a",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "19.0.1.1.0",
+        "installable": true,
+        "depends": [
+          "website_sale"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "website_sale"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 728,
+      "name": "nasqo_waha_live_view",
+      "title_ar": "NASQO PRO WhatsApp Live Status and QR",
+      "category": "الإنتاجية",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "4777807d28838247e1b1187b2d9551fbddb7acf2dbc85507a1f0b60aa9423a5c",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "19.0.1.1.0",
+        "installable": true,
+        "depends": [
+          "nasqo_whatsapp_center"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "nasqo_whatsapp_center"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 725,
+      "name": "nasqo_waha_qr_preview",
+      "title_ar": "NASQO PRO WhatsApp Connection Preview",
+      "category": "غير مصنف",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "b07e653cb8bbac896c4b118f83fd31468ec5f6e97fb057e3f2f749a6293a78ca",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "19.0.1.1.0",
+        "installable": true,
+        "depends": [
+          "base"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "base"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    },
+    {
+      "id": 723,
+      "name": "nasqo_website_branding",
+      "title_ar": "NASQO PRO Website Identity",
+      "category": "غير مصنف",
+      "state": "installed",
+      "db_license": "LGPL-3",
+      "installed_version": "19.0.1.1.0",
+      "source": {
+        "present": true,
+        "manifest_sha256": "4f5591c2ae569d7c1b8a08adb6e966b5e2a0e8dc06449431b6ca8ffc44687c41",
+        "license": "LGPL-3",
+        "license_declared": true,
+        "version": "19.0.1.1.0",
+        "installable": true,
+        "depends": [
+          "nasqo_backend_branding",
+          "nasqo_storefront",
+          "website_sale"
+        ],
+        "external_dependencies": {},
+        "auto_install": false
+      },
+      "direct_dependencies": [
+        "nasqo_backend_branding",
+        "nasqo_storefront",
+        "website_sale"
+      ],
+      "noninstalled_dependency_closure": [],
+      "missing_source_dependency_closure": []
+    }
+  ],
+  "absent_technical_module_records": [
+    "account_accountant",
+    "account_reports",
+    "documents",
+    "hr_contract",
+    "hr_payroll",
+    "nasqo_finance",
+    "nasqo_fx",
+    "nasqo_notifications",
+    "nasqo_partner_credit",
+    "nasqo_reports",
+    "sale_renting",
+    "whatsapp"
+  ]
+}

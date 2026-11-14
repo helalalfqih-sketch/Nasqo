@@ -1,5 +1,60 @@
 # NASQO Odoo Community 19 — handoff (2026-11-13)
 
+## Update: developer catalogue review, 2026-11-14
+
+The user selected a technical review of the current application catalogue.
+This is a read-only audit and documentation change, not approval to install
+all applications or begin every planned milestone.
+
+- Review branch: `docs/nasqo-app-catalogue-review`, based on the identity tree.
+  GitHub base head: `3e6c3b87c270c1ebb7a836421f6376d7ffb3f2fb`;
+  local equivalent parent tree: `1e9a2f346e6fb6639ba69dbe374b9a8828b40828`.
+- [Arabic report](docs/NASQO_APP_CATALOGUE_REVIEW.md) records the complete
+  55-application decision matrix, functional gaps, priorities and acceptance
+  gates. Raw metadata and CSV are under `docs/catalogue/2026-11-14/`.
+- Actual runtime results: **24 installed / 11 uninstalled with source /
+  20 uninstallable without source**. The 35 source manifests declare LGPL-3;
+  the 20 metadata-only cards declare OEEL-1. Licenses of all transitive assets
+  have not been independently audited.
+- The unavailable Accounting card is **`accountant`**, ID 702 in this database.
+  `account` and `account_payment` are installed. Do not equate UI naming with
+  engine capability or assume Enterprise reporting is present.
+- Verified schema: opening-entry references, debit/credit, reversal/posting,
+  partner credit limits and dated currency rates. This does not prove their
+  configured business behavior or permissions. `stock.valuation.layer` is not
+  registered; `stock.move.value` and `stock.quant.value` exist in this runtime.
+- YER exists but is inactive (rounding 0.01); `l10n_ye`, `account_reports`,
+  `report_xlsx` and the five planned NASQO finance/notification modules are
+  absent from the inspected source paths. No currency setting was changed.
+- `barcodes` is installed; `hr_timesheet` is present but uninstalled. Among
+  the 11 available apps, `website_event` additionally needs uninstalled
+  `event`; no missing module source was found in dependency closure.
+- Scripts in `scripts/audit/` reproduce the probes using Odoo shell metadata
+  reads and rollback. They do not query business records or perform writes.
+  Keep raw shell logs, credentials and business data outside Git.
+- Runtime identifies as `19.0-20261112`; equality with the pinned upstream
+  source was not established by this audit. Do not apply these observations
+  unconditionally to the separate pinned-source CI environment.
+- The 11-page functional reference was read; only requirements were used.
+  No names, balances, screenshots or competing identity were copied.
+- Delivery checks passed: 55 unique JSON/CSV decision rows, 24/11/20 states,
+  manifest/license consistency, 23 schema probes, report links, two Python
+  script AST/compile checks and no ORM write/commit calls in those probes.
+  `python3 -B -m unittest discover -s tests -v`: 8 existing tests passed;
+  `git diff --check` passed. Targeted credential-pattern scan had no matches,
+  but is not a full secrets or vulnerability audit. No new transactional,
+  permission, restore or financial acceptance tests were run. AT-032 and the
+  relevant RBAC/phase gates remain unaccepted here.
+- PR #1 and #6 were checked and remain draft/unmerged. No core edits,
+  deployments, module installs, customer writes or outbound messages occurred.
+
+Next: review the catalogue decisions, reconcile the runtime/source baseline
+and existing M1/M2 gates, then execute a small isolated capability-test batch.
+For finance, the first batch must prove Community behavior with synthetic
+fixtures before creating `nasqo_finance`, `nasqo_fx`, `nasqo_partner_credit`
+or `nasqo_reports`. Control Plane subscriptions remain outside store ledgers;
+the WAHA/QR centre does not certify an official notifications provider.
+
 ## Update: NASQO PRO identity, 2026-11-14
 
 The user explicitly requested replacement of Odoo-facing identity with
