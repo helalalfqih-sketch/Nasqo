@@ -1,0 +1,707 @@
+{
+  "captured_at_utc": "2026-11-14T16:56:15.280670+00:00",
+  "limits": [
+    "Schema/source metadata only; no accounting, stock or permissions acceptance tests.",
+    "No customer or transaction records queried; no commits; rollback at end."
+  ],
+  "models": [
+    {
+      "fields": {
+        "currency_id": {
+          "required": true,
+          "type": "many2one"
+        },
+        "line_ids": {
+          "required": false,
+          "type": "one2many"
+        },
+        "move_type": {
+          "required": true,
+          "type": "selection"
+        },
+        "reversed_entry_id": {
+          "required": false,
+          "type": "many2one"
+        },
+        "state": {
+          "required": true,
+          "type": "selection"
+        }
+      },
+      "methods": {
+        "_check_balanced": true,
+        "_reverse_moves": true,
+        "action_post": true
+      },
+      "name": "account.move",
+      "registered": true
+    },
+    {
+      "fields": {
+        "account_id": {
+          "required": false,
+          "type": "many2one"
+        },
+        "amount_currency": {
+          "required": false,
+          "type": "monetary"
+        },
+        "balance": {
+          "required": false,
+          "type": "monetary"
+        },
+        "credit": {
+          "required": false,
+          "type": "monetary"
+        },
+        "currency_id": {
+          "required": true,
+          "type": "many2one"
+        },
+        "debit": {
+          "required": false,
+          "type": "monetary"
+        }
+      },
+      "methods": {},
+      "name": "account.move.line",
+      "registered": true
+    },
+    {
+      "fields": {
+        "amount": {
+          "required": false,
+          "type": "monetary"
+        },
+        "currency_id": {
+          "required": false,
+          "type": "many2one"
+        },
+        "journal_id": {
+          "required": true,
+          "type": "many2one"
+        },
+        "move_id": {
+          "required": false,
+          "type": "many2one"
+        },
+        "payment_type": {
+          "required": true,
+          "type": "selection"
+        },
+        "state": {
+          "required": true,
+          "type": "selection"
+        }
+      },
+      "methods": {
+        "action_post": true
+      },
+      "name": "account.payment",
+      "registered": true
+    },
+    {
+      "fields": {
+        "currency_id": {
+          "required": false,
+          "type": "many2one"
+        },
+        "type": {
+          "required": true,
+          "type": "selection"
+        }
+      },
+      "methods": {},
+      "name": "account.journal",
+      "registered": true
+    },
+    {
+      "fields": {
+        "account_type": {
+          "required": true,
+          "type": "selection"
+        },
+        "code": {
+          "required": false,
+          "type": "char"
+        },
+        "reconcile": {
+          "required": false,
+          "type": "boolean"
+        }
+      },
+      "methods": {},
+      "name": "account.account",
+      "registered": true
+    },
+    {
+      "fields": {
+        "balance_end_real": {
+          "required": false,
+          "type": "monetary"
+        },
+        "balance_start": {
+          "required": false,
+          "type": "monetary"
+        },
+        "line_ids": {
+          "required": false,
+          "type": "one2many"
+        }
+      },
+      "methods": {},
+      "name": "account.bank.statement",
+      "registered": true
+    },
+    {
+      "fields": {
+        "amount": {
+          "required": false,
+          "type": "monetary"
+        },
+        "move_id": {
+          "required": true,
+          "type": "many2one"
+        },
+        "statement_id": {
+          "required": false,
+          "type": "many2one"
+        }
+      },
+      "methods": {},
+      "name": "account.bank.statement.line",
+      "registered": true
+    },
+    {
+      "fields": {
+        "account_id": {
+          "required": false,
+          "type": "many2one"
+        },
+        "amount": {
+          "required": true,
+          "type": "monetary"
+        },
+        "employee_id": null,
+        "task_id": null,
+        "unit_amount": {
+          "required": false,
+          "type": "float"
+        }
+      },
+      "methods": {},
+      "name": "account.analytic.line",
+      "registered": true
+    },
+    {
+      "fields": {
+        "credit": {
+          "required": false,
+          "type": "monetary"
+        },
+        "credit_limit": {
+          "required": false,
+          "type": "float"
+        },
+        "debit": {
+          "required": false,
+          "type": "monetary"
+        },
+        "use_partner_credit_limit": {
+          "required": false,
+          "type": "boolean"
+        }
+      },
+      "methods": {},
+      "name": "res.partner",
+      "registered": true
+    },
+    {
+      "fields": {
+        "account_opening_date": {
+          "required": false,
+          "type": "date"
+        },
+        "account_opening_move_id": {
+          "required": false,
+          "type": "many2one"
+        },
+        "currency_id": {
+          "required": true,
+          "type": "many2one"
+        }
+      },
+      "methods": {},
+      "name": "res.company",
+      "registered": true
+    },
+    {
+      "fields": {
+        "decimal_places": {
+          "required": false,
+          "type": "integer"
+        },
+        "rounding": {
+          "required": false,
+          "type": "float"
+        }
+      },
+      "methods": {
+        "_convert": true
+      },
+      "name": "res.currency",
+      "registered": true
+    },
+    {
+      "fields": {
+        "company_id": {
+          "required": false,
+          "type": "many2one"
+        },
+        "currency_id": {
+          "required": true,
+          "type": "many2one"
+        },
+        "name": {
+          "required": true,
+          "type": "date"
+        },
+        "rate": {
+          "required": false,
+          "type": "float"
+        }
+      },
+      "methods": {},
+      "name": "res.currency.rate",
+      "registered": true
+    },
+    {
+      "fields": {
+        "invoice_ids": {
+          "required": false,
+          "type": "many2many"
+        },
+        "order_line": {
+          "required": false,
+          "type": "one2many"
+        },
+        "state": {
+          "required": false,
+          "type": "selection"
+        }
+      },
+      "methods": {
+        "button_confirm": true
+      },
+      "name": "purchase.order",
+      "registered": true
+    },
+    {
+      "fields": {
+        "location_dest_id": {
+          "required": true,
+          "type": "many2one"
+        },
+        "location_id": {
+          "required": true,
+          "type": "many2one"
+        },
+        "move_ids": {
+          "required": false,
+          "type": "one2many"
+        },
+        "state": {
+          "required": false,
+          "type": "selection"
+        }
+      },
+      "methods": {
+        "button_validate": true
+      },
+      "name": "stock.picking",
+      "registered": true
+    },
+    {
+      "fields": {
+        "location_dest_id": {
+          "required": true,
+          "type": "many2one"
+        },
+        "location_id": {
+          "required": true,
+          "type": "many2one"
+        },
+        "product_id": {
+          "required": true,
+          "type": "many2one"
+        },
+        "product_uom_qty": {
+          "required": true,
+          "type": "float"
+        },
+        "quantity": {
+          "required": false,
+          "type": "float"
+        },
+        "value": {
+          "required": false,
+          "type": "monetary"
+        }
+      },
+      "methods": {
+        "_action_done": true
+      },
+      "name": "stock.move",
+      "registered": true
+    },
+    {
+      "fields": {
+        "location_dest_id": {
+          "required": true,
+          "type": "many2one"
+        },
+        "location_id": {
+          "required": true,
+          "type": "many2one"
+        },
+        "product_id": {
+          "required": false,
+          "type": "many2one"
+        },
+        "quantity": {
+          "required": false,
+          "type": "float"
+        }
+      },
+      "methods": {},
+      "name": "stock.move.line",
+      "registered": true
+    },
+    {
+      "fields": {
+        "quantity": {
+          "required": false,
+          "type": "float"
+        },
+        "reserved_quantity": {
+          "required": true,
+          "type": "float"
+        },
+        "value": {
+          "required": false,
+          "type": "monetary"
+        }
+      },
+      "methods": {},
+      "name": "stock.quant",
+      "registered": true
+    },
+    {
+      "fields": {
+        "lot_stock_id": {
+          "required": true,
+          "type": "many2one"
+        },
+        "view_location_id": {
+          "required": true,
+          "type": "many2one"
+        }
+      },
+      "methods": {},
+      "name": "stock.warehouse",
+      "registered": true
+    },
+    {
+      "fields": {
+        "location_id": {
+          "required": false,
+          "type": "many2one"
+        },
+        "usage": {
+          "required": true,
+          "type": "selection"
+        }
+      },
+      "methods": {},
+      "name": "stock.location",
+      "registered": true
+    },
+    {
+      "fields": {
+        "quantity": null,
+        "value": null
+      },
+      "methods": {},
+      "name": "stock.valuation.layer",
+      "registered": false
+    },
+    {
+      "fields": {
+        "report_name": {
+          "required": true,
+          "type": "char"
+        },
+        "report_type": {
+          "required": true,
+          "type": "selection"
+        }
+      },
+      "methods": {
+        "_render_qweb_pdf": true
+      },
+      "name": "ir.actions.report",
+      "registered": true
+    },
+    {
+      "fields": {
+        "file": {
+          "required": false,
+          "type": "binary"
+        },
+        "res_model": {
+          "required": false,
+          "type": "char"
+        }
+      },
+      "methods": {
+        "execute_import": true
+      },
+      "name": "base_import.import",
+      "registered": true
+    },
+    {
+      "fields": {
+        "order_line": {
+          "required": false,
+          "type": "one2many"
+        },
+        "partner_credit_warning": {
+          "required": false,
+          "type": "text"
+        },
+        "state": {
+          "required": false,
+          "type": "selection"
+        }
+      },
+      "methods": {
+        "action_confirm": true
+      },
+      "name": "sale.order",
+      "registered": true
+    }
+  ],
+  "modules": [
+    {
+      "depends": [
+        "hr",
+        "hr_hourly_cost",
+        "analytic",
+        "project",
+        "uom"
+      ],
+      "license": "LGPL-3",
+      "name": "hr_timesheet",
+      "source_present": true,
+      "state": "uninstalled"
+    },
+    {
+      "depends": [
+        "web"
+      ],
+      "license": "LGPL-3",
+      "name": "barcodes",
+      "source_present": true,
+      "state": "installed"
+    },
+    {
+      "depends": [
+        "barcodes",
+        "uom"
+      ],
+      "license": "LGPL-3",
+      "name": "barcodes_gs1_nomenclature",
+      "source_present": true,
+      "state": "installed"
+    },
+    {
+      "depends": [
+        "base",
+        "web"
+      ],
+      "license": "LGPL-3",
+      "name": "resource",
+      "source_present": true,
+      "state": "installed"
+    },
+    {
+      "depends": [
+        "barcodes",
+        "base_setup",
+        "mail",
+        "phone_validation",
+        "portal",
+        "utm"
+      ],
+      "license": "LGPL-3",
+      "name": "event",
+      "source_present": true,
+      "state": "uninstalled"
+    },
+    {
+      "depends": [
+        "base"
+      ],
+      "license": "LGPL-3",
+      "name": "web",
+      "source_present": true,
+      "state": "installed"
+    },
+    {
+      "depends": [
+        "web",
+        "html_editor",
+        "http_routing",
+        "mail",
+        "auth_signup"
+      ],
+      "license": "LGPL-3",
+      "name": "portal",
+      "source_present": true,
+      "state": "installed"
+    },
+    {
+      "depends": [
+        "base_setup",
+        "mail",
+        "web"
+      ],
+      "license": "LGPL-3",
+      "name": "auth_signup",
+      "source_present": true,
+      "state": "installed"
+    },
+    {
+      "depends": [
+        "base"
+      ],
+      "license": "LGPL-3",
+      "name": "uom",
+      "source_present": true,
+      "state": "installed"
+    },
+    {
+      "depends": [
+        "web"
+      ],
+      "license": "LGPL-3",
+      "name": "base_import",
+      "source_present": true,
+      "state": "installed"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "l10n_ye",
+      "source_present": false,
+      "state": "no_record"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "report_xlsx",
+      "source_present": false,
+      "state": "no_record"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "account_accountant",
+      "source_present": false,
+      "state": "no_record"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "account_reports",
+      "source_present": false,
+      "state": "no_record"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "documents",
+      "source_present": false,
+      "state": "no_record"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "hr_contract",
+      "source_present": false,
+      "state": "no_record"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "hr_payroll",
+      "source_present": false,
+      "state": "no_record"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "nasqo_finance",
+      "source_present": false,
+      "state": "no_record"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "nasqo_fx",
+      "source_present": false,
+      "state": "no_record"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "nasqo_notifications",
+      "source_present": false,
+      "state": "no_record"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "nasqo_partner_credit",
+      "source_present": false,
+      "state": "no_record"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "nasqo_reports",
+      "source_present": false,
+      "state": "no_record"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "sale_renting",
+      "source_present": false,
+      "state": "no_record"
+    },
+    {
+      "depends": [],
+      "license": null,
+      "name": "whatsapp",
+      "source_present": false,
+      "state": "no_record"
+    }
+  ],
+  "yer_metadata": {
+    "active": false,
+    "decimal_places": 2,
+    "exists": true,
+    "rounding": 0.01
+  }
+}

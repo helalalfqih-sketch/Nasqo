@@ -11,6 +11,17 @@ This branch also captures the previously server-only presentation addons for
 review. Component licenses, original authorship, technical identifiers, and
 standard access checks remain intact. There is no automatic deployment workflow.
 
+## Developer application catalogue review
+
+The read-only runtime audit on 2026-11-14 found **55 applications: 24 installed,
+11 available in source but uninstalled, and 20 Enterprise catalogue entries
+without source**. See the [Arabic review and per-application decisions](docs/NASQO_APP_CATALOGUE_REVIEW.md)
+and [CSV matrix](docs/catalogue/2026-11-14/application_decisions.csv).
+The accounting engine is installed; the unavailable `accountant` card is a
+different module. Registry metadata is not financial or inventory acceptance
+testing. No application installation, permission change or live deployment was
+part of this review. Reproducible read-only probes are in `scripts/audit/`.
+
 ## Isolated Codespaces integration
 Open the [development branch](https://github.com/helalalfqih-sketch/Nasqo/tree/chore/odoo19-ecommerce-foundation), then **Code → Codespaces → Create codespace on this branch**. The devcontainer uses Docker-in-Docker, a separate PostgreSQL database and the exact Odoo source commit from `upstream.json`, running inside the official dated Odoo 19 image. It installs `website_sale` and `nasqo_store`, performs an upgrade, sets a random development admin password and verifies the login and shop routes.
 
