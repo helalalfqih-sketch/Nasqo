@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <menuitem id="menu_whatsapp_root"
+            name="واتساب نسقو برو"
+            sequence="18"
+            groups="base.group_system"
+            action="nasqo_waha_qr_preview.demo_session_action"/>
+  <record id="nasqo_waha_qr_preview.demo_session_menu" model="ir.ui.menu">
+    <field name="parent_id" ref="menu_whatsapp_root"/>
+    <field name="sequence">10</field>
+    <field name="name">الاتصال وQR • تجريبي</field>
+  </record>
+</odoo>

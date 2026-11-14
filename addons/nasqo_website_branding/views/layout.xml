@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="layout_identity" inherit_id="website.layout" priority="120">
+        <xpath expr="//body" position="attributes">
+            <attribute name="t-att-class">(body_classname or '') + ' nasqo-website-page'</attribute>
+        </xpath>
+        <xpath expr="//t[@t-set='x_icon']" position="attributes">
+            <attribute name="t-value">'/nasqo_backend_branding/static/img/favicon.svg'</attribute>
+        </xpath>
+        <xpath expr="//link[@rel='shortcut icon']" position="attributes">
+            <attribute name="type">image/svg+xml</attribute>
+        </xpath>
+        <xpath expr="//link[@rel='apple-touch-icon']" position="attributes">
+            <attribute name="t-att-href">'/nasqo_backend_branding/static/img/icon-180.png'</attribute>
+        </xpath>
+        <xpath expr="//t[@t-set='website_meta']" position="after">
+            <t t-set="website_meta" t-value="website._nasqo_metadata(website_meta, title)"/>
+        </xpath>
+        <xpath expr="//meta[@name='generator']" position="attributes">
+            <attribute name="content">NASQO PRO</attribute>
+        </xpath>
+        <xpath expr="//a[hasclass('o_frontend_to_backend_apps_btn')]" position="attributes">
+            <attribute name="title">تطبيقات نسقو برو</attribute>
+        </xpath>
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="nasqo-site-footer" t-if="not no_footer" dir="rtl">
+                <t t-set="contact" t-value="website._nasqo_public_contact()"/>
+                <div class="container nasqo-footer-grid">
+                    <section class="nasqo-footer-intro" aria-label="نسقو برو">
+                        <a href="/" class="nasqo-footer-brand" aria-label="نسقو برو — الرئيسية">
+                            <img src="/nasqo_backend_branding/static/img/favicon.svg" width="44" height="44" alt=""/>
+                            <span>نسقو برو <small dir="ltr">NASQO PRO</small></span>
+                        </a>
+                        <p>تصفّح المنتجات، راجع تفاصيلها، واجمع اختياراتك في سلة واحدة.</p>
+                        <span class="nasqo-store-status">المتجر قيد التجهيز</span>
+                    </section>
+                    <nav aria-label="روابط المتجر">
+                        <h2>تصفّح نسقو برو</h2>
+                        <ul>
+                            <li><a href="/shop">المتجر</a></li>
+                            <li><a href="/shop/cart">سلة التسوق</a></li>
+                            <li><a href="/my">حسابي وطلباتي</a></li>
+                            <li><a href="/terms">الشروط والأحكام</a></li>
+                        </ul>
+                    </nav>
+                    <section aria-labelledby="nasqo-footer-contact">
+                        <h2 id="nasqo-footer-contact">تواصل معنا</h2>
+                        <ul>
+                            <li><a href="/contactus">صفحة التواصل</a></li>
+                            <li t-if="contact['email']"><a t-att-href="contact['email_href']" t-esc="contact['email']" dir="ltr"/></li>
+                            <li t-if="contact['phone']"><a t-att-href="contact['phone_href']" t-esc="contact['phone']" dir="ltr"/></li>
+                        </ul>
+                        <p t-if="not contact['email'] and not contact['phone']" class="nasqo-contact-pending">بيانات التواصل قيد التحديث.</p>
+                    </section>
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//span[hasclass('o_footer_copyright_name')]" position="replace">
+            <span class="o_footer_copyright_name nasqo-copyright">© نسقو برو. جميع الحقوق محفوظة.</span>
+        </xpath>
+    </template>
+    <template id="header_identity" inherit_id="website.placeholder_header_brand" priority="120">
+        <xpath expr="//*[@id='o_fake_navbar_brand'] | //a[contains(@t-attf-class,'navbar-brand')]" position="replace">
+            <a href="/" t-attf-class="navbar-brand nasqo-site-brand #{_link_class}" aria-label="نسقو برو — الرئيسية">
+                <img src="/nasqo_backend_branding/static/img/favicon.svg" width="40" height="40" alt=""/>
+                <span class="nasqo-wordmark">نسقو برو <small dir="ltr">NASQO PRO</small></span>
+            </a>
+        </xpath>
+    </template>
+    <template id="header_contact" inherit_id="website.header_text_element" priority="120">
+        <xpath expr="//li" position="replace">
+            <t t-set="contact" t-value="website._nasqo_public_contact()"/>
+            <li t-if="contact['phone']" t-attf-class="#{_item_class}">
+                <a t-att-href="contact['phone_href']" class="nav-link o_nav-link_secondary nasqo-header-phone">
+                    <i class="fa fa-phone me-1" aria-hidden="true"/>
+                    <span dir="ltr" t-esc="contact['phone']"/>
+                </a>
+            </li>
+        </xpath>
+    </template>
+    <template id="promotion_identity" inherit_id="web.brand_promotion" priority="120">
+        <xpath expr="//div[hasclass('o_brand_promotion')]" position="replace">
+            <span class="nasqo-platform-mark" dir="ltr">NASQO PRO</span>
+        </xpath>
+    </template>
+</odoo>

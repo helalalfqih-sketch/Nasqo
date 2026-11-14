@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="action_waha_live" model="ir.actions.act_url">
+    <field name="name">اتصال واتساب الحقيقي وQR</field>
+    <field name="url">/nasqo/whatsapp/live</field>
+    <field name="target">self</field>
+  </record>
+  <menuitem id="menu_waha_live"
+      name="حالة WAHA وQR • قيد الإعداد"
+      action="action_waha_live"
+      parent="nasqo_whatsapp_center.menu_whatsapp_root"
+      sequence="5"
+      groups="base.group_system"/>
+  <record id="nasqo_whatsapp_center.menu_whatsapp_root" model="ir.ui.menu">
+    <field name="action" ref="nasqo_waha_qr_preview.demo_session_action"/>
+  </record>
+</odoo>

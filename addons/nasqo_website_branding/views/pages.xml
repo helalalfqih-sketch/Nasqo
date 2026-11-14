@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="homepage_identity" inherit_id="nasqo_storefront.homepage" priority="120">
+        <xpath expr="//t[@t-set='additional_title']" position="replace"><t t-set="additional_title">الرئيسية</t></xpath>
+        <xpath expr="//section[hasclass('nasqo-hero')]//p[hasclass('nasqo-eyebrow')]" position="replace"><p class="nasqo-eyebrow">متجر نسقو برو</p></xpath>
+        <xpath expr="//h1[@id='nasqo-hero-title']" position="replace"><h1 id="nasqo-hero-title">مرحبًا بك في متجر نسقو برو</h1></xpath>
+        <xpath expr="//p[hasclass('nasqo-lede')]" position="replace">
+            <p class="nasqo-lede">تصفّح المنتجات، تعرّف على تفاصيلها، واجمع اختياراتك في سلة واحدة. المتجر قيد التجهيز.</p>
+        </xpath>
+        <xpath expr="//section[hasclass('nasqo-benefits')]" position="replace">
+            <section class="container nasqo-benefits" aria-label="تجربة التسوق">
+                <article><h2>تعرّف على المنتجات</h2><p>اطّلع على الصور والوصف والأسعار.</p></article>
+                <article><h2>راجع اختياراتك</h2><p>عدّل الكميات من سلة التسوق.</p></article>
+                <article><h2>تابع طلباتك</h2><p>سجّل الدخول للاطلاع على طلباتك.</p></article>
+            </section>
+        </xpath>
+        <xpath expr="//div[hasclass('nasqo-empty')]/p" position="replace"><p>نعمل على تجهيز المنتجات. ستظهر هنا عند توفرها.</p></xpath>
+        <xpath expr="//section[hasclass('nasqo-end-section')]/p" position="replace"><p>تصفّح المنتجات وتعرّف على تفاصيلها قبل الاختيار.</p></xpath>
+    </template>
+    <template id="shop_identity" inherit_id="nasqo_storefront.nasqo_shop_rtl" priority="120">
+        <xpath expr="//aside[hasclass('nasqo-shop-note')]" position="replace">
+            <aside class="nasqo-shop-note" dir="rtl"><strong>متجر نسقو برو</strong><span>المتجر قيد التجهيز.</span><a href="/">الرئيسية</a></aside>
+        </xpath>
+    </template>
+    <template id="shop_title" inherit_id="website_sale.products" priority="120">
+        <xpath expr="//t[@t-set='additional_title']" position="attributes"><attribute name="t-value">category.name if category else 'المتجر'</attribute></xpath>
+    </template>
+    <template id="checkout_identity" inherit_id="nasqo_storefront.nasqo_checkout_rtl" priority="120">
+        <xpath expr="//aside[hasclass('nasqo-shop-note')]" position="replace">
+            <aside class="nasqo-shop-note" dir="rtl" aria-label="حالة متجر نسقو برو"><strong>نسقو برو · سلة التسوق</strong><span>المتجر قيد التجهيز. لم تُعتمد جاهزية الدفع والشحن بعد.</span><a href="/shop">متابعة التسوق</a></aside>
+        </xpath>
+    </template>
+    <template id="cart_title" inherit_id="website_sale.cart" priority="120">
+        <xpath expr="//t[@t-call='website_sale.checkout_layout']" position="inside"><t t-set="additional_title">سلة التسوق</t></xpath>
+    </template>
+    <template id="contact_identity" inherit_id="website.contactus" priority="120">
+        <xpath expr="//t[@t-call='website.layout']" position="inside"><t t-set="additional_title">تواصل معنا</t></xpath>
+        <xpath expr="//section[hasclass('s_title')]" position="replace">
+            <section class="nasqo-contact-heading"><div class="container"><h1>تواصل مع نسقو برو</h1></div></section>
+        </xpath>
+        <xpath expr="//p[hasclass('lead')]" position="replace">
+            <p class="lead">للاستفسار عن المنتجات والطلبات، استخدم بيانات التواصل المعتمدة الظاهرة في هذه الصفحة.</p>
+            <p t-if="not website._nasqo_public_contact()['email']" class="nasqo-contact-empty">نموذج المراسلة غير متاح حاليًا. بيانات التواصل قيد التحديث.</p>
+        </xpath>
+        <xpath expr="//section[hasclass('s_website_form')]" position="attributes">
+            <attribute name="t-if">website._nasqo_public_contact()['email']</attribute>
+        </xpath>
+        <xpath expr="//span[@data-for='contactus_form']" position="attributes">
+            <attribute name="t-if">website._nasqo_public_contact()['email']</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('offset-lg-1')]" position="replace">
+            <aside class="col-lg-4 offset-lg-1 mt-4 mt-lg-0 nasqo-contact-details">
+                <t t-set="contact" t-value="website._nasqo_public_contact()"/>
+                <h2>نسقو برو</h2>
+                <p t-if="not contact['email'] and not contact['phone']">سننشر بيانات التواصل هنا عند اعتمادها.</p>
+                <ul class="list-unstyled">
+                    <li t-if="contact['email']"><a t-att-href="contact['email_href']" t-esc="contact['email']" dir="ltr"/></li>
+                    <li t-if="contact['phone']"><a t-att-href="contact['phone_href']" t-esc="contact['phone']" dir="ltr"/></li>
+                </ul>
+                <a href="/shop" class="btn btn-outline-primary">العودة إلى المتجر</a>
+            </aside>
+        </xpath>
+    </template>
+    <template id="terms_identity" inherit_id="account.account_terms_conditions_page" priority="120">
+        <xpath expr="//t[@t-call='web.frontend_layout']" position="inside"><t t-set="additional_title">الشروط والأحكام</t></xpath>
+        <xpath expr="//div[@t-field='company.invoice_terms_html']" position="attributes">
+            <attribute name="t-if">website._nasqo_has_custom_terms(company)</attribute>
+        </xpath>
+        <xpath expr="//div[@t-field='company.invoice_terms_html']" position="after">
+            <section t-if="not website._nasqo_has_custom_terms(company)" class="nasqo-terms-pending" dir="rtl">
+                <h1>الشروط والأحكام</h1>
+                <p>شروط متجر نسقو برو قيد الإعداد. ستُنشر الشروط المعتمدة في هذه الصفحة.</p>
+                <a href="/shop" class="btn btn-primary">العودة إلى المتجر</a>
+            </section>
+        </xpath>
+    </template>
+</odoo>

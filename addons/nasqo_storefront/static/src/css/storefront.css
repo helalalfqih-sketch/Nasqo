@@ -1,0 +1,48 @@
+/* NASQO trial storefront: scoped styles, no backend/admin modifications. */
+.nasqo-storefront, .nasqo-shop-rtl, html.nasqo-rtl-page body { direction: rtl; }
+.nasqo-storefront { color: #172c35; background: #faf9f5; min-height: 100vh; font-family: "Noto Sans Arabic", Tahoma, Arial, sans-serif; }
+.nasqo-storefront h1,.nasqo-storefront h2,.nasqo-storefront h3 { font-weight: 800; line-height: 1.35; }
+.nasqo-hero { background: linear-gradient(125deg,#123b42 0%,#165963 100%); color: #fff; padding: clamp(3rem,8vw,7rem) 0; position: relative; overflow: hidden; }
+.nasqo-hero:before { content: ""; border-radius: 50%; width: 30rem; height: 30rem; background: rgba(255,255,255,.045); position: absolute; inset-inline-start: -12rem; inset-block-start: -12rem; pointer-events: none; }
+.nasqo-hero-inner { max-width: 1150px; position: relative; }
+.nasqo-mark { display: inline-flex; align-items: center; gap: .75rem; font-size: 1.3rem; font-weight: 900; letter-spacing: .08em; margin-bottom: 2rem; }
+.nasqo-mark span { background: #e1be81; color: #163d43; border-radius: .5rem; letter-spacing: 0; padding: .2rem .55rem; font-size: 1rem; }
+.nasqo-eyebrow { color: #e1be81; font-size: .95rem; font-weight: 700; letter-spacing: .02em; }
+.nasqo-hero h1 { font-size: clamp(2.5rem,5vw,4.8rem); margin: 0 0 1rem; max-width: 14ch; }
+.nasqo-lede { font-size: clamp(1rem,2vw,1.23rem); line-height: 2; max-width: 57ch; color: #e5f2f2; }
+.nasqo-actions { display: flex; flex-wrap: wrap; gap: .85rem; margin-top: 2rem; }
+.nasqo-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 3.1rem; padding: .65rem 1.6rem; border-radius: .7rem; text-decoration: none; font-weight: 800; transition: transform .2s ease; }
+.nasqo-btn:hover { transform: translateY(-2px); text-decoration: none; }
+.nasqo-btn-primary { background: #e7bb70; color: #133d42 !important; }
+.nasqo-btn-secondary { background: transparent; color: white !important; border: 1px solid rgba(255,255,255,.6); }
+.nasqo-benefits { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; margin-top: -2rem; position: relative; z-index: 1; }
+.nasqo-benefits article { background: white; border: 1px solid #edf0eb; border-radius: 1rem; padding: 1.5rem; box-shadow: 0 8px 22px #092e3812; }
+.nasqo-benefits h2 { font-size: 1.18rem; margin: .5rem 0; }
+.nasqo-benefits p { color: #52636a; margin: 0; font-size: .95rem; }
+.nasqo-benefit-icon { display: inline-flex; background: #e6f2ee; color: #237160; border-radius: 50%; width: 2rem; height: 2rem; align-items: center; justify-content: center; font-weight: bold; }
+.nasqo-featured { padding-top: 4rem; padding-bottom: 3.5rem; }
+.nasqo-section-heading { display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 1.7rem; }
+.nasqo-section-heading h2 { font-size: clamp(1.6rem,3vw,2.2rem); margin: 0; }
+.nasqo-text-link { color: #14626b; font-weight: 800; text-decoration: none; }
+.nasqo-product-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.2rem; }
+.nasqo-product { background: white; border: 1px solid #e5eae7; border-radius: 1rem; overflow: hidden; transition: box-shadow .15s ease; }
+.nasqo-product:hover { box-shadow: 0 10px 24px #143e4420; }
+.nasqo-product-link { display: block; padding: 1rem; color: inherit; text-decoration: none; }
+.nasqo-product-link:hover { text-decoration: none; color: #165963; }
+.nasqo-product-placeholder { height: 10rem; border-radius: .65rem; background: #dfece6; color: #427c74; display: grid; place-items: center; font-size: 1.6rem; font-weight: 800; }
+.nasqo-product h3 { margin: 1rem 0 .45rem; font-size: 1.1rem; }
+.nasqo-product-price { display: flex; gap: .4rem; font-weight: 800; color: #16736b; }
+.nasqo-product-action { font-size: .9rem; font-weight: 700; color: #196d74; }
+.nasqo-empty { text-align: center; padding: 2.5rem; background: white; border-radius: .9rem; }
+.nasqo-end-section { background: #e8efeb; border-radius: 1.25rem; padding: 2.5rem; margin-bottom: 4rem; text-align: center; }
+.nasqo-end-section h2 { font-size: 1.7rem; }
+.nasqo-end-section p { color: #4a6268; }
+.nasqo-shop-note { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; justify-content: space-between; padding: .95rem 1rem; background: #e5f2ee; border: 1px solid #cee3da; color: #194c50; border-radius: .65rem; margin: 1rem 0; }
+.nasqo-shop-note a { color: #116875; font-weight: 700; }
+html.nasqo-rtl-page #wrap { direction: rtl; }
+.nasqo-storefront a:focus-visible,.nasqo-shop-rtl a:focus-visible { outline: 3px solid #edb14f; outline-offset: 4px; }
+@media(max-width: 780px) { .nasqo-benefits,.nasqo-product-grid { grid-template-columns: 1fr; } .nasqo-section-heading { align-items: flex-start; flex-direction: column; } .nasqo-hero{padding:3rem 0 5rem} .nasqo-benefits{margin-top:-1.2rem} .nasqo-product-placeholder{height:8rem} }
+@media(prefers-reduced-motion:reduce){.nasqo-btn{transition:none}}
+
+.nasqo-checkout-rtl { direction: rtl; }
+.nasqo-checkout-rtl .nasqo-shop-note { margin-block: .8rem 1.4rem; }

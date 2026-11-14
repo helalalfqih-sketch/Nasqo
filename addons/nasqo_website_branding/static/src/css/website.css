@@ -1,0 +1,68 @@
+/* NASQO public identity. Reuse the existing teal/gold identity and native navigation. */
+.nasqo-website-page:not(.nasqo-login-page) { background: #faf9f5; color: #172c35; }
+.nasqo-website-page #top .navbar { background-color: #fff; border-bottom: 1px solid #dce4df; }
+.nasqo-site-brand { display: inline-flex; align-items: center; gap: .65rem; color: #123b42 !important; text-decoration: none; flex-shrink: 0; }
+.nasqo-site-brand img { width: 40px; height: 40px; object-fit: contain; }
+.nasqo-wordmark { font: 800 1.4rem/1.2 Tahoma, Arial, sans-serif; }
+.nasqo-wordmark small { display: block; font: 700 .55rem/1.7 Arial, sans-serif; letter-spacing: .18em; }
+.nasqo-website-page #top .nav-link { color: #173e44; }
+.nasqo-website-page #top .nav-link:hover, .nasqo-website-page #top .nav-link.active { color: #165963; }
+.nasqo-website-page .btn-primary {
+    --btn-bg: #165963; --btn-border-color: #165963; --btn-color: #fff;
+    --btn-hover-bg: #123b42; --btn-hover-border-color: #123b42; --btn-hover-color: #fff;
+    --btn-active-bg: #123b42; --btn-active-border-color: #123b42; --btn-active-color: #fff;
+}
+.nasqo-website-page .btn-outline-primary {
+    --btn-color: #165963; --btn-border-color: #165963;
+    --btn-hover-color: #fff; --btn-hover-bg: #165963; --btn-hover-border-color: #165963;
+}
+.nasqo-website-page #bottom, .nasqo-website-page .o_footer_copyright { background: #123b42; color: #e9f1ee; }
+.nasqo-site-footer { padding-block: 3rem 2rem; }
+.nasqo-footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; }
+.nasqo-footer-brand { display: inline-flex; align-items: center; gap: .7rem; color: #fff !important; text-decoration: none; font: 800 1.65rem/1.25 Tahoma, Arial, sans-serif; margin-bottom: 1rem; }
+.nasqo-footer-brand img { border: 1px solid #e1be8155; border-radius: 10px; }
+.nasqo-footer-brand small { display: block; font: 700 .65rem/1.7 Arial, sans-serif; letter-spacing: .15em; color: #e1be81; }
+.nasqo-site-footer h2 { font-size: 1rem; color: #e1be81; font-weight: 700; margin: 0 0 1rem; }
+.nasqo-site-footer p { color: #d5e3e1; max-width: 38ch; line-height: 1.9; margin-bottom: .85rem; }
+.nasqo-site-footer ul { padding: 0; margin: 0; list-style: none; }
+.nasqo-site-footer li { margin-bottom: .65rem; }
+.nasqo-website-page #bottom .nasqo-site-footer a { color: #edf3f2; text-decoration: none; overflow-wrap: anywhere; }
+.nasqo-website-page #bottom .nasqo-site-footer a:hover { color: #e1be81; text-decoration: underline; }
+.nasqo-store-status { font-size: .8rem; color: #e1be81; }
+.nasqo-site-footer .nasqo-contact-pending { font-size: .85rem; margin-top: .9rem; }
+.nasqo-website-page .o_footer_copyright { border-top: 1px solid #ffffff24; }
+.nasqo-copyright, .nasqo-platform-mark { color: #d5e3e1; font-size: .8rem; }
+.nasqo-platform-mark { font-weight: 700; letter-spacing: .08em; }
+.nasqo-contact-heading { background: #123b42; color: #fff; padding-block: 3rem; }
+.nasqo-contact-heading h1 { font-weight: 800; font-size: clamp(1.9rem, 4vw, 3rem); }
+.nasqo-contact-details h2 { font-size: 1.6rem; color: #123b42; }
+.nasqo-contact-empty { border-inline-start: 3px solid #e1be81; padding: 1rem; background: #f3ede0; color: #394f50; }
+.nasqo-terms-pending { padding-block: 3rem 4rem; max-width: 68ch; }
+.nasqo-terms-pending h1 { color: #123b42; margin-bottom: 1.25rem; }
+.nasqo-website-page #top a:focus-visible, .nasqo-site-footer a:focus-visible { outline: 3px solid #b9812c; outline-offset: 4px; border-radius: 3px; }
+.nasqo-website-page .nasqo-hero h1 { max-width: 17ch; }
+@media (max-width: 767px) {
+    .nasqo-footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem 1.5rem; }
+    .nasqo-footer-intro { grid-column: 1 / -1; }
+    .nasqo-site-footer { padding-block: 2rem 1.5rem; }
+    .nasqo-site-brand { gap: .5rem; }
+}
+@media (max-width: 359px) { .nasqo-footer-grid { grid-template-columns: 1fr; } }
+
+/* Inherit the active language direction: explicit rtl is mirrored by the RTL asset compiler. */
+html[dir] body.nasqo-website-page { direction: inherit; }
+.nasqo-website-page #wrap.nasqo-storefront,
+.nasqo-website-page #wrap.nasqo-shop-rtl,
+.nasqo-website-page #wrap.nasqo-checkout-rtl { direction: inherit; }
+/* Website section clearfix pseudo-elements must not become extra grid items. */
+.nasqo-website-page #wrap .nasqo-benefits::before,
+.nasqo-website-page #wrap .nasqo-benefits::after { content: none; display: none; }
+
+/* Keep Arabic search, sort and filter controls inside narrow phone viewports. */
+@media (max-width: 575px) {
+    .nasqo-website-page #o_wsale_products_header .products_header { flex-wrap: wrap !important; }
+    .nasqo-website-page #o_wsale_products_header .o_wsale_products_header_search_form_container {
+        flex: 1 0 100%;
+        min-width: 0;
+    }
+}

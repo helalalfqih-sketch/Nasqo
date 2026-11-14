@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="demo_session_form" model="ir.ui.view">
+    <field name="name">nasqo.waha.preview.session.form</field>
+    <field name="model">nasqo.waha.preview.session</field>
+    <field name="arch" type="xml">
+      <form string="حالة اتصال واتساب • تجريبي" create="0" delete="0" duplicate="0">
+        <sheet>
+          <div class="nasqo-waha-qr-page" dir="rtl">
+            <div class="nasqo-waha-qr-heading">
+              <span class="nasqo-waha-eyebrow">NASQO PRO · مختبر واتساب</span>
+              <h2>حالة الاتصال ورمز QR</h2>
+              <p>تجربة واجهة الربط على الهاتف دون تشغيل WAHA أو استخدام رقم واتساب حقيقي.</p>
+            </div>
+            <field name="demo_warning" widget="html" readonly="1" nolabel="1"/>
+            <field name="status_panel" widget="html" readonly="1" nolabel="1"/>
+            <section class="nasqo-waha-controls" aria-label="إجراءات محاكاة الاتصال">
+              <h3>إجراءات التجربة</h3>
+              <div class="nasqo-waha-actions">
+                <button name="action_show_mock_qr" string="محاكاة انتظار QR"
+                        type="object" class="btn-primary"
+                        groups="base.group_system"
+                        invisible="connection_state == 'scan_qr'"/>
+                <button name="action_mock_connected" string="محاكاة الاتصال"
+                        type="object" class="btn-secondary"
+                        groups="base.group_system"
+                        invisible="connection_state != 'scan_qr'"/>
+                <button name="action_mock_failure" string="محاكاة فشل الاتصال"
+                        type="object" class="btn-outline-secondary"
+                        groups="base.group_system"
+                        invisible="connection_state == 'failed'"/>
+                <button name="action_reset_mock" string="إعادة ضبط التجربة"
+                        type="object" class="btn-outline-secondary"
+                        groups="base.group_system"
+                        invisible="connection_state == 'stopped'"/>
+              </div>
+            </section>
+            <section class="nasqo-waha-preview" aria-label="معاينة رمز QR">
+              <field name="qr_preview" widget="html" readonly="1" nolabel="1"/>
+            </section>
+            <section class="nasqo-waha-details" aria-label="بيانات جلسة الاختبار">
+              <h3>تفاصيل المحاكاة</h3>
+              <group>
+                <field name="name" readonly="1"/>
+                <field name="connection_state" readonly="1"/>
+                <field name="connection_note" readonly="1"/>
+                <field name="last_simulated_at" readonly="1"/>
+              </group>
+            </section>
+          </div>
+        </sheet>
+      </form>
+    </field>
+  </record>
+  <record id="demo_session_action" model="ir.actions.act_window">
+    <field name="name">اتصال واتساب وQR • اختبار</field>
+    <field name="res_model">nasqo.waha.preview.session</field>
+    <field name="path">nasqo-whatsapp-preview</field>
+    <field name="view_mode">form</field>
+    <field name="res_id" ref="nasqo_demo_session"/>
+    <field name="target">current</field>
+  </record>
+  <menuitem id="demo_session_menu" name="واتساب نسقو برو • معاينة QR"
+            action="demo_session_action" sequence="5" groups="base.group_system"/>
+</odoo>
