@@ -9,6 +9,11 @@ test infrastructure, not authorization to change live users or deploy roles.
   Reviewed GitHub base `449923e236259bfdc4fb651032c73663cc9220fa`; matching local
   parent tree `7e5618d6f3db6474b5fe3c3db303f2b71a9e360a`. Other worktrees and the
   server's foundation checkout were preserved. PR #1/#6/#7 remain unmerged.
+- Delivery: [Draft PR #8](https://github.com/helalalfqih-sketch/Nasqo/pull/8),
+  evidence commit `b90320ec0db1cfc6ac0299f31b2e458fe4aa64ef`, verified tree
+  `a663c4668ccb8b224e031409d8f632d2a6c9a7d1`. Local evidence commit `9a0c077`
+  has the same tree with different Git parentage; publication used the GitHub
+  API without forcing any existing branch. The follow-up only links this PR.
 - [Arabic report](docs/RBAC_AUDIT.md), guarded `scripts/rbac/` probes and
   `docs/rbac/2026-11-14/` contain the scope, reproduction commands, metadata,
   source hashes, JSON test results and all twelve RBAC coverage limits.

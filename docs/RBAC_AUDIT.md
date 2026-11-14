@@ -128,6 +128,12 @@
 
 ## 5. التسليم وإعادة التحقق
 
+طلب المراجعة: [Draft PR #8](https://github.com/helalalfqih-sketch/Nasqo/pull/8).
+Commit الأدلة والفحوص المنشور: `b90320ec0db1cfc6ac0299f31b2e458fe4aa64ef`،
+بشجرة `a663c4668ccb8b224e031409d8f632d2a6c9a7d1` المطابقة محليًا.
+الـcommit المحلي المقابل `9a0c077` يختلف في النسب بسبب نشر GitHub API،
+لكن محتوى الشجرة متطابق. التحديث التالي يضيف روابط التسليم فقط.
+
 الفرع: `test/merchant-admin-rbac`، مبني على شجرة مراجعة الكتالوج
 `7e5618d6f3db6474b5fe3c3db303f2b71a9e360a`، برأس GitHub الأساسي
 `449923e236259bfdc4fb651032c73663cc9220fa`. PR #1 و#6 و#7 بقيت Draft
