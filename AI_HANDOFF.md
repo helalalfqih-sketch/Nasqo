@@ -1,5 +1,41 @@
 # NASQO Odoo Community 19 — handoff (2026-11-13)
 
+## Update: original storefront design concept, 2026-11-14
+
+The user selected analysis of the attached Shopify theme and preparation of a
+NASQO storefront design. This is a separate static design prototype, not an
+Odoo integration or a live ERP/Shopify deployment.
+
+- Branch: `design/shopify-theme-to-nasqo`, based on the tree of GitHub
+  `test/merchant-admin-rbac` head `b066c7244c4908ac24b9dce92603aa7e02c4e7a5`.
+  Existing worktrees were clean and preserved; no force update or merge.
+- [Theme analysis](docs/NASQO_STOREFRONT_DESIGN.md) records the exact archive
+  fingerprint, 597 files, 101 Indexes-named files, five active home sections,
+  editor-only manager controls and client-side order-bridge limitations.
+  Original source, live contact details and protected assets are excluded.
+- [Private preview](https://nasqo-storefront-concept-20261114.hlalalfqyh87.chatgpt.site)
+  is published successfully from separate Sites source commit
+  `4aadf4c24c7a9d6aa387abfa4337c40a49f63750`. It requires the owner's ChatGPT
+  login; the unauthenticated cloud browser reached that login gate. Local
+  browser QA is recorded separately from native publication confirmation.
+- Original teal/gold Arabic design, eight synthetic products and original SVGs,
+  local Noto fonts with OFL, search/filter/sort/favorites, bounded local cart,
+  delivery arithmetic and account/order examples. No backend/API, personal
+  fields, actual checkout, payment or outbound messages.
+- [Verification](docs/storefront-design/2026-11-14/verification.md) preserves two
+  initial failures and their targeted passing retests (navigation timing and
+  modal keyboard boundary). Static references/SVG/JS checks and actual Chrome
+  interactions passed within the documented scope. Responsive frames are not
+  physical mobile-device or WCAG certification.
+- Only README, this handoff and `docs/` changed in NASQO. Runtime addons, Docker,
+  dependencies, workflows and production data are untouched. Source provenance
+  for the preview is in `docs/storefront-design/2026-11-14/delivery.json`.
+
+Next: review the design, then close the existing M1/M2 and RBAC gates before
+mapping it into `nasqo_storefront` with QWeb, `website_sale` and Portal. Do not
+copy Liquid/Shopify Ajax or treat this visual prototype as completed M3.
+
+
 ## Update: merchant/developer RBAC audit, 2026-11-14
 
 The user selected an actual permission-separation audit. This is evidence and

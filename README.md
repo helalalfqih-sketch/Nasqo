@@ -36,6 +36,17 @@ remain missing. No live account or permission was changed.
 See `scripts/rbac/` and `docs/rbac/2026-11-14/` for guarded probes and sanitized
 evidence. These probes are not yet part of the existing foundation CI workflow.
 
+## Original storefront design concept
+
+The [private NASQO storefront preview](https://nasqo-storefront-concept-20261114.hlalalfqyh87.chatgpt.site)
+provides original Arabic/RTL buyer screens with synthetic product search,
+favorites, a local cart and a non-transactional checkout preview. Open it with
+the owner's ChatGPT account. It is separate from live ERP/Shopify and is not an
+installed Odoo theme or proof of tenant/payment readiness.
+See the [Arabic theme analysis and Odoo mapping](docs/NASQO_STOREFRONT_DESIGN.md)
+and [actual verification results](docs/storefront-design/2026-11-14/verification.md).
+No application addon or dependency was changed in this documentation round.
+
 ## Isolated Codespaces integration
 Open the [development branch](https://github.com/helalalfqih-sketch/Nasqo/tree/chore/odoo19-ecommerce-foundation), then **Code → Codespaces → Create codespace on this branch**. The devcontainer uses Docker-in-Docker, a separate PostgreSQL database and the exact Odoo source commit from `upstream.json`, running inside the official dated Odoo 19 image. It installs `website_sale` and `nasqo_store`, performs an upgrade, sets a random development admin password and verifies the login and shop routes.
 
