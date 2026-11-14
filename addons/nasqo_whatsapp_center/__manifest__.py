@@ -1,6 +1,6 @@
 {
-    "name": "NASQO WhatsApp Center",
-    "version": "19.0.1.0.0",
+    "name": "NASQO PRO WhatsApp Center",
+    "version": "19.0.1.1.0",
     "summary": "WhatsApp app inside NASQO Odoo, with clearly marked preview",
     "author": "NASQO",
     "license": "LGPL-3",

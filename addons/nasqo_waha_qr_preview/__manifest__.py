@@ -1,6 +1,6 @@
 {
-    "name": "NASQO WhatsApp Connection Preview",
-    "version": "19.0.0.1.0",
+    "name": "NASQO PRO WhatsApp Connection Preview",
+    "version": "19.0.1.1.0",
     "summary": "Isolated QR and WhatsApp connection status demonstration only",
     "author": "NASQO",
     "license": "LGPL-3",

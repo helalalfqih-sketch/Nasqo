@@ -9,10 +9,10 @@
                 <attribute name="title">اقتراح بيانات الشركات عند إضافة جهات اتصال.</attribute>
             </xpath>
             <xpath expr="//setting[field[@name='web_app_name']]" position="attributes">
-                <attribute name="help">اسم التطبيق المثبت من المتصفح. هوية نسقو مفعّلة.</attribute>
+                <attribute name="help">اسم التطبيق المثبت من المتصفح. هوية نسقو برو مفعّلة.</attribute>
             </xpath>
             <xpath expr="//field[@name='web_app_name']" position="attributes">
-                <attribute name="placeholder">NASQO</attribute>
+                <attribute name="placeholder">NASQO PRO</attribute>
                 <attribute name="readonly">1</attribute>
             </xpath>
             <xpath expr="//setting[button[@name='%(base.action_apikeys_admin)d']]" position="attributes">

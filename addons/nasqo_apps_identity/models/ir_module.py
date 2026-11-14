@@ -22,8 +22,8 @@ def clean_description(raw):
     text = _HTML_TAG.sub("", text)
     text = _OD_LINK.sub("", text)
     # User-facing platform nomenclature only: source authorship remains intact.
-    text = _OD_MARK.sub("نسقو", text)
-    text = _OD_AR.sub("نسقو", text)
+    text = _OD_MARK.sub("نسقو برو", text)
+    text = _OD_AR.sub("نسقو برو", text)
     # Remove whitespace-only empty links caused by raw HTML stripping.
     text = re.sub(r"\(\s*\)", "", text)
     return text

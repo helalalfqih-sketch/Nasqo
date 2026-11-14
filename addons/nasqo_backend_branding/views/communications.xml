@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="notification_identity" inherit_id="mail.mail_notification_layout" priority="130">
+        <xpath expr="//a[contains(@href, 'odoo.com')]" position="replace">
+            <span dir="rtl">نسقو برو</span>
+        </xpath>
+    </template>
+    <template id="notification_light_identity" inherit_id="mail.mail_notification_light" priority="130">
+        <xpath expr="//a[contains(@href, 'odoo.com')]" position="replace">
+            <span dir="rtl">نسقو برو</span>
+        </xpath>
+    </template>
+    <template id="report_title_identity" inherit_id="web.report_layout" priority="130">
+        <xpath expr="//title/t" position="attributes">
+            <attribute name="t-esc">title or 'تقرير نسقو برو'</attribute>
+        </xpath>
+    </template>
+    <template id="report_preview_title_identity" inherit_id="web.report_preview_layout" priority="130">
+        <xpath expr="//title/t" position="attributes">
+            <attribute name="t-esc">title or 'تقرير نسقو برو'</attribute>
+        </xpath>
+    </template>
+    <template id="website_information_identity" inherit_id="website.show_website_info" priority="130">
+        <xpath expr="//section/p" position="replace">
+            <p dir="rtl">معلومات منصة نسقو برو لإدارة المتجر والأعمال.</p>
+        </xpath>
+    </template>
+</odoo>

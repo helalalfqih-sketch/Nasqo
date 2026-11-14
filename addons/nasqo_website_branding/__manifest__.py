@@ -1,6 +1,6 @@
 {
-    "name": "NASQO Website Identity",
-    "version": "19.0.1.0.0",
+    "name": "NASQO PRO Website Identity",
+    "version": "19.0.1.1.0",
     "summary": "Arabic NASQO identity for the public storefront",
     "author": "NASQO",
     "license": "LGPL-3",

@@ -61,18 +61,18 @@ class NasqoWahaLive(http.Controller):
         )
         body = """<!doctype html><html lang="ar" dir="rtl"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>واتساب نسقو — الاتصال الحقيقي</title>
+<title>واتساب نسقو برو — الاتصال الحقيقي</title>
 <style>body{font-family:system-ui,Tahoma,sans-serif;background:#f5f7f8;color:#1d3131;margin:0;padding:20px}
 main{max-width:650px;margin:auto;background:white;padding:24px;border-radius:16px;border:1px solid #dce5e5}
 h1{font-size:1.5rem}.flag{padding:12px;background:#e9f3f3;border-radius:8px}
 a{display:inline-block;margin:8px 0;padding:12px;background:#14675a;color:white;text-decoration:none;border-radius:8px}
 img{display:block;max-width:100%;height:auto;margin:16px auto}small{color:#566}
-</style></head><body><main><h1>واتساب نسقو — اتصال WAHA الحقيقي</h1>
+</style></head><body><main><h1>واتساب نسقو برو — اتصال WAHA الحقيقي</h1>
 <p class="flag">الحالة: <strong>STATUS</strong></p>
 <p>DETAILS</p>
 QR_PLACEHOLDER
 <a href="/nasqo/whatsapp/live">تحديث الحالة وQR</a>
-<a href="/odoo/apps">العودة إلى تطبيقات نسقو</a>
+<a href="/odoo/apps">العودة إلى تطبيقات نسقو برو</a>
 <p><small>للمسؤول فقط. قراءة حالة الجلسة وعرض QR، دون إرسال رسائل أو تخزين بيانات QR.</small></p>
 </main></body></html>"""
         body = (

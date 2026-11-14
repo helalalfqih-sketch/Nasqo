@@ -7,7 +7,7 @@
     <field name="priority">95</field>
     <field name="arch" type="xml">
       <xpath expr="//h4[.//field[@name='author']]" position="replace">
-        <div class="text-muted mb-3" dir="rtl">تطبيقات نسقو</div>
+        <div class="text-muted mb-3" dir="rtl">تطبيقات نسقو برو</div>
       </xpath>
       <xpath expr="//h1//field[@name='summary']" position="replace">
         <field class="fs-2 text-muted" name="nasqo_summary" invisible="not nasqo_summary"/>

@@ -1,11 +1,11 @@
 {
-    "name": "NASQO Admin Identity",
-    "version": "19.0.1.0.0",
+    "name": "NASQO PRO Admin Identity",
+    "version": "19.0.1.1.0",
     "summary": "NASQO identity for the administration interface",
     "author": "NASQO",
     "license": "LGPL-3",
-    "depends": ["web", "base_setup", "website"],
-    "data": ["views/branding.xml", "views/settings.xml"],
+    "depends": ["web", "base_setup", "website", "mail"],
+    "data": ["views/branding.xml", "views/settings.xml", "views/communications.xml"],
     "assets": {
         "web.assets_backend": [
             "nasqo_backend_branding/static/src/js/branding.js",

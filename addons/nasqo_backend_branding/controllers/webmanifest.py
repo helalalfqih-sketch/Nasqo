@@ -5,8 +5,8 @@ class NasqoWebManifest(WebManifest):
     def _get_webmanifest(self):
         manifest = super()._get_webmanifest()
         manifest.update({
-            "name": "نسقو | NASQO",
-            "short_name": "NASQO",
+            "name": "نسقو برو | NASQO PRO",
+            "short_name": "NASQO PRO",
             "background_color": "#123b42",
             "theme_color": "#123b42",
             "icons": [{

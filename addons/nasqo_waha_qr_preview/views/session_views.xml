@@ -8,7 +8,7 @@
         <sheet>
           <div class="nasqo-waha-qr-page" dir="rtl">
             <div class="nasqo-waha-qr-heading">
-              <span class="nasqo-waha-eyebrow">NASQO · مختبر واتساب</span>
+              <span class="nasqo-waha-eyebrow">NASQO PRO · مختبر واتساب</span>
               <h2>حالة الاتصال ورمز QR</h2>
               <p>تجربة واجهة الربط على الهاتف دون تشغيل WAHA أو استخدام رقم واتساب حقيقي.</p>
             </div>
@@ -60,6 +60,6 @@
     <field name="res_id" ref="nasqo_demo_session"/>
     <field name="target">current</field>
   </record>
-  <menuitem id="demo_session_menu" name="واتساب نسقو • معاينة QR"
+  <menuitem id="demo_session_menu" name="واتساب نسقو برو • معاينة QR"
             action="demo_session_action" sequence="5" groups="base.group_system"/>
 </odoo>

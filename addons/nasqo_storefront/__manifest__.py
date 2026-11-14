@@ -1,6 +1,6 @@
 {
-    "name": "NASQO Arabic Storefront Pilot",
-    "version": "19.0.1.0.0",
+    "name": "NASQO PRO Arabic Storefront Pilot",
+    "version": "19.0.1.1.0",
     "summary": "Arabic RTL mobile-friendly storefront proof-of-concept",
     "author": "NASQO",
     "category": "Website/eCommerce",

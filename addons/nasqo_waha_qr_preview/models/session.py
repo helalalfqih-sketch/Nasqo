@@ -7,7 +7,7 @@ DEMO_SESSION = "nasqo-waha-synthetic"
 
 class WahaDemoSession(models.Model):
     _name = "nasqo.waha.preview.session"
-    _description = "NASQO WhatsApp Connection Preview - No Real Account"
+    _description = "NASQO PRO WhatsApp Connection Preview - No Real Account"
     _rec_name = "name"
 
     _unique_name = models.Constraint(
@@ -74,7 +74,7 @@ class WahaDemoSession(models.Model):
                     '<h3>رمز QR للتجربة فقط</h3>'
                     '<div class="nasqo-waha-qr-image">'
                     '<img src="/nasqo_waha_qr_preview/static/img/not-a-whatsapp-qr.png" '
-                    'alt="رمز نسقو تجريبي غير صالح لمسح واتساب أو ربط أي حساب" '
+                    'alt="رمز نسقو برو تجريبي غير صالح لمسح واتساب أو ربط أي حساب" '
                     'width="230" height="230" loading="lazy" />'
                     '</div>'
                     '<p class="nasqo-waha-qr-label"><strong>غير صالح للربط</strong>'

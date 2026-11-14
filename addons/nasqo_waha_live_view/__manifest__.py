@@ -1,6 +1,6 @@
 {
-    "name": "NASQO WhatsApp Live Status and QR",
-    "version": "19.0.1.0.0",
+    "name": "NASQO PRO WhatsApp Live Status and QR",
+    "version": "19.0.1.1.0",
     "summary": "Admin-only, read-only WAHA session status and real QR in Odoo",
     "author": "NASQO",
     "license": "LGPL-3",

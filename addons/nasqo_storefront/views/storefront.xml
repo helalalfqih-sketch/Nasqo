@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="homepage" name="NASQO Arabic Storefront Home">
+    <template id="homepage" name="NASQO PRO Arabic Storefront Home">
         <t t-call="website.layout">
-            <t t-set="additional_title">نسقو | متجر عربي تجريبي</t>
+            <t t-set="additional_title">نسقو برو | متجر عربي تجريبي</t>
             <main id="wrap" class="oe_structure nasqo-storefront" dir="rtl" lang="ar">
                 <section class="nasqo-hero" aria-labelledby="nasqo-hero-title">
                     <div class="container nasqo-hero-inner">
-                        <div class="nasqo-mark">NASQO <span>نسقو</span></div>
+                        <div class="nasqo-mark">NASQO PRO <span>نسقو برو</span></div>
                         <p class="nasqo-eyebrow">متجر إلكتروني عربي • نسخة تجريبية</p>
                         <h1 id="nasqo-hero-title">كل ما تحتاجه، في مكان واحد</h1>
                         <p class="nasqo-lede">تصفّح المنتجات، أضف اختياراتك إلى السلة، وأكمل طلبك بسهولة. هذه البيئة مخصّصة للاختبار ولا تستقبل طلبات تجارية حقيقية.</p>
@@ -30,7 +30,7 @@
                         <t t-foreach="products" t-as="item">
                             <article class="nasqo-product">
                                 <a t-att-href="item.website_url" class="nasqo-product-link">
-                                    <div class="nasqo-product-placeholder" aria-hidden="true">نسقو</div>
+                                    <div class="nasqo-product-placeholder" aria-hidden="true">نسقو برو</div>
                                     <h3 t-esc="item.name"/>
                                     <p class="nasqo-product-price"><span t-esc="'%.2f' % item.list_price"/><span t-esc="request.env.company.currency_id.symbol"/></p>
                                     <span class="nasqo-product-action">عرض المنتج ←</span>
@@ -51,27 +51,27 @@
             </main>
         </t>
     </template>
-    <template id="nasqo_shop_rtl" inherit_id="website_sale.products" priority="32" name="NASQO RTL Shop Heading">
+    <template id="nasqo_shop_rtl" inherit_id="website_sale.products" priority="32" name="NASQO PRO RTL Shop Heading">
         <xpath expr="//div[@id='wrap']" position="attributes">
             <attribute name="class" add="nasqo-shop-rtl" separator=" "/>
             <attribute name="dir">rtl</attribute>
         </xpath>
         <xpath expr="//div[@id='wrap']" position="inside">
             <aside class="nasqo-shop-note" dir="rtl">
-                <strong>نسقو • المتجر التجريبي</strong>
+                <strong>نسقو برو • المتجر التجريبي</strong>
                 <span>أضف المنتجات إلى سلتك وتابع الطلب. لا تستخدم بيانات دفع حقيقية في هذا الاختبار.</span>
                 <a href="/nasqo">العودة للرئيسية</a>
             </aside>
         </xpath>
     </template>
-    <template id="nasqo_checkout_rtl" inherit_id="website_sale.checkout_layout" priority="32" name="NASQO RTL Cart and Checkout">
+    <template id="nasqo_checkout_rtl" inherit_id="website_sale.checkout_layout" priority="32" name="NASQO PRO RTL Cart and Checkout">
         <xpath expr="//div[@id='wrap']" position="attributes">
             <attribute name="class" add="nasqo-checkout-rtl" separator=" "/>
             <attribute name="dir">rtl</attribute>
         </xpath>
         <xpath expr="//div[@id='wrap']" position="inside">
             <aside class="nasqo-shop-note" dir="rtl" aria-label="بيئة الطلب التجريبية">
-                <strong>نسقو • السلة وإتمام الطلب</strong>
+                <strong>نسقو برو • السلة وإتمام الطلب</strong>
                 <span>بيئة اختبار فقط. لا تُدخل بيانات دفع حقيقية.</span>
                 <a href="/nasqo">الرئيسية</a>
             </aside>

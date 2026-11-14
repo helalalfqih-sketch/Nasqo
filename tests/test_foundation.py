@@ -20,8 +20,10 @@ class FoundationTests(unittest.TestCase):
             m = ast.literal_eval(path.read_text())
             self.assertTrue(path.parent.name.startswith('nasqo_'))
             self.assertTrue(m['version'].startswith('19.0.'))
-            self.assertIn('website_sale', m['depends'])
-            self.assertFalse(m['auto_install'])
+            if path.parent.name == 'nasqo_store':
+                self.assertIn('website_sale', m['depends'])
+            self.assertFalse(m.get('auto_install', False))
+            self.assertEqual(m['license'], 'LGPL-3')
             self.assertTrue((path.parent / '__init__.py').is_file())
             for item in m['data']:
                 self.assertTrue((path.parent / item).is_file())
