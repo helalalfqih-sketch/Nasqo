@@ -11,11 +11,16 @@
   "nasqo_base_branch": "test/merchant-admin-rbac",
   "nasqo_base_sha": "b066c7244c4908ac24b9dce92603aa7e02c4e7a5",
   "nasqo_base_tree": "bd9c175adaffc7537586e4e1a5e327d0b3790eff",
-  "review_status": "draft PR creation follows this source commit; no merge requested",
+  "review_status": "open draft, unmerged",
   "remaining": [
     "M1/M2 and RBAC gates",
     "Odoo integration",
     "real checkout/payment/stock/tax",
     "physical mobile and accessibility acceptance"
-  ]
+  ],
+  "pull_request": "https://github.com/helalalfqih-sketch/Nasqo/pull/9",
+  "evidence_commit": "ad6a3572cf34967aaa37de1dfab83b41b79ed93a",
+  "evidence_tree": "81e6a2a152a645cd90980f8e21f5d94cabe5844b",
+  "local_evidence_commit": "1b656c31b899dd716ab1225a430e477d0baedf51",
+  "github_actions": "Not used as acceptance evidence for this documentation-only round; browser QA is separate"
 }

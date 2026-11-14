@@ -9,6 +9,11 @@ Odoo integration or a live ERP/Shopify deployment.
 - Branch: `design/shopify-theme-to-nasqo`, based on the tree of GitHub
   `test/merchant-admin-rbac` head `b066c7244c4908ac24b9dce92603aa7e02c4e7a5`.
   Existing worktrees were clean and preserved; no force update or merge.
+- Delivery review: [Draft PR #9](https://github.com/helalalfqih-sketch/Nasqo/pull/9).
+  First published evidence commit `ad6a3572cf34967aaa37de1dfab83b41b79ed93a`
+  has tree `81e6a2a152a645cd90980f8e21f5d94cabe5844b`, matching local commit
+  `1b656c3`. Different local/API parentage explains different commit hashes.
+  The following documentation-only commit records this PR; no merge requested.
 - [Theme analysis](docs/NASQO_STOREFRONT_DESIGN.md) records the exact archive
   fingerprint, 597 files, 101 Indexes-named files, five active home sections,
   editor-only manager controls and client-side order-bridge limitations.
