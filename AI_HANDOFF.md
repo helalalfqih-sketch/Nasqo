@@ -9,6 +9,8 @@ notes below remain historical. Do not infer SaaS, RBAC, or checkout readiness
 from this presentation update.
 
 - Review branch: `feat/nasqo-pro-identity`, based on `ca09ad2` from the foundation branch.
+- Draft review: [PR #6](https://github.com/helalalfqih-sketch/Nasqo/pull/6).
+  Implementation commit: `c2bf1f0`; no automatic merge or release.
 - Published baseline commit `519a65b` captures seven existing server presentation addons;
   the following commit contains the PRO delta, verification scripts and docs.
 - All seven addon upgrades passed on an independent pilot and on the requested
@@ -27,7 +29,9 @@ from this presentation update.
 - `web.web_app_name`, the existing website display name and system bot identity
   are environment settings, not generalized automatic tenant migrations.
 - Logs, database snapshots, configurations, credentials and customer data stay
-  off Git. PR #1 remains unmerged. Follow up with the published review status.
+  off Git. PR #1 remains unmerged. GitHub Actions status must be checked on the
+  current review head; only the separately listed local/pilot/live results are
+  certified here.
 
 Next: review the branding diff and manually inspect authenticated business
 screens with the user's intended roles. Real PDF output and full responsive

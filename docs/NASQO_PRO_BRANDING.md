@@ -116,6 +116,8 @@ testable fallback, not an action performed here.
 ## Handoff
 
 Review branch: `feat/nasqo-pro-identity`, based on foundation commit `ca09ad2`.
+Draft review: [PR #6](https://github.com/helalalfqih-sketch/Nasqo/pull/6), with
+baseline commit `519a65b` and implementation commit `c2bf1f0`.
 The original server checkout and unrelated local work remain unchanged. PR #1
 is not merged. Protected deployment evidence is under the server's
 `docs/nasqo-pro-branding-20261114/`; its logs, settings snapshots, database
