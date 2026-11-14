@@ -1,0 +1,45 @@
+{
+  "app_menus": [
+    {
+      "groups": [],
+      "name": "Apps",
+      "xmlid": "base.menu_management"
+    },
+    {
+      "groups": [],
+      "name": "Apps",
+      "xmlid": "base.menu_apps"
+    },
+    {
+      "groups": [
+        "base.group_erp_manager",
+        "base.group_system"
+      ],
+      "name": "Settings",
+      "xmlid": "base.menu_administration"
+    }
+  ],
+  "module_acls": [
+    {
+      "create": true,
+      "group": "base.group_system",
+      "read": true,
+      "unlink": true,
+      "write": true,
+      "xmlid": "base.access_ir_module_module_group_user"
+    },
+    {
+      "create": false,
+      "group": "base.group_user",
+      "read": true,
+      "unlink": false,
+      "write": false,
+      "xmlid": "base_install_request.access_ir_module_module_group_user"
+    }
+  ],
+  "source_hashes": {
+    "base_install_request/__manifest__.py": "e9a7ff25e79431936980f14f860ffb727cafa3533faeee82b25b6c72ae9413c5",
+    "base_install_request/security/ir.model.access.csv": "d406444e152e84084f42d09fb2ea80b76e03e5d9912a7682258a6bb500991792",
+    "base_install_request/views/ir_module_module_views.xml": "a18d5eb481918aac09e29a578ffd38525977a1ee5fa81f86fb320461b9aded52"
+  }
+}

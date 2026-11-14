@@ -1,0 +1,60 @@
+{
+  "upstream_commit": "9cd6f090a8a21d9531c70ceec7f5c51271e24168",
+  "checked_files": [
+    {
+      "source_file": "base/models/res_users.py",
+      "runtime_sha256": "f434a4df563460e2371a82fc82dfa6d80641efc919050b81d2f80a404cebdbf7",
+      "pinned_source_sha256": "f434a4df563460e2371a82fc82dfa6d80641efc919050b81d2f80a404cebdbf7",
+      "match": true
+    },
+    {
+      "source_file": "base/models/ir_module.py",
+      "runtime_sha256": "78806c723d5a8e59e7ae5e266915bf5053168fb768a26e41367e20785dc7ccc3",
+      "pinned_source_sha256": "78806c723d5a8e59e7ae5e266915bf5053168fb768a26e41367e20785dc7ccc3",
+      "match": true
+    },
+    {
+      "source_file": "base/security/ir.model.access.csv",
+      "runtime_sha256": "1d19b2da7fa6eecc30ed46b21c1ed30a5b600d4950e083e6be349f15d69dfd50",
+      "pinned_source_sha256": "1d19b2da7fa6eecc30ed46b21c1ed30a5b600d4950e083e6be349f15d69dfd50",
+      "match": true
+    },
+    {
+      "source_file": "sale/security/ir.model.access.csv",
+      "runtime_sha256": "6a30302228e9cdeee6687da12589eb06ad66c460b863d2458401c895d3c53d78",
+      "pinned_source_sha256": "6a30302228e9cdeee6687da12589eb06ad66c460b863d2458401c895d3c53d78",
+      "match": true
+    },
+    {
+      "source_file": "product/security/ir.model.access.csv",
+      "runtime_sha256": "47cdd938b5442d3810d64d8f6ed87b49c7a8c68be394a145ecfe434295212082",
+      "pinned_source_sha256": "47cdd938b5442d3810d64d8f6ed87b49c7a8c68be394a145ecfe434295212082",
+      "match": true
+    },
+    {
+      "source_file": "website/security/website_security.xml",
+      "runtime_sha256": "f7349f195459f954bcb780fc734c7bcc7a075f51bc64de82208899404eab427e",
+      "pinned_source_sha256": "f7349f195459f954bcb780fc734c7bcc7a075f51bc64de82208899404eab427e",
+      "match": true
+    },
+    {
+      "source_file": "base_install_request/__manifest__.py",
+      "runtime_sha256": "e9a7ff25e79431936980f14f860ffb727cafa3533faeee82b25b6c72ae9413c5",
+      "pinned_source_sha256": "e9a7ff25e79431936980f14f860ffb727cafa3533faeee82b25b6c72ae9413c5",
+      "match": true
+    },
+    {
+      "source_file": "base_install_request/security/ir.model.access.csv",
+      "runtime_sha256": "d406444e152e84084f42d09fb2ea80b76e03e5d9912a7682258a6bb500991792",
+      "pinned_source_sha256": "d406444e152e84084f42d09fb2ea80b76e03e5d9912a7682258a6bb500991792",
+      "match": true
+    },
+    {
+      "source_file": "base_install_request/views/ir_module_module_views.xml",
+      "runtime_sha256": "a18d5eb481918aac09e29a578ffd38525977a1ee5fa81f86fb320461b9aded52",
+      "pinned_source_sha256": "a18d5eb481918aac09e29a578ffd38525977a1ee5fa81f86fb320461b9aded52",
+      "match": true
+    }
+  ],
+  "limit": "Only these nine files were compared; not a whole-runtime equivalence or dependency security claim."
+}

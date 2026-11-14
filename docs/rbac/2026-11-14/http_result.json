@@ -1,0 +1,730 @@
+{
+  "captured_at_utc": "2026-11-14T18:27:53.774172+00:00",
+  "checks": [
+    {
+      "name": "delegated_users: authenticate",
+      "status": "PASS"
+    },
+    {
+      "name": "developer: authenticate",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant: authenticate",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant_union: authenticate",
+      "status": "PASS"
+    },
+    {
+      "name": "portal: authenticate",
+      "status": "PASS"
+    },
+    {
+      "name": "staff: authenticate",
+      "status": "PASS"
+    },
+    {
+      "name": "support_candidate: authenticate",
+      "status": "PASS"
+    },
+    {
+      "name": "developer is a regular authenticated user, not superuser ID 1",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "developer can read module metadata",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "developer can write a synthetic technical setting",
+      "status": "PASS"
+    },
+    {
+      "name": "developer downloads the synthetic private admin attachment",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "developer can update a synthetic staff account",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "merchant: edit product",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "merchant: edit own-store order",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "merchant: create product",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "merchant: create quotation",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant: product update persisted",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant: order update persisted",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant: created product.template persisted",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant: created sale.order persisted",
+      "status": "PASS"
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: button_install normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: button_immediate_install normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: button_upgrade normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: button_immediate_upgrade normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: button_uninstall normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: button_immediate_uninstall normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant: technical config read normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant: technical config write normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant: self administrative group injection normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant: change another user normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: button_install debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: button_immediate_install debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: button_upgrade debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: button_immediate_upgrade debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: button_uninstall debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: button_immediate_uninstall debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant: technical config read debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant: technical config write debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant: self administrative group injection debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant: change another user debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: module batch operation",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant: call_button install",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant: direct module state mutation",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant: group inheritance injection",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant: context spoofing cannot write configuration",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant: arbitrary admin-user creation",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "name": "merchant: cannot create any user through unrestricted res.users",
+      "status": "PASS"
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant: synthetic admin attachment RPC read",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "http_status": 404,
+      "name": "merchant: guessed private admin attachment download denied",
+      "status": "PASS"
+    },
+    {
+      "http_status": 403,
+      "name": "merchant: /nasqo/whatsapp/live denied",
+      "status": "PASS"
+    },
+    {
+      "http_status": 403,
+      "name": "merchant: /nasqo/whatsapp/qr denied",
+      "status": "PASS"
+    },
+    {
+      "error_kind": "odoo.exceptions.UserError",
+      "name": "merchant: public preview method denied",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant: menu hidden base.menu_administration",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant: menu hidden base.menu_apps",
+      "status": "FAIL"
+    },
+    {
+      "name": "merchant: menu hidden base.menu_management",
+      "status": "FAIL"
+    },
+    {
+      "name": "merchant: menu hidden nasqo_whatsapp_center.menu_whatsapp_root",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "merchant: app metadata behind a direct link",
+      "status": "FAIL",
+      "unexpected_success": true
+    },
+    {
+      "error_kind": null,
+      "name": "merchant_union: edit product",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "merchant_union: edit own-store order",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "merchant_union: create product",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "merchant_union: create quotation",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant_union: product update persisted",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant_union: order update persisted",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant_union: created product.template persisted",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant_union: created sale.order persisted",
+      "status": "PASS"
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: button_install normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: button_immediate_install normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: button_upgrade normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: button_immediate_upgrade normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: button_uninstall normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: button_immediate_uninstall normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant_union: technical config read normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant_union: technical config write normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant_union: self administrative group injection normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant_union: change another user normal",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: button_install debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: button_immediate_install debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: button_upgrade debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: button_immediate_upgrade debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: button_uninstall debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: button_immediate_uninstall debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant_union: technical config read debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant_union: technical config write debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant_union: self administrative group injection debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant_union: change another user debug=1",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: module batch operation",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessDenied",
+      "name": "merchant_union: call_button install",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant_union: direct module state mutation",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant_union: group inheritance injection",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant_union: context spoofing cannot write configuration",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant_union: arbitrary admin-user creation",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "name": "merchant_union: cannot create any user through unrestricted res.users",
+      "status": "PASS"
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "merchant_union: synthetic admin attachment RPC read",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "http_status": 404,
+      "name": "merchant_union: guessed private admin attachment download denied",
+      "status": "PASS"
+    },
+    {
+      "http_status": 403,
+      "name": "merchant_union: /nasqo/whatsapp/live denied",
+      "status": "PASS"
+    },
+    {
+      "http_status": 403,
+      "name": "merchant_union: /nasqo/whatsapp/qr denied",
+      "status": "PASS"
+    },
+    {
+      "error_kind": "odoo.exceptions.UserError",
+      "name": "merchant_union: public preview method denied",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant_union: menu hidden base.menu_administration",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant_union: menu hidden base.menu_apps",
+      "status": "FAIL"
+    },
+    {
+      "name": "merchant_union: menu hidden base.menu_management",
+      "status": "FAIL"
+    },
+    {
+      "name": "merchant_union: menu hidden nasqo_whatsapp_center.menu_whatsapp_root",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "merchant_union: app metadata behind a direct link",
+      "status": "FAIL",
+      "unexpected_success": true
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "portal: technical config denied",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "portal: admin self-escalation denied",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "staff: technical config denied",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": "odoo.exceptions.AccessError",
+      "name": "staff: admin self-escalation denied",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "error_kind": null,
+      "name": "developer restores unsafe delegation candidate",
+      "status": "PASS"
+    },
+    {
+      "name": "active staff can download its synthetic partner attachment",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "developer disables synthetic staff",
+      "status": "PASS"
+    },
+    {
+      "error_kind": "odoo.http.SessionExpiredException",
+      "name": "disabled staff old session is rejected on next request",
+      "status": "PASS",
+      "unexpected_success": false
+    },
+    {
+      "http_status": 404,
+      "name": "disabled staff old file link discloses no bytes",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "developer verifies module states after forbidden calls",
+      "status": "PASS"
+    },
+    {
+      "name": "forbidden module operations left states unchanged",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "developer verifies technical setting after forbidden writes",
+      "status": "PASS"
+    },
+    {
+      "name": "technical setting retained developer value",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant: forbidden attempts left administrative groups absent",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant_union: forbidden attempts left administrative groups absent",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "developer: empty-addon button_immediate_install",
+      "status": "PASS"
+    },
+    {
+      "name": "developer: empty-addon state after button_immediate_install",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "developer: empty-addon button_immediate_upgrade",
+      "status": "PASS"
+    },
+    {
+      "name": "developer: empty-addon state after button_immediate_upgrade",
+      "status": "PASS"
+    },
+    {
+      "error_kind": null,
+      "name": "developer: empty-addon button_immediate_uninstall",
+      "status": "PASS"
+    },
+    {
+      "name": "developer: empty-addon state after button_immediate_uninstall",
+      "status": "PASS"
+    }
+  ],
+  "findings": [
+    {
+      "evidence": {
+        "downloads_partner_attachment_without_grant": true,
+        "reads_synthetic_partner_without_grant": true
+      },
+      "id": "RBAC-04",
+      "reason": "No dedicated support/grant/audit implementation exists. A plain internal-user profile must not be used as a restricted support role.",
+      "status": "BLOCKED"
+    },
+    {
+      "evidence": {
+        "allowed": true,
+        "error_kind": null
+      },
+      "id": "RBAC-03",
+      "reason": "A safe merchant profile cannot invite an allowed-role employee through res.users. Granting general access-management rights is not a safe substitute for a constrained invitation flow.",
+      "status": "FAIL"
+    }
+  ],
+  "limits": [
+    "Synthetic isolated database only; no live user permissions changed.",
+    "Menu payload and direct HTTP/RPC tested; no authenticated visual browser walkthrough.",
+    "No new cross-tenant DB/filestore, support grant, backup or financial acceptance tests.",
+    "No outbound network, WhatsApp gateway secrets, real email, payments or customer data."
+  ],
+  "observations": {
+    "access_management_role_self_elevation": {
+      "allowed": true,
+      "error_kind": null
+    },
+    "merchant_/odoo/apps": {
+      "http_status": 200,
+      "note": "HTML shell status is not proof of authorized action or data access"
+    },
+    "merchant_/odoo/apps?debug=1": {
+      "http_status": 200,
+      "note": "HTML shell status is not proof of authorized action or data access"
+    },
+    "merchant_/odoo/settings": {
+      "http_status": 200,
+      "note": "HTML shell status is not proof of authorized action or data access"
+    },
+    "merchant_allowed_role_employee_creation": {
+      "denied": true,
+      "error_kind": "odoo.exceptions.AccessError"
+    },
+    "merchant_technical_menus": {
+      "base.menu_administration": false,
+      "base.menu_apps": true,
+      "base.menu_management": true,
+      "nasqo_whatsapp_center.menu_whatsapp_root": false
+    },
+    "merchant_union_/odoo/apps": {
+      "http_status": 200,
+      "note": "HTML shell status is not proof of authorized action or data access"
+    },
+    "merchant_union_/odoo/apps?debug=1": {
+      "http_status": 200,
+      "note": "HTML shell status is not proof of authorized action or data access"
+    },
+    "merchant_union_/odoo/settings": {
+      "http_status": 200,
+      "note": "HTML shell status is not proof of authorized action or data access"
+    },
+    "merchant_union_allowed_role_employee_creation": {
+      "denied": true,
+      "error_kind": "odoo.exceptions.AccessError"
+    },
+    "merchant_union_technical_menus": {
+      "base.menu_administration": false,
+      "base.menu_apps": true,
+      "base.menu_management": true,
+      "nasqo_whatsapp_center.menu_whatsapp_root": false
+    },
+    "plain_internal_support_candidate": {
+      "downloads_partner_attachment_without_grant": true,
+      "reads_synthetic_partner_without_grant": true
+    }
+  },
+  "summary": {
+    "fail": 6,
+    "pass": 117
+  }
+}

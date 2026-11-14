@@ -1,0 +1,91 @@
+{
+  "captured_at_utc": "2026-11-14T18:32:44.710409+00:00",
+  "lab": {
+    "project": "nasqo-rbac-20261114-1815",
+    "database": "nasqo_rbac_test",
+    "odoo_image_id": "sha256:49c9d2a9935f07f15e2404ce8649a84c4f0d4e70a880f7209ad27a19ab415f77",
+    "postgres_image_id": "sha256:3267c505060a0052e5aa6e5175a7b41ab6b04da2f8c4540fc6e98a37210aa2d3",
+    "synthetic_only": true,
+    "ports_published": false,
+    "outbound_network": false
+  },
+  "containers": {
+    "db": {
+      "state": "running",
+      "exit_code": 0,
+      "oom_killed": false,
+      "image": "sha256:3267c505060a0052e5aa6e5175a7b41ab6b04da2f8c4540fc6e98a37210aa2d3",
+      "networks": [
+        "nasqo-rbac-20261114-1815_isolated"
+      ],
+      "ports_published": false,
+      "volumes": [
+        "nasqo-rbac-20261114-1815_postgres"
+      ],
+      "bind_destinations": [
+        "/docker-entrypoint-initdb.d",
+        "/run/secrets/app_password",
+        "/run/secrets/bootstrap_password"
+      ]
+    },
+    "install": {
+      "state": "exited",
+      "exit_code": 0,
+      "oom_killed": false,
+      "image": "sha256:49c9d2a9935f07f15e2404ce8649a84c4f0d4e70a880f7209ad27a19ab415f77",
+      "networks": [
+        "nasqo-rbac-20261114-1815_isolated"
+      ],
+      "ports_published": false,
+      "volumes": [
+        "nasqo-rbac-20261114-1815_filestore"
+      ],
+      "bind_destinations": [
+        "/mnt/extra-addons",
+        "/etc/odoo/odoo.conf"
+      ]
+    },
+    "odoo": {
+      "state": "running",
+      "exit_code": 0,
+      "oom_killed": false,
+      "image": "sha256:49c9d2a9935f07f15e2404ce8649a84c4f0d4e70a880f7209ad27a19ab415f77",
+      "networks": [
+        "nasqo-rbac-20261114-1815_isolated"
+      ],
+      "ports_published": false,
+      "volumes": [
+        "nasqo-rbac-20261114-1815_filestore"
+      ],
+      "bind_destinations": [
+        "/mnt/extra-addons",
+        "/etc/odoo/odoo.conf"
+      ]
+    }
+  },
+  "known_credential_matches": {
+    "db_docker_logs": 0,
+    "install_docker_logs": 0,
+    "odoo_docker_logs": 0,
+    "result.json": 0,
+    "followup.json": 0,
+    "private/fixtures.json": 0,
+    "private/fixtures.log": 0,
+    "private/http.log": 0,
+    "private/followup.log": 0,
+    "private/setup.log": 0,
+    "private/setup-resume.log": 0
+  },
+  "network_internal": true,
+  "database_role_flags": "nasqo_rbac_test|f|f|f|f",
+  "safe_config": {
+    "db_name": "nasqo_rbac_test",
+    "list_db": "False",
+    "proxy_mode": "False",
+    "max_cron_threads": "0",
+    "smtp_server": "127.0.0.1",
+    "smtp_port": "1"
+  },
+  "source_snapshot_matches": true,
+  "scan_limit": "Exact generated lab credentials only; not a general secret or dependency vulnerability scan."
+}

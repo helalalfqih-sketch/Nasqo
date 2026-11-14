@@ -1,0 +1,53 @@
+{
+  "captured_at_utc": "2026-11-14T18:31:51.429949+00:00",
+  "checks": [
+    {
+      "name": "candidate cannot read technical configuration before elevation",
+      "status": "PASS"
+    },
+    {
+      "name": "unsafe configuration demonstrably grants effective administration",
+      "status": "PASS"
+    },
+    {
+      "name": "candidate direct groups restored",
+      "status": "PASS"
+    },
+    {
+      "name": "old session cannot read technical configuration after role revocation",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant: cannot create administrative installation review",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant: guessed review public install method denied",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant_union: cannot create administrative installation review",
+      "status": "PASS"
+    },
+    {
+      "name": "merchant_union: guessed review public install method denied",
+      "status": "PASS"
+    },
+    {
+      "name": "wizard attacks leave empty probe uninstalled",
+      "status": "PASS"
+    }
+  ],
+  "limit": "Positive reproduction of an intentionally privileged configuration is evidence of a role-design gap, not a secure-role acceptance.",
+  "observations": {
+    "unsafe_access_manager_candidate": {
+      "effective_system_group_confirmed": true,
+      "self_write_accepted": true,
+      "technical_read_after_elevation": true
+    }
+  },
+  "summary": {
+    "fail": 0,
+    "pass": 9
+  }
+}
