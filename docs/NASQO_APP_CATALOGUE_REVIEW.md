@@ -196,6 +196,8 @@ odoo shell -c /etc/odoo/odoo.conf -d "$AUDIT_DB" --no-http < scripts/audit/runti
 
 فرع المراجعة: `docs/nasqo-app-catalogue-review` فوق شجرة فرع الهوية. قاعدة النشر في GitHub: `3e6c3b87c270c1ebb7a836421f6376d7ffb3f2fb`؛ الشجرة المطابقة محليًا `1e9a2f346e6fb6639ba69dbe374b9a8828b40828`. لا دمج لـPR #1 أو #6، ولا نشر تطبيقات على الخادم ضمن هذه الجولة.
 
+التسليم: [Draft PR #7](https://github.com/helalalfqih-sketch/Nasqo/pull/7)، والتزام الحصر والتقرير `a36d1ad`. يستهدف فرع الهوية للمراجعة، وليس main أو الخادم.
+
 ## 9. مراجع رسمية
 
 - [Odoo 19 module manifests: license, depends, application, installable, external dependencies](https://www.odoo.com/documentation/19.0/developer/reference/backend/module.html)

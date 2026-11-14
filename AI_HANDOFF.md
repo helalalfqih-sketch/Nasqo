@@ -9,6 +9,8 @@ all applications or begin every planned milestone.
 - Review branch: `docs/nasqo-app-catalogue-review`, based on the identity tree.
   GitHub base head: `3e6c3b87c270c1ebb7a836421f6376d7ffb3f2fb`;
   local equivalent parent tree: `1e9a2f346e6fb6639ba69dbe374b9a8828b40828`.
+  Draft review: [PR #7](https://github.com/helalalfqih-sketch/Nasqo/pull/7),
+  inventory/report commit `a36d1ad`; stacked on PR #6, no merge/deployment.
 - [Arabic report](docs/NASQO_APP_CATALOGUE_REVIEW.md) records the complete
   55-application decision matrix, functional gaps, priorities and acceptance
   gates. Raw metadata and CSV are under `docs/catalogue/2026-11-14/`.
